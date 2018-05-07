@@ -1,0 +1,3 @@
+Added Pin To Net: NetName=GND Pin=P1-11
+Change Net Color : Old Net Color=RGB(255, 110, 110) New Net Color=Default
+Change Net Color : Old Net Color=RGB(110, 110, 255) New Net Color=Default

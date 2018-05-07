@@ -1,0 +1,5 @@
+Added Component: Designator=P*(Freedom KL25Z Headerarray)
+Added Component: Designator=U?(MCHP-PDIP-P8)
+Added Component: Designator=U?(MAXM-P8-2)
+Added Class: Name=Schematic
+Added Room: Name=Schematic
