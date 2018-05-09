@@ -1,0 +1,101 @@
+% Encoding: ISO-8859-2
+
+@Book{£±cza telekomunikacyjne,
+  author    = {Sroka and Zatorski},
+  title     = {Pomiary w telekomunikacyjnych ³±czach analogowo-analogowych},
+  year      = {2004},
+  date      = {2018-05-09},
+  publisher = {Uczelniane Wydawnictwa Naukowo - Dydaktyczne AGH},
+  location  = {Kraków},
+}
+
+@Book{Bieñ,
+  author    = {Bieñ},
+  title     = {Metrologia jako¶ci energii elektrycznej w obszarze niskoczêstotliwo¶ciowych zaburzeñ napiêcia sieci},
+  year      = {2003},
+  date      = {2018-05-09},
+  publisher = {Uczelniane Wydawnictwa Naukowo - Dydaktyczne AGH},
+  location  = {Kraków},
+}
+
+@Report{piknik,
+  author      = {Bieñ and Chmielowiec and Firlit and Hanzelka and Ko³ek and Pi±tek and Rogó¿ and Wo¼ny},
+  title       = {Piknik Jako¶ci Energii Elektrycznej - Raport z eksperymentu pomiarowego},
+  type        = {Raport},
+  institution = {AGH and Tauron Dystrybucja},
+  year        = {2015},
+  date        = {2018-05-09},
+}
+
+@Book{metro,
+  author    = {Sroka and Zatorski},
+  title     = {Podstawy metrologii elektrycznej},
+  year      = {2011},
+  date      = {2018-05-09},
+  publisher = {Wydawnictwa AGH},
+  location  = {Kraków},
+}
+
+@Book{metro Chwaleba,
+  author = {Chwaleba and Poniñski and Siedlecki},
+  title  = {Metrologia elektryczna},
+  year   = {2014},
+  date   = {2018-05-09},
+}
+
+@Book{Lyons,
+  author    = {Lyons},
+  title     = {Wprowadzenie do cyfrowego przetwarzania sygna³ów},
+  year      = {2010},
+  date      = {2018-05-09},
+  publisher = {Wydawnictwa Komunikacji i £±czno¶ci},
+  location  = {Warszawa},
+}
+
+@WWW{MAX295,
+  author = {Maxim Integrated},
+  title  = {MAX295 Datasheet},
+  year   = {2010},
+  date   = {2018-05-09},
+  url    = {https://datasheets.maximintegrated.com/en/ds/MAX291-MAX296.pdf},
+}
+
+@WWW{SRAM Datasheet,
+  author = {Microchip},
+  title  = {23LCV1024 Datasheet},
+  year   = {2012},
+  date   = {2018-05-09},
+  url    = {http://ww1.microchip.com/downloads/en/DeviceDoc/25156A.pdf},
+}
+
+@Article{warto spróbkowaæ 1,
+  author       = {Doliñski},
+  title        = {Warto spróbkowaæ, czê¶æ 1},
+  journal      = {Elektronika Praktyczna},
+  journaltitle = {Elektronika Praktyczna 9/2016},
+  year         = {2006},
+  date         = {2018-05-09},
+}
+
+@Article{warto spróbkowaæ 2,
+  author       = {Doliñski},
+  title        = {Warto spróbkowaæ, czê¶æ 2},
+  journal      = {Elektronika Praktyczna},
+  journaltitle = {Elektronika Praktyczna 10/2006},
+  year         = {2006},
+  date         = {2018-05-09},
+}
+
+@Reference{norma fft,
+  title = {PN-EN 61000-4-7:2002},
+  year  = {2002},
+  date  = {2018-05-09},
+}
+
+@Reference{norma jako¶,
+  title = {IEC 61000-4-30:2015},
+  year  = {2015},
+  date  = {2018-05-09},
+}
+
+@Comment{jabref-meta: databaseType:biblatex;}
