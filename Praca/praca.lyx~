@@ -272,5 +272,41 @@ LatexCommand tableofcontents
 
 \end_layout
 
+\begin_layout Chapter
+Podstawowe definicje
+\end_layout
+
+\begin_layout Chapter
+Przegląd istniejących rozwiązań
+\end_layout
+
+\begin_layout Chapter
+Analiza normy IEC 6100-4-30
+\end_layout
+
+\begin_layout Chapter
+Implementacja przyrządu
+\end_layout
+
+\begin_layout Chapter
+Badanie parametrów przyrządu
+\end_layout
+
+\begin_layout Chapter
+Podsumowanie i wnioski
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintAll"
+bibfiles "bibliografia"
+options "plain"
+
+\end_inset
+
+
+\end_layout
+
 \end_body
 \end_document
