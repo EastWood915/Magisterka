@@ -276,6 +276,26 @@ LatexCommand tableofcontents
 Podstawowe definicje
 \end_layout
 
+\begin_layout Section
+Sygnały i ich parametry
+\end_layout
+
+\begin_layout Section
+Transformata Fouriera
+\end_layout
+
+\begin_layout Section
+Definicje THD
+\end_layout
+
+\begin_layout Section
+Przetwornik analogowo - cyfrowy
+\end_layout
+
+\begin_layout Section
+Filtr antyaliasingowy
+\end_layout
+
 \begin_layout Chapter
 Przegląd istniejących rozwiązań
 \end_layout
@@ -288,8 +308,76 @@ Analiza normy IEC 6100-4-30
 Implementacja przyrządu
 \end_layout
 
+\begin_layout Section
+Część sprzętowa
+\end_layout
+
+\begin_layout Subsection
+Użyte podzespoły
+\end_layout
+
+\begin_layout Subsubsection
+Płytka rozwojowa FRDM-KL25Z
+\end_layout
+
+\begin_layout Subsubsection
+Filtr antyaliasingowy - układ MAX295
+\end_layout
+
+\begin_layout Subsubsection
+Pamięć zewnętrzna - układ 23LCV1024
+\end_layout
+
+\begin_layout Subsection
+Projekt PCB
+\end_layout
+
+\begin_layout Subsubsection
+Schemat 
+\end_layout
+
+\begin_layout Subsubsection
+Layout
+\end_layout
+
+\begin_layout Section
+Część programowa
+\end_layout
+
+\begin_layout Subsection
+Środowisko mbed
+\end_layout
+
 \begin_layout Chapter
 Badanie parametrów przyrządu
+\end_layout
+
+\begin_layout Section
+Symulacje
+\end_layout
+
+\begin_layout Subsection
+Wpływ rozdzielczości przetwornika A/C na wynik pomiaru
+\end_layout
+
+\begin_layout Section
+Pomiary
+\end_layout
+
+\begin_layout Subsection
+Badanie filtra antyaliasingowego
+\end_layout
+
+\begin_layout Subsection
+Wpływ funkcji okna na wynik pomiaru
+\end_layout
+
+\begin_layout Subsection
+Wpływ uśredniania na wynik pomiaru
+\end_layout
+
+\begin_layout Subsection
+Porównanie z rozwiązaniami komercyjnymi
 \end_layout
 
 \begin_layout Chapter

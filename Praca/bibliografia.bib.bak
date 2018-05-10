@@ -1,6 +1,6 @@
 % Encoding: ISO-8859-2
 
-@Book{£±cza telekomunikacyjne,
+@Book{£¹czaTelekomunikacyjne,
   author    = {Sroka and Zatorski},
   title     = {Pomiary w telekomunikacyjnych ³±czach analogowo-analogowych},
   year      = {2004},
@@ -36,7 +36,7 @@
   location  = {Kraków},
 }
 
-@Book{metro Chwaleba,
+@Book{metroChwaleba,
   author = {Chwaleba and Poniñski and Siedlecki},
   title  = {Metrologia elektryczna},
   year   = {2014},
@@ -60,7 +60,7 @@
   url    = {https://datasheets.maximintegrated.com/en/ds/MAX291-MAX296.pdf},
 }
 
-@WWW{SRAM Datasheet,
+@WWW{SRAMDatasheet,
   author = {Microchip},
   title  = {23LCV1024 Datasheet},
   year   = {2012},
@@ -68,31 +68,31 @@
   url    = {http://ww1.microchip.com/downloads/en/DeviceDoc/25156A.pdf},
 }
 
-@Article{warto spróbkowaæ 1,
+@Article{wartoSpróbkowaæ1,
   author       = {Doliñski},
   title        = {Warto spróbkowaæ, czê¶æ 1},
   journal      = {Elektronika Praktyczna},
-  journaltitle = {Elektronika Praktyczna 9/2016},
-  year         = {2006},
+  journaltitle = {Elektronika Praktyczna 9/2006},
+  year         = {9/2006},
   date         = {2018-05-09},
 }
 
-@Article{warto spróbkowaæ 2,
+@Article{wartoSpróbkowaæ2,
   author       = {Doliñski},
   title        = {Warto spróbkowaæ, czê¶æ 2},
   journal      = {Elektronika Praktyczna},
   journaltitle = {Elektronika Praktyczna 10/2006},
-  year         = {2006},
+  year         = {10/2006},
   date         = {2018-05-09},
 }
 
-@Reference{norma fft,
+@Reference{normaFft,
   title = {PN-EN 61000-4-7:2002},
   year  = {2002},
   date  = {2018-05-09},
 }
 
-@Reference{norma jako¶,
+@Reference{normaJakoœæ,
   title = {IEC 61000-4-30:2015},
   year  = {2015},
   date  = {2018-05-09},

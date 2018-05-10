@@ -389,7 +389,7 @@ Podsumowanie i wnioski
 LatexCommand bibtex
 btprint "btPrintAll"
 bibfiles "bibliografia"
-options "plain"
+options "bibtotoc,bst/IEEEtranS"
 
 \end_inset
 
