@@ -231,7 +231,7 @@ titlepages
 
 
 \backslash
-setcounter{tocdepth}{2}
+setcounter{tocdepth}{3}
 \end_layout
 
 \begin_layout Plain Layout
@@ -280,6 +280,18 @@ Podstawowe definicje
 Sygnały i ich parametry
 \end_layout
 
+\begin_layout Subsection
+Definicja sygnału okresowego
+\end_layout
+
+\begin_layout Subsection
+Składowe harmoniczne
+\end_layout
+
+\begin_layout Subsection
+Przykłady standardowych sygnałów okresowych
+\end_layout
+
 \begin_layout Section
 Transformata Fouriera
 \end_layout
@@ -309,7 +321,7 @@ Próbkowanie, kwantowanie i kodowanie
 \end_layout
 
 \begin_layout Subsection
-Topologie przetworników A/C
+Topologie przetworników A/C 
 \end_layout
 
 \begin_layout Section
@@ -334,6 +346,22 @@ Przegląd istniejących rozwiązań
 
 \begin_layout Chapter
 Analiza normy IEC 6100-4-30
+\end_layout
+
+\begin_layout Section
+Klasy przyrządów
+\end_layout
+
+\begin_layout Section
+Struktura przyrządu
+\end_layout
+
+\begin_layout Section
+Wymagania dotyczące pomiaru częstotliwości
+\end_layout
+
+\begin_layout Section
+Wymagania dotyczące pomiaru harmonicznych
 \end_layout
 
 \begin_layout Chapter
@@ -454,6 +482,14 @@ Porównanie z rozwiązaniami komercyjnymi
 
 \begin_layout Chapter
 Podsumowanie i wnioski
+\end_layout
+
+\begin_layout Chapter*
+Załącznik A - Szczegółowe wyniki pomiarów
+\end_layout
+
+\begin_layout Chapter*
+Załącznik B - Pliki nagłówkowe klas programu
 \end_layout
 
 \begin_layout Standard

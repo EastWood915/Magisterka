@@ -132,7 +132,7 @@ status open
 
 
 \backslash
-author{Wojciech Zieliski}
+author{Wojciech Zieliński}
 \end_layout
 
 \begin_layout Plain Layout
@@ -140,7 +140,7 @@ author{Wojciech Zieliski}
 
 \backslash
 shortauthor{W.
- Zieliski}
+ Zieliński}
 \end_layout
 
 \begin_layout Plain Layout
@@ -280,8 +280,32 @@ Podstawowe definicje
 Sygnały i ich parametry
 \end_layout
 
+\begin_layout Subsection
+Definicja sygnału okresowego
+\end_layout
+
+\begin_layout Subsection
+Składowe harmoniczne
+\end_layout
+
+\begin_layout Subsection
+Przykłady standardowych sygnałów okresowych
+\end_layout
+
 \begin_layout Section
 Transformata Fouriera
+\end_layout
+
+\begin_layout Subsection
+Idea transformaty Fouriera
+\end_layout
+
+\begin_layout Subsection
+Dyskretna transformata Fouriera
+\end_layout
+
+\begin_layout Subsection
+Szybka transformata Fouriera
 \end_layout
 
 \begin_layout Section
@@ -292,8 +316,28 @@ Definicje THD
 Przetwornik analogowo - cyfrowy
 \end_layout
 
+\begin_layout Subsection
+Próbkowanie, kwantowanie i kodowanie
+\end_layout
+
+\begin_layout Subsection
+Topologie przetworników A/C 
+\end_layout
+
 \begin_layout Section
 Filtr antyaliasingowy
+\end_layout
+
+\begin_layout Subsection
+Twierdzenie o próbkowaniu i definicja aliasingu
+\end_layout
+
+\begin_layout Subsection
+Filtry aktywne
+\end_layout
+
+\begin_layout Subsection
+Topologie filtrów aktywnych
 \end_layout
 
 \begin_layout Chapter
@@ -304,48 +348,100 @@ Przegląd istniejących rozwiązań
 Analiza normy IEC 6100-4-30
 \end_layout
 
+\begin_layout Section
+Klasy przyrządów
+\end_layout
+
+\begin_layout Section
+Struktura przyrządu
+\end_layout
+
+\begin_layout Section
+Wymagania dotyczące pomiaru częstotliwości
+\end_layout
+
+\begin_layout Section
+Wymagania dotyczące pomiaru harmonicznych
+\end_layout
+
 \begin_layout Chapter
 Implementacja przyrządu
 \end_layout
 
 \begin_layout Section
-Część sprzętowa
+Założenia projektowe
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Użyte podzespoły
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Płytka rozwojowa FRDM-KL25Z
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Filtr antyaliasingowy - układ MAX295
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Pamięć zewnętrzna - układ 23LCV1024
 \end_layout
 
 \begin_layout Subsection
+Wyświetlacz OLED SSD1306
+\end_layout
+
+\begin_layout Section
 Projekt PCB
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Schemat 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Layout
 \end_layout
 
 \begin_layout Section
-Część programowa
+Środowisko pracy
 \end_layout
 
 \begin_layout Subsection
 Środowisko mbed
+\end_layout
+
+\begin_layout Subsection
+Skrypty testowe
+\end_layout
+
+\begin_layout Section
+Program
+\end_layout
+
+\begin_layout Subsection
+Algorytm ogólny
+\end_layout
+
+\begin_layout Subsection
+Inicjalizacja
+\end_layout
+
+\begin_layout Subsection
+Pomiar częstotliwości
+\end_layout
+
+\begin_layout Subsection
+Próbkowanie
+\end_layout
+
+\begin_layout Subsection
+DFT i wyznaczenie THD
+\end_layout
+
+\begin_layout Subsection
+Prezentacja wyników
 \end_layout
 
 \begin_layout Chapter
@@ -358,6 +454,10 @@ Symulacje
 
 \begin_layout Subsection
 Wpływ rozdzielczości przetwornika A/C na wynik pomiaru
+\end_layout
+
+\begin_layout Subsection
+Wpływ precyzji częstotliwości próbkowania na wynik pomiaru
 \end_layout
 
 \begin_layout Section
@@ -382,6 +482,14 @@ Porównanie z rozwiązaniami komercyjnymi
 
 \begin_layout Chapter
 Podsumowanie i wnioski
+\end_layout
+
+\begin_layout Chapter*
+Załącznik A - Szczegółowe wyniki pomiarów
+\end_layout
+
+\begin_layout Chapter*
+Załącznik B - Pliki nagłówkowe klas programu
 \end_layout
 
 \begin_layout Standard
