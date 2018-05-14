@@ -231,7 +231,7 @@ titlepages
 
 
 \backslash
-setcounter{tocdepth}{2}
+setcounter{tocdepth}{3}
 \end_layout
 
 \begin_layout Plain Layout
@@ -284,8 +284,259 @@ Sygnały i ich parametry
 Definicja sygnału okresowego
 \end_layout
 
+\begin_layout Standard
+Sygnałem nazywa się zmienność danej wielkości fizycznej w funkcji jednej
+ lub wielu zmiennych.
+ W pomiarach elektrycznych najczęściej obserwujemy zmienność napięcia, natężenia
+, bądź częstotliwości w funkcji czasu.
+ Każdy sygnał posiada nośnik oraz niesie jakąś informację.
+ Przykładem nośnika może być przemienne napięcie elektryczne, zaś informacją
+ przez niego niesioną może być zmiana amplitudy lub częstotliwości tego
+ napięcia.
+\end_layout
+
+\begin_layout Standard
+Jeśli dany sygnał można zamodelować funkcją 
+\begin_inset Formula $f(t)=f(t+kT)$
+\end_inset
+
+, gdzie 
+\begin_inset Formula $k$
+\end_inset
+
+ jest liczbą naturalną, to jest on nazywany sygnałem okresowym o okresie
+ 
+\begin_inset Formula $T$
+\end_inset
+
+ oraz częstotliwości 
+\begin_inset Formula $f=\frac{1}{T}$
+\end_inset
+
+.
+\begin_inset CommandInset citation
+LatexCommand cite
+key "metro"
+
+\end_inset
+
+ Najprostszym przykładem sygnału okresowego jest sygnał sinusoidalny 
+\begin_inset Formula $f(t)=sin(2\pi f\cdot t)$
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Subsection
 Składowe harmoniczne
+\end_layout
+
+\begin_layout Standard
+Jeżeli sygnał okresowy przedstawiany jest funkcją, która spełnia warunki
+ Dirichleta, to znaczy:
+\end_layout
+
+\begin_layout Itemize
+w dowolnym przedziale czasu równym okresowi posiada skończoną liczbę minimów
+ i maksimów lokalnych,
+\end_layout
+
+\begin_layout Itemize
+w tym przedziale czasu jest ciągła, z wyjątkiem skończonej liczby punktów
+ nieciągłości, w której istnieją jej prawo- i lewostronne granice,
+\end_layout
+
+\begin_layout Itemize
+wartości funkcji w punktach nieciągłości są równe wartościom średniej arytmetycz
+nej granic prawo- i lewostronnych w tych punktach,
+\end_layout
+
+\begin_layout Standard
+to można go przedstawić za pomocą szeregu trygonometrycznego Fouriera(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:1"
+
+\end_inset
+
+): 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "metro"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+f(t)=a_{0}+\stackrel[n=1]{\infty}{\sum}(a_{n}cos\,n\omega t+b_{n}sin\,n\omega t)=A_{0}+\stackrel[n=1]{\infty}{\sum}A_{n}cos(n\omega t+\varphi_{n})\label{eq:1}
+\end{equation}
+
+\end_inset
+
+gdzie:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $A_{0}$
+\end_inset
+
+ – składowa stała,
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $\omega=2\pi f$
+\end_inset
+
+ – pulsacja podstawowej harmonicznej,
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $A_{n}$
+\end_inset
+
+ – amplituda n-tej harmonicznej,
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $\varphi_{n}$
+\end_inset
+
+ – faza n-tej harmonicznej.
+\end_layout
+
+\begin_layout Standard
+Wartość amplitud harmonicznych w funkcji częstotliwości nazywamy widmem
+ sygnału.
+ Prezentacja sygnału w funkcji częstotliwości jest równoważna z prezentacją
+ jej w funkcji czasu.
+\end_layout
+
+\begin_layout Subsection
+Parametry sygnałów
+\end_layout
+
+\begin_layout Standard
+W opisie sygnałów okresowych można wyróżnić kilka ich podstawowych wartości
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ŁšczaTelekomunikacyjne"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Itemize
+wartość chwilową (w chwili czasu 
+\begin_inset Formula $\tau$
+\end_inset
+
+) 
+\begin_inset Formula 
+\begin{equation}
+F_{\tau}=f(\tau)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+wartość szczytową 
+\begin_inset Formula 
+\begin{equation}
+F_{m}=\underset{t\in[t_{0},\:t_{0}+T]}{\sup}f(t)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+wartość średnią 
+\begin_inset Formula 
+\begin{equation}
+F_{śr}=A_{0}=\frac{1}{T}\stackrel[t_{0}]{t_{0}+T}{\int}f(t)dt
+\end{equation}
+
+\end_inset
+
+Jeśli 
+\begin_inset Formula $A_{0}=0$
+\end_inset
+
+, to sygnał nazywamy przemiennym;
+\end_layout
+
+\begin_layout Itemize
+wartość skuteczną (RMS) 
+\begin_inset Formula 
+\begin{equation}
+F_{sk}=F=\sqrt{\frac{1}{T}\stackrel[t_{0}]{t_{0}+T}{\int}f^{2}(t)dt}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Wykorzystując powyższe wartości wprowadzono szereg współczynników ułatwiających
+ ocenę parametrów sygnału.
+ Najważniejsze z nich to:
+\end_layout
+
+\begin_layout Itemize
+współczynnik kształtu 
+\begin_inset Formula 
+\begin{equation}
+k_{k}=\frac{F}{F_{śr}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+współczynnik szczytu 
+\begin_inset Formula 
+\begin{equation}
+k_{s}=\frac{F_{m}}{F}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+współczynnik wypełnienia 
+\begin_inset Formula 
+\begin{equation}
+k_{w}=\frac{F_{śr}}{F_{m}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Współczynniki najważniejszych sygnałów są stabelaryzowane, można więc na
+ ich podstawie np.
+ wyznaczyć wartość skuteczną i maksymalną danego sygnału znając jego kształt
+ i wartość średnią.
 \end_layout
 
 \begin_layout Subsection
@@ -309,7 +560,19 @@ Szybka transformata Fouriera
 \end_layout
 
 \begin_layout Section
-Definicje THD
+Definicja THD
+\end_layout
+
+\begin_layout Subsection
+Współczynnik zawartości harmonicznych
+\end_layout
+
+\begin_layout Subsection
+Całkowity współczynnik odkształceń harmonicznych
+\end_layout
+
+\begin_layout Subsection
+THD przykładowych sygnałów
 \end_layout
 
 \begin_layout Section
@@ -317,11 +580,15 @@ Przetwornik analogowo - cyfrowy
 \end_layout
 
 \begin_layout Subsection
-Próbkowanie, kwantowanie i kodowanie
+Próbkowanie
 \end_layout
 
 \begin_layout Subsection
-Topologie przetworników A/C 
+Kwantowanie 
+\end_layout
+
+\begin_layout Subsection
+Kodowanie
 \end_layout
 
 \begin_layout Section
@@ -338,6 +605,14 @@ Filtry aktywne
 
 \begin_layout Subsection
 Topologie filtrów aktywnych
+\end_layout
+
+\begin_layout Subsection
+Filtry w technologii SC
+\end_layout
+
+\begin_layout Subsection
+Dobór parametrów filtra
 \end_layout
 
 \begin_layout Chapter
@@ -394,6 +669,13 @@ Wyświetlacz OLED SSD1306
 
 \begin_layout Section
 Projekt PCB
+\end_layout
+
+\begin_layout Standard
+Pamięć RAM oraz obwody filtra antyaliasingowego zostały umieszczone na specjalni
+e zaprojektowanej płytce PCB.
+ Do przygotowania projektu wykorzystano program Altium Designer, zaś samą
+ płytkę wykonano metodą termotransferu i wytrawiono w nadsiarczanie miedzi.
 \end_layout
 
 \begin_layout Subsection
@@ -497,7 +779,7 @@ Załącznik B - Pliki nagłówkowe klas programu
 LatexCommand bibtex
 btprint "btPrintAll"
 bibfiles "bibliografia"
-options "bibtotoc,bst/IEEEtranS"
+options "bibtotoc,IEEEtran"
 
 \end_inset
 
