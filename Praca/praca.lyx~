@@ -548,11 +548,337 @@ Transformata Fouriera
 \end_layout
 
 \begin_layout Subsection
-Idea transformaty Fouriera
+Dyskretna transformata Fouriera
+\end_layout
+
+\begin_layout Standard
+Transformata Fouriera jest niezwykle istotnym narzędziem matematycznym,
+ pozwalającym na analizę częstotliwościową sygnałów.
+ Dla sygnałów ciągłych przyjmuje ona postać następującej całki:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+X(f)=\stackrel[-\infty]{\infty}{\int}x(t)e^{-j2\pi ft}dt
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+gdzie x(t) jest sygnałem ciągłym w dziedzinie czasu.
+ Przekształcenie to umożliwia przejście ciągłej w dziedzinie czasu funkcji
+ x(t) w ciągłą w dziedzinie częstotliwości funkcję X(t), przy czym obie
+ z nich są równoważnym opisem tego samego sygnału.
+ 
+\end_layout
+
+\begin_layout Standard
+Jeśli sygnał x(t) zostanie spróbkowany równomiernie w dziedzinie czasu,
+ można go poddać dyskretnemu przekształceniu Fouriera: 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Lyons"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+X(m)=\stackrel[n=0]{N-1}{\sum}x(n)e^{-j2\pi\frac{nm}{N}}\label{eq:DFT}
+\end{equation}
+
+\end_inset
+
+gdzie x(n) jest ciągiem próbek sygnału x(t).
+ Równanie (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:DFT"
+
+\end_inset
+
+) może w bardzo prosty sposób zostać numerycznie zaimplementowane na dowolnym
+ procesorze, co umożliwia błyskawiczną analizę częstotliwościową dowolnego
+ sygnału.
+\end_layout
+
+\begin_layout Standard
+Na wykresie (Rys.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:pokazDFT"
+
+\end_inset
+
+) przedstawiono przykładowy sygnał spróbkowany w dziedzinie czasu oraz jego
+ widmo częstotliwościowe otrzymane z DFT.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Obrazki/Wykresy/PokazDFT.eps
+	scale 90
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Spróbkowany sygnał ciągły oraz jego widmo częstotliwościowe
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:pokazDFT"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
-Dyskretna transformata Fouriera
+Własności DFT
+\end_layout
+
+\begin_layout Standard
+Dyskretna transformata Fouriera posiada kilka istotnych własności i zagadnień,
+ o których należy tutaj wspomnieć.
+ Są to:
+\end_layout
+
+\begin_layout Itemize
+symetria,
+\end_layout
+
+\begin_layout Itemize
+liniowość,
+\end_layout
+
+\begin_layout Itemize
+rozdzielczość,
+\end_layout
+
+\begin_layout Itemize
+przeciek.
+\end_layout
+
+\begin_layout Subsubsection
+Symetria
+\end_layout
+
+\begin_layout Standard
+Jeśli x(n) jest ciągiem rzeczywistym (jego części urojone są równe zeru)
+ o liczbie elementów równej N to dla wartości wyjściowej jego DFT zachodzi
+ zależność:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+|X(m)|=|X(N-m)|
+\end{equation}
+
+\end_inset
+
+Oznacza to, że widmo częstotliwościowe jest symetryczne względem jego środka,
+ czyli względem połowy częstotliwości próbkowania sygnału (patrz: 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "subsec:Rozdzielczość-DFT"
+
+\end_inset
+
+).
+ W związku z tym wartości dla argumentów 
+\begin_inset Formula $m\geq(N/2)$
+\end_inset
+
+ są nadmiarowe w stosunku do wartości dla argumentów od 
+\begin_inset Formula $m=0$
+\end_inset
+
+ do 
+\begin_inset Formula $m=(N/2)-1$
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Lyons"
+
+\end_inset
+
+ i nie wnoszą żadnych dodatkowych informacji.
+ Na rys.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Symetria-DFT"
+
+\end_inset
+
+ przedstawiono pełne widmo sygnału z rys.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:pokazDFT"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Obrazki/Wykresy/SymetriaDFT.eps
+	scale 90
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Symetria DFT.
+ Prążki dla m = 28 i 31 są kopią prążków dla m = 1 i 4.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Symetria-DFT"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Liniowość
+\end_layout
+
+\begin_layout Standard
+Liniowość jest własnością DFT, która mówi, że DFT sumy dwóch sygnałów jest
+ równa sumie transformat każdego z nich 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Lyons"
+
+\end_inset
+
+, to znaczy transformata sygnału 
+\begin_inset Formula $x_{sum}(n)=x_{1}(n)+x_{2}(n)$
+\end_inset
+
+ jest równa 
+\begin_inset Formula $X_{sum}(m)=X_{1}(m)+X_{2}(m)$
+\end_inset
+
+.
+ Dzięki tej własności możliwe jest wyznaczanie DFT sygnału składającego
+ się z sumy dowolnej liczby sinusoid.
+\end_layout
+
+\begin_layout Subsubsection
+Rozdzielczość DFT
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Rozdzielczość-DFT"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Aby wyznaczyć rzeczywistą wartość częstotliwości dla danego prążka DFT należy
+ posłużyć się wzorem:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+f(m)=\frac{mf_{s}}{N}
+\end{equation}
+
+\end_inset
+
+ gdzie 
+\begin_inset Formula $f_{s}$
+\end_inset
+
+ to częstotliwość próbkowania, a 
+\begin_inset Formula $N$
+\end_inset
+
+ to liczba próbek.
+ Zatem rozdzielczość DFT, czyli dokładność z jaką możemy zbadać widmo sygnału
+ wynosi 
+\begin_inset Formula 
+\begin{equation}
+\Delta f=\frac{f_{s}}{N}
+\end{equation}
+
+\end_inset
+
+ Wynika stąd, że chcąc poprawić dokładność analizy częstotliwościowej powinniśmy
+ zwiększyć liczbę pobieranych próbek.
+ Niestety, prowadzi to do wzrostu zużycia pamięci i znacznego wydłużenia
+ czasu obliczeń, niezbędne jest więc znalezienie złotego środka między rozdzielc
+zością a możliwościami sprzętu.
+\end_layout
+
+\begin_layout Subsubsection
+Przeciek DFT
 \end_layout
 
 \begin_layout Subsection
@@ -573,6 +899,10 @@ Całkowity współczynnik odkształceń harmonicznych
 
 \begin_layout Subsection
 THD przykładowych sygnałów
+\end_layout
+
+\begin_layout Subsection
+THD a jakość energii elektrycznej
 \end_layout
 
 \begin_layout Section
@@ -779,7 +1109,7 @@ Załącznik B - Pliki nagłówkowe klas programu
 LatexCommand bibtex
 btprint "btPrintAll"
 bibfiles "bibliografia"
-options "bibtotoc,bst/IEEEtranS"
+options "bibtotoc,IEEEtran"
 
 \end_inset
 
