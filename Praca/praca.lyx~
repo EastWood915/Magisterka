@@ -421,6 +421,13 @@ Wartość amplitud harmonicznych w funkcji częstotliwości nazywamy widmem
 
 \begin_layout Subsection
 Parametry sygnałów
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Parametry-sygnałów"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1071,11 +1078,97 @@ Definicja THD
 \end_layout
 
 \begin_layout Subsection
-Współczynnik zawartości harmonicznych
+Współczynnik zawartości harmonicznych i całkowity współczynnik odkształceń
+ harmonicznych
 \end_layout
 
-\begin_layout Subsection
-Całkowity współczynnik odkształceń harmonicznych
+\begin_layout Standard
+Poza współczynnikami podanymi w rozdziale 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Parametry-sygnałów"
+
+\end_inset
+
+ bardzo ważną wielkością opisującą sygnał okresowy jest jego współczynnik
+ zawartości harmonicznych 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "metro"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+h=\sqrt{\frac{\stackrel[n=2]{\infty}{\sum}A_{n}^{2}}{\stackrel[n=1]{\infty}{\sum}A_{n}^{2}}}
+\end{equation}
+
+\end_inset
+
+gdzie 
+\begin_inset Formula $A_{n}$
+\end_inset
+
+jest amplitudą n-tej harmonicznej sygnału.
+ Współczynnik ten określa odkształcenie sygnału względem 
+\begin_inset Quotes pld
+\end_inset
+
+czystej
+\begin_inset Quotes prd
+\end_inset
+
+ sinusoidy.
+ Jest on szczególnie istotny w telekomunikacji i przetwarzaniu audio.
+\end_layout
+
+\begin_layout Standard
+W elektroenergetyce chętniej używa się jednak podobnego współczynnika nazywanego
+ całkowitym współczynnikiem odkształceń harmonicznych (ang.
+ THD - total harmonic distortion) wyrażanego wzorem:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+THD=\sqrt{\frac{\stackrel[n=2]{\infty}{\sum}A_{n}^{2}}{A_{1}^{2}}}
+\end{equation}
+
+\end_inset
+
+ Pomiędzy tymi dwoma współczynnikami występuje zależność 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "metro"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+THD=\frac{1}{\sqrt{1-h^{2}}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+THD jest jednym z najistotniejszych parametrów określających jakość energii
+ elektrycznej w systemie elektroenergetycznym.
+ Odkształcenia harmoniczne są w nim generowane przez odbiorniki o nieliniowym
+ poborze prądu, takie jak prostowniki, zasilacze impulsowe, falowniki, ściemniac
+ze czy sterowniki LED.
+ Wysoka zawartość harmonicznych może być bardzo szkodliwa dla urządzeń elektrycz
+nych, w szczególności dla silników indukcyjnych.
 \end_layout
 
 \begin_layout Subsection

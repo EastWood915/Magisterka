@@ -1200,7 +1200,7 @@ Filtr antyaliasingowy
 \end_layout
 
 \begin_layout Subsection
-Twierdzenie o próbkowaniu i definicja aliasingu
+Twierdzenie o próbkowaniu i definicja aliasingu 
 \end_layout
 
 \begin_layout Subsection
@@ -1221,6 +1221,18 @@ Dobór parametrów filtra
 
 \begin_layout Chapter
 Przegląd istniejących rozwiązań
+\end_layout
+
+\begin_layout Section
+Analogowe analizatory widma
+\end_layout
+
+\begin_layout Section
+Analogowe mierniki współczynnika zawartości harmonicznych
+\end_layout
+
+\begin_layout Section
+Analizatory cyfrowe
 \end_layout
 
 \begin_layout Chapter
