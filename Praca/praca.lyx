@@ -421,6 +421,13 @@ Wartość amplitud harmonicznych w funkcji częstotliwości nazywamy widmem
 
 \begin_layout Subsection
 Parametry sygnałów
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Parametry-sygnałów"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -970,16 +977,198 @@ Ponieważ w przyrodzie nie istnieją sygnały czysto poliharmoniczne, zjawisko
 Szybka transformata Fouriera
 \end_layout
 
+\begin_layout Standard
+Najbardziej czasochłonnym dla procesora etapem wyznaczania DFT jest wykonywanie
+ licznych mnożeń na liczbach zespolonych.
+ Ilość tych operacji wynosi 
+\begin_inset Formula $N^{2}$
+\end_inset
+
+, co przy wzrastającej liczbie próbek prowadzi do bardzo znacznego wydłużenia
+ czasu obliczeń.
+ Aby choć trochę zniwelować ten przyrost opracowane zostały algorytmy szybkiej
+ transformaty Fouriera (FFT - Fast Fourier Transformation), z których najpopular
+niejszym jest Radix-2.
+ Wykorzystuje on własności DFT, takie jak symetria i liniowość, do podzielenia
+ N-punktowego DFT na szereg 2-punktowych DFT, co znacząco zmniejsza liczbę
+ wymaganych mnożeń do 
+\begin_inset Formula $\frac{N}{2}log_{2}N$
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Lyons"
+
+\end_inset
+
+.
+ Różnicę tę przedstawiono na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Porównanie-liczby-mnożeń"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Obrazki/Wykresy/DFTaFFT.eps
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Porównanie liczby mnożeń zespolonych dla klasycznego DFT i algorytmu Radix-2
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Porównanie-liczby-mnożeń"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Jak widać, różnica znacząco się powiększa ze wzrostem liczby próbek i dla
+ 2048-punktowego FFT musimy wykonać prawie 700 razy mniej mnożeń zespolonych
+ niż w przypadku klasycznego DFT.
+ Należy zaznaczyć, że wynik FFT jest identyczny z wynikiem klasycznego DFT,
+ zmianie ulega jedynie szybkość obliczeń.
+ 
+\end_layout
+
+\begin_layout Standard
+Istotną cechą algorytmu Radix-2 jest fakt, że liczba próbek wejściowych
+ musi być równa 
+\begin_inset Formula $2^{k}$
+\end_inset
+
+, gdzie 
+\begin_inset Formula $k$
+\end_inset
+
+ jest liczbą naturalną.
+ Wymusza to często odpowiedni dobór częstotliwości próbkowania w celu otrzymania
+ pożądanej rozdzielczości.
+\end_layout
+
 \begin_layout Section
 Definicja THD
 \end_layout
 
 \begin_layout Subsection
-Współczynnik zawartości harmonicznych
+Współczynnik zawartości harmonicznych i całkowity współczynnik odkształceń
+ harmonicznych
 \end_layout
 
-\begin_layout Subsection
-Całkowity współczynnik odkształceń harmonicznych
+\begin_layout Standard
+Poza współczynnikami podanymi w rozdziale 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Parametry-sygnałów"
+
+\end_inset
+
+ bardzo ważną wielkością opisującą sygnał okresowy jest jego współczynnik
+ zawartości harmonicznych 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "metro"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+h=\sqrt{\frac{\stackrel[n=2]{\infty}{\sum}A_{n}^{2}}{\stackrel[n=1]{\infty}{\sum}A_{n}^{2}}}
+\end{equation}
+
+\end_inset
+
+gdzie 
+\begin_inset Formula $A_{n}$
+\end_inset
+
+jest amplitudą n-tej harmonicznej sygnału.
+ Współczynnik ten określa odkształcenie sygnału względem 
+\begin_inset Quotes pld
+\end_inset
+
+czystej
+\begin_inset Quotes prd
+\end_inset
+
+ sinusoidy.
+ Jest on szczególnie istotny w telekomunikacji i przetwarzaniu audio.
+\end_layout
+
+\begin_layout Standard
+W elektroenergetyce chętniej używa się jednak podobnego współczynnika nazywanego
+ całkowitym współczynnikiem odkształceń harmonicznych (ang.
+ THD - total harmonic distortion) wyrażanego wzorem:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+THD=\sqrt{\frac{\stackrel[n=2]{\infty}{\sum}A_{n}^{2}}{A_{1}^{2}}}
+\end{equation}
+
+\end_inset
+
+ Pomiędzy tymi dwoma współczynnikami występuje zależność 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "metro"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+THD=\frac{1}{\sqrt{1-h^{2}}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+THD jest jednym z najistotniejszych parametrów określających jakość energii
+ elektrycznej w systemie elektroenergetycznym.
+ Odkształcenia harmoniczne są w nim generowane przez odbiorniki o nieliniowym
+ poborze prądu, takie jak prostowniki, zasilacze impulsowe, falowniki, ściemniac
+ze czy sterowniki LED.
+ Wysoka zawartość harmonicznych może być bardzo szkodliwa dla urządzeń elektrycz
+nych, w szczególności dla silników indukcyjnych.
 \end_layout
 
 \begin_layout Subsection
