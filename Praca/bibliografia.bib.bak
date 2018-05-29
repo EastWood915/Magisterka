@@ -98,4 +98,18 @@
   date  = {2018-05-09},
 }
 
+@WWW{FiltryAktywnePL,
+  url = {https://fizyka.p.lodz.pl/pl/download/resource/1092},
+}
+
+@WWW{TI_MFBFilter,
+  author = {Texas Instruments},
+  title  = {Design Methodology for MFB Filters in ADC Interface Applications},
+  url    = {http://www.ti.com/lit/an/sboa114/sboa114.pdf},
+}
+
+@WWW{FiltryAktywneWFiIS,
+  url = {http://www.fis.agh.edu.pl/koidc/materials/laboratoria/podstawy/A4-FiltryAktywne_PW.pdf},
+}
+
 @Comment{jabref-meta: databaseType:biblatex;}

@@ -1302,10 +1302,6 @@ reference "eq:SymetriaDFT"
  
 \end_layout
 
-\begin_layout Subsection
-Filtry aktywne
-\end_layout
-
 \begin_layout Standard
 W celu zapobiegnięcia efektowi aliasingu na wejściu przetwornika A/C należy
  zastosować tzw.
@@ -1314,11 +1310,289 @@ W celu zapobiegnięcia efektowi aliasingu na wejściu przetwornika A/C należy
 \end_layout
 
 \begin_layout Subsection
-Topologie filtrów aktywnych
+Filtry aktywne
+\end_layout
+
+\begin_layout Standard
+W roli filtrów antyaliasingowych szczególnie chętnie wykorzystywane są filtry
+ aktywne RC.
+ Są to układy oparte na wzmacniaczach operacyjnych, które w porównaniu do
+ filtrów pasywnych RLC zapewniają większą stabilność, dokładność, umożliwiają
+ wzmocnienie sygnału wejściowego w paśmie przenoszenia oraz mają lepsze
+ tłumienie w paśmie zaporowym.
+ Dodatkowo pozwalają one na budowę filtrów wysokich rzędów bez użycia dużych
+ elementów indukcyjnych.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FiltryAktywnePL"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Jedną z popularnych topologii budowy filtrów aktywnych jest tak zwana topologia
+ wielokrotnych sprzężeń zwrotnych (Multiple Feedback).Zapewnia ona bardzo
+ dobre tłumienie w paśmie zaporowym dla szerokiego zakresu częstotliwości
+ oraz bardzo niskie szumy i wysokie tłumienie składowej stałej (CMRR) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "TI_MFBFilter"
+
+\end_inset
+
+.
+ Schemat filtra dolnopasmowego 2.
+ rzędu w topologii MFB przedstawiono na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Aktywny-filtr-dolnopasmowy"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Obrazki/MFB.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Aktywny filtr dolnopasmowy w topologii MFB
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Aktywny-filtr-dolnopasmowy"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Poprzez odpowiedni dobór wartości komponentów pasywnych filtra można znacznie
+ modyfikować jego parametry.
+ Powstało wiele ustandaryzowanych typów filtrów aktywnych, z których najpopularn
+iejsze to: 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FiltryAktywneWFiIS"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+filtr Butterwortha - zapewnia płaską charakterystykę amplitudową w paśmie
+ przenoszenia,
+\end_layout
+
+\begin_layout Itemize
+filtr Chebysheva - zapewnia znaczne tłumienie w paśmie zaporowym kosztem
+ oscylacji charakterystyki amplitudowej w paśmie przenoszenia,
+\end_layout
+
+\begin_layout Itemize
+filtr Bessela - zapewnia liniową charakterystykę fazową w paśmie przenoszenia
+ kosztem gorszego tłumienia w paśmie zaporowym.
+\end_layout
+
+\begin_layout Standard
+Rysunek 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Charakterystyki-Bodego-różnych"
+
+\end_inset
+
+ przedstawia porównanie charakterystyk powyższych filtrów dla filtra dolnopasmow
+ego 4.
+ rzędu.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Obrazki/Wykresy/Filtry.eps
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Charakterystyki Bodego różnych typów filtrów aktywnych 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Charakterystyki-Bodego-różnych"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
 Filtry w technologii SC
+\end_layout
+
+\begin_layout Standard
+Wadą analogowych filtrów aktywnych jest duża liczba niezbędnych komponentów,
+ zwłaszcza przy wyższych rzędach filtra.
+ Filtr 8.
+ rzędu w konfiguracji MFB wymaga użycia 4 wzmacniaczy, 12 rezystorów i 8
+ kondensatorów.
+ Układ taki złożony z elementów dyskretnych zajmowałby bardzo dużą powierzchnię
+ i byłby silnie narażony na tolerancję elementów.
+ Rozwiązaniem w takich przypadkach może być zastosowanie techniki Switched
+ Capacitor.
+\end_layout
+
+\begin_layout Standard
+W układach SC rezystory zostały zastąpione przez odpowiednio kluczowane
+ kondensatory.
+ Rozważmy układ z rysunku XXX.
+ Przy przełączeniu klucza z potencjału 
+\begin_inset Formula $V_{1}$
+\end_inset
+
+ na 
+\begin_inset Formula $V_{2}$
+\end_inset
+
+ kondensator ulega przeładowaniu, a zmiana ładunku na jego okładkach wynosi:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\Delta Q=C(V_{1}-V_{2})=C\Delta V
+\end{equation}
+
+\end_inset
+
+Zakładając, że klucz będą załączany 2-fazowo z częstotliwością 
+\begin_inset Formula $f_{p}$
+\end_inset
+
+, średni prąd 
+\begin_inset Formula $i$
+\end_inset
+
+ wyniesie:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+i=\Delta Qf_{p}=C(V_{1}-V_{2})f_{p}=C\Delta Vf_{p}
+\end{equation}
+
+\end_inset
+
+co możemy przełożyć na ekwiwalentną rezystancję:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+R=\frac{\Delta V}{i}=\frac{1}{Cf_{p}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Wykorzystując powyższą zależność można łatwo projektować filtry wysokich
+ rzędów w technologii CMOS.
+ Dodatkową zaletą takich układów scalonych jest możliwość regulacji częstotliwoś
+ci granicznej filtra przez prostą zmianę częstotliwości sygnału zegarowego.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "wartoSpróbkować5"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pewną wadą filtrów SC jest fakt, że sygnał zegarowy sterujący kluczami przechodz
+i do sygnału wyjściowego filtra jako zakłócenie.
+ Jeśli częstotliwość zegara będzie odpowiednio większa od częstotliwości
+ granicznej (w praktyce najczęściej stosuje się proporcję 100:1), to można
+ sobie z tym faktem poradzić umieszczając na wyjściu filtra SC dodatkowy
+ filtr 1.
+ lub 2.
+ rzędu.
+ Konieczność podawania tak szybkiego zegara ogranicza jednak użyteczne pasmo
+ takich filtrów do kilkudziesięciu kHz.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "wartoSpróbkować5"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
