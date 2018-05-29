@@ -329,6 +329,13 @@ key "metro"
 
 \begin_layout Subsection
 Składowe harmoniczne
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Dirichlet"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -709,7 +716,7 @@ Jeśli x(n) jest ciągiem rzeczywistym (jego części urojone są równe zeru)
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-|X(m)|=|X(N-m)|
+|X(m)|=|X(N-m)|\label{eq:SymetriaDFT}
 \end{equation}
 
 \end_inset
@@ -1184,15 +1191,23 @@ Przetwornik analogowo - cyfrowy
 \end_layout
 
 \begin_layout Subsection
+Etapy procesu przetwarzania analogowo-cyfrowego
+\end_layout
+
+\begin_layout Subsubsection
 Próbkowanie
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Kwantowanie 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Kodowanie
+\end_layout
+
+\begin_layout Subsection
+Błędy przetwarzania
 \end_layout
 
 \begin_layout Section
@@ -1203,8 +1218,99 @@ Filtr antyaliasingowy
 Twierdzenie o próbkowaniu i definicja aliasingu 
 \end_layout
 
+\begin_layout Standard
+W celu poprawnego odtworzenia spróbkowanego sygnału niezbędne jest pobranie
+ odpowiedniej liczby próbek w jednostce czasu.
+ Jest ona definiowana przez twierdzenie Kotielnikowa-Shannona (inaczej twierdzen
+ie o próbkowaniu), które mówi, że odtworzenie sygnału z ciągu próbek bez
+ utraty informacji jest możliwe, jeśli: 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "metro"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+funkcja opisująca sygnał spełnia warunki Dirichleta (patrz rozdział 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Dirichlet"
+
+\end_inset
+
+),
+\end_layout
+
+\begin_layout Itemize
+funkcja opisująca sygnał jest ściśle dolnopasmowa - jej widmo jest ograniczone
+ od góry częstotliwością 
+\begin_inset Formula $f_{g}$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Itemize
+sygnał jest próbkowany z częstotliwością 
+\begin_inset Formula $f_{s}\geq2f_{g}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Częstotliwość 
+\begin_inset Formula $2f_{g}$
+\end_inset
+
+jest nazywana częstotliwością Nyquista.
+ Jest to minimalna częstotliwość z jaką należy próbkować sygnał, jednak
+ w praktyce używa się częstotliwości w granicach 
+\begin_inset Formula $5-10f_{g}$
+\end_inset
+
+w celu poprawnego odwzorowania kształtu sygnału.
+\end_layout
+
+\begin_layout Standard
+Jeśli twierdzenie o próbkowaniu nie zostanie spełnione, może dojść do zjawiska
+ aliasingu, czyli nakładania się na siebie widm spróbkowanego sygnału.
+ Wskazuje na to zjawisko symetrii DFT: jeśli w widmie sygnału pojawi się
+ prążek, którego 
+\begin_inset Formula $m>N/2$
+\end_inset
+
+, to zgodnie z równaniem (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:SymetriaDFT"
+
+\end_inset
+
+) nie da się określić, czy odpowiada on częstotliwości 
+\begin_inset Formula $f(m)$
+\end_inset
+
+ czy 
+\begin_inset Formula $f(N-m)$
+\end_inset
+
+, co doprowadzi do niejednoznaczności w odtworzeniu sygnału.
+ 
+\end_layout
+
 \begin_layout Subsection
 Filtry aktywne
+\end_layout
+
+\begin_layout Standard
+W celu zapobiegnięcia efektowi aliasingu na wejściu przetwornika A/C należy
+ zastosować tzw.
+ filtr antyaliasingowy, który zapewni, że próbkowany sygnał będzie ściśle
+ dolnopasmowy, oraz pozwoli prawidłowo dobrać częstotliwość próbkowania.
 \end_layout
 
 \begin_layout Subsection
