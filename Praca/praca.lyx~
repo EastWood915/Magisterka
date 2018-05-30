@@ -1076,7 +1076,7 @@ Istotną cechą algorytmu Radix-2 jest fakt, że liczba próbek wejściowych
 \end_inset
 
  jest liczbą naturalną.
- Wymusza to często odpowiedni dobór częstotliwości próbkowania w celu otrzymania
+ Wymusza to odpowiedni dobór częstotliwości próbkowania w celu otrzymania
  pożądanej rozdzielczości.
 \end_layout
 
@@ -1111,7 +1111,7 @@ key "metro"
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-h=\sqrt{\frac{\stackrel[n=2]{\infty}{\sum}A_{n}^{2}}{\stackrel[n=1]{\infty}{\sum}A_{n}^{2}}}
+h=\sqrt{\frac{\stackrel[n=2]{\infty}{\sum}A_{n}^{2}}{\stackrel[n=1]{\infty}{\sum}A_{n}^{2}}}\label{eq:h}
 \end{equation}
 
 \end_inset
@@ -1142,7 +1142,7 @@ W elektroenergetyce chętniej używa się jednak podobnego współczynnika nazyw
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-THD=\sqrt{\frac{\stackrel[n=2]{\infty}{\sum}A_{n}^{2}}{A_{1}^{2}}}
+THD=\sqrt{\frac{\stackrel[n=2]{\infty}{\sum}A_{n}^{2}}{A_{1}^{2}}}\label{eq:THD}
 \end{equation}
 
 \end_inset
@@ -1176,10 +1176,6 @@ THD jest jednym z najistotniejszych parametrów określających jakość energii
 ze czy sterowniki LED.
  Wysoka zawartość harmonicznych może być bardzo szkodliwa dla urządzeń elektrycz
 nych, w szczególności dla silników indukcyjnych.
-\end_layout
-
-\begin_layout Subsection
-THD przykładowych sygnałów
 \end_layout
 
 \begin_layout Subsection
@@ -1743,14 +1739,73 @@ Analogowe mierniki współczynnika zawartości harmonicznych
 \end_layout
 
 \begin_layout Standard
+Analogowe mierniki współczynnika zawartości harmonicznych działały bezpośrednio
+ na podstawie wzoru (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:h"
+
+\end_inset
+
+).
+ Ich zasada działania polegała na pomiarze wartości skutecznej sygnału,
+ następnie odfiltrowaniu podstawowej harmonicznej i ponownym pomiarze wartości
+ skutecznej.
+ Bezpośrednie porównanie tych dwóch wartości dawało wartość współczynnika
+ 
+\begin_inset Formula $h$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Układ taki, przedstawiony na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Analogowy-miernik-współczynnika"
+
+\end_inset
+
+, składał się z tłumika oraz wzmacniacza kondycjonujących wstępnie sygnał,
+ za którymi znajdował się pierwszy woltomierz wartości skutecznej.
+ Drugim ogniwem układu był filtr selektywny u bardzo wysokiej dobroci, za
+ którym umieszczony był drugi woltomierz.
+ Filtr dostrajano tak, aby wskazanie woltomierza 
+\begin_inset Formula $V_{2}$
+\end_inset
+
+ osiągnęło minimum, co świadczyło o odfiltrowaniu składowej podstawowej.
+ Wartość współczynnika 
+\begin_inset Formula $h$
+\end_inset
+
+ wyznaczano następnie korzystając z zależności:
+\begin_inset Formula 
+\begin{equation}
+h=k\frac{U_{V2}}{U_{V1}}
+\end{equation}
+
+\end_inset
+
+gdzie 
+\begin_inset Formula $k$
+\end_inset
+
+ jest współczynnikiem wynikającym z charakterystyki filtra.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
-	filename Obrazki/Analogowy miernik h.pdf
+	filename Obrazki/Schematy/cropped_Analogowy miernik h.pdf
 
 \end_inset
 
@@ -1761,7 +1816,85 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-zxdfhdx
+Analogowy miernik współczynnika zawartości harmonicznych
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Analogowy-miernik-współczynnika"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Jako filtrów selektywnych używano najczęściej układów mostkowych o regulowanej
+ częstotliwości rezonansowej, takich jak mostek Robinsona-Wiena.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "metro"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Analogowe analizatory widma 
+\end_layout
+
+\begin_layout Standard
+Kolejną generacją mierników pozwalających na analizę zawartości wyższych
+ harmonicznych w sygnale były analogowe analizatrory widma.
+ Umożliwiały one graficzną prezentację poszczególnych prążków widma częstotliwoś
+ciowego sygnału na ekranie oscyloskopu analogowego.
+\end_layout
+
+\begin_layout Standard
+Na wejściu układu znajdował się mieszacz o częstotliwości różnicowej, do
+ którego doprowadzano odpowiednio skondycjonowany sygnał badany oraz sygnał
+ z przestrajanego generatora.
+ Sygnał następnie był wzmacniany i filtrowany selektywnie, dzięki czemu
+ otrzymywano informację o poszczególnych składowych sygnału.
+ Na końcu sygnał był wzmacniany logarytmicznie w celu lepszego ukazania
+ składowych o małych amplitudach i podawany na wejście oscyloskopu analogowego.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Obrazki/Schematy/cropped_Analogowy miernik widma.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Analogowy analizator widma
 \end_layout
 
 \end_inset
@@ -1779,11 +1912,101 @@ zxdfhdx
 \end_layout
 
 \begin_layout Section
-Analogowe analizatory widma 
+Analizatory cyfrowe
 \end_layout
 
-\begin_layout Section
-Analizatory cyfrowe
+\begin_layout Standard
+Rozwój mikroprocesorów i technik cyfrowego przetwarzania sygnałów doprowadził
+ praktycznie do wyparcia analizatorów analogowych.
+ Obecnie stosowane są o wiele tańsze i niejednokrotnie dokładniejsze analizatory
+ cyfrowe, których działanie jest oparte o dyskretną transformatę Fouriera.
+ Opierają się one na użyciu precyzyjnych przetworników analogowo-cyfrowych
+ oraz procesorów sygnałowych, które pozwalają na błyskawiczne wyznaczenie
+ praktycznie wszystkich parametrów sygnału.
+\end_layout
+
+\begin_layout Standard
+Na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Cyfrowy-analizator-widma"
+
+\end_inset
+
+ przedstawiono schemat ideowy cyfrowego analizatora widma.
+ Sygnał jest próbkowany przez odpowiedni czas i z odpowiednią prędkością,
+ za co odpowiedzialny jest przetwornik A/C i sterujący nim procesor.
+ Następnie próbki są przesyłane do procesora sygnałowego, gdzie wyznaczane
+ jest jego widmo przy użyciu algorytmów FFT.
+ Wykorzystując obliczone widmo można w prosty sposób obliczyć wartość współczynn
+ika THD na podstawie definicji (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:THD"
+
+\end_inset
+
+).
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Obrazki/Schematy/cropped_Cyfrowy miernik widma.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Ogólny schemat ideowy cyfrowego analizatora widma
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Cyfrowy-analizator-widma"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ogromną zaletą rozwiązań cyfrowych jest fakt, że spróbkowany sygnał można
+ bardzo szybko analizować pod kątem najróżniejszych czynników, wystarczy
+ jedynie zaimplementować odpowiedni algorytm na procesorze sygnałowym.
+ Producenci przyrządów pomiarowych, tacy jak Sonel, Fluke czy Shneider-Electric
+ produkują cyfrowe analizatory pozwalające na wyznaczenie wszystkich wskaźników
+ jakości energii elektrycznej, takich jak zawartość harmonicznych, napięcie
+ skuteczne, częstotliwość, czy współczynnik migotania światła, oraz rejestrację
+ zdarzeń takich jak zapady czy zaniki napięcia w sieci elektroenergetycznej.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "piknik"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Chapter
@@ -1866,7 +2089,7 @@ Skrypty testowe
 \end_layout
 
 \begin_layout Section
-Program
+Działanie przyrządu
 \end_layout
 
 \begin_layout Subsection
