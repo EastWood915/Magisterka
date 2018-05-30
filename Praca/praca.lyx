@@ -1506,7 +1506,14 @@ Wadą analogowych filtrów aktywnych jest duża liczba niezbędnych komponentów
 \begin_layout Standard
 W układach SC rezystory zostały zastąpione przez odpowiednio kluczowane
  kondensatory.
- Rozważmy układ z rysunku XXX.
+ Rozważmy układ z rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Układ-przełączanego-kondensatora"
+
+\end_inset
+
+.
  Przy przełączeniu klucza z potencjału 
 \begin_inset Formula $V_{1}$
 \end_inset
@@ -1560,6 +1567,51 @@ R=\frac{\Delta V}{i}=\frac{1}{Cf_{p}}
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Obrazki/Schematy/SC.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Układ przełączanego kondensatora 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Układ-przełączanego-kondensatora"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 Wykorzystując powyższą zależność można łatwo projektować filtry wysokich
  rzędów w technologii CMOS.
  Dodatkową zaletą takich układów scalonych jest możliwość regulacji częstotliwoś
@@ -1599,16 +1651,99 @@ key "wartoSpróbkować5"
 Dobór parametrów filtra
 \end_layout
 
+\begin_layout Standard
+Projektowanie filtra antyaliasingowego składa się zazwyczaj z kilku etapów.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "wartoSpróbkować2"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pierwszym z nich jest ustalenie częstotliwości granicznej 
+\begin_inset Formula $f_{g}$
+\end_inset
+
+, która powinna być maksymalną oczekiwaną częstotliwością użyteczną występującą
+ w próbkowanym sygnale.
+ W praktyce jednak dla częstotliwości granicznej tłumienie filtra wynosi
+ już 3 dB, zatem powinna ona być ustalona nieco dalej.
+\end_layout
+
+\begin_layout Standard
+Następnie należy ustalić częstotliwość próbkowania przetwornika 
+\begin_inset Formula $f_{s}$
+\end_inset
+
+, oraz powiązaną z nią częstotliwość końcową filtra 
+\begin_inset Formula $f_{stop}$
+\end_inset
+
+.
+ Częstotliwość końcowa jest częstotliwością, dla której tłumienie filtra
+ jest równe zakresowi dynamiki przetwornika 
+\begin_inset Formula $Z_{D}$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{equation}
+Z_{D}=6,02n\;[dB],
+\end{equation}
+
+\end_inset
+
+gdzie 
+\begin_inset Formula $n$
+\end_inset
+
+ jest rozdzielczością przetwornika wyrażoną w bitach.
+ Częstotliwość próbkowania zaś musi być od niej co najmniej dwukrotnie większa.
+\end_layout
+
+\begin_layout Standard
+Kolejnym krokiem jest ustalenie wymaganego rzędu filtra 
+\begin_inset Formula $M$
+\end_inset
+
+.
+ Oblicza się go korzystając z wzoru: 
+\begin_inset Formula 
+\begin{equation}
+M=\frac{Z_{D}}{6log_{2}(\frac{f_{p}}{2f_{gr}})}
+\end{equation}
+
+\end_inset
+
+Filtry do 4.
+ rzędu można łatwo wykonać z elementów dyskretnych, zaś filtry scalone SC
+ są ogólnodostępne dla rzędów od 8.
+ do 10.
+ Jeśli okaże się, że niezbędny będzie filtr wyższego rzędu, należy rozważyć
+ zwiększenie częstotliwości próbkowania, bądź zmniejszenie częstotliwości
+ granicznej filtra albo rozdzielczości przetwornika A/C.
+\end_layout
+
+\begin_layout Standard
+Ostatnim etapem jest wybranie konkretnej topologii filtra oraz policzenie
+ wartości jego elementów, w czym niezwykle pomocne są dedykowane programy
+ komputerowe.
+\end_layout
+
 \begin_layout Chapter
 Przegląd istniejących rozwiązań
 \end_layout
 
 \begin_layout Section
-Analogowe analizatory widma
+Analogowe mierniki współczynnika zawartości harmonicznych
 \end_layout
 
 \begin_layout Section
-Analogowe mierniki współczynnika zawartości harmonicznych
+Analogowe analizatory widma 
 \end_layout
 
 \begin_layout Section
