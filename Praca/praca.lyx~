@@ -553,10 +553,6 @@ Współczynniki najważniejszych sygnałów są stabelaryzowane, można więc na
  i wartość średnią.
 \end_layout
 
-\begin_layout Subsection
-Przykłady standardowych sygnałów okresowych
-\end_layout
-
 \begin_layout Section
 Transformata Fouriera
 \end_layout
@@ -1186,12 +1182,88 @@ THD a jakość energii elektrycznej
 Przetwornik analogowo - cyfrowy
 \end_layout
 
+\begin_layout Standard
+Przetwornik analogowo-cyfrowy jest urządzeniem umożliwiającym konwersję
+ sygnałów analogowych do postaci cyfrowej.
+ Pozwala to na o wiele szybszą ich analizę i przetwarzanie przy użyciu wyspecjal
+izowanych procesorów, a także na wygodne przechowywanie danych pomiarowych.
+\end_layout
+
 \begin_layout Subsection
-Etapy procesu przetwarzania analogowo-cyfrowego
+Etapy procesu przetwarzania analogowo - cyfrowego
+\end_layout
+
+\begin_layout Standard
+W procesie przetwarzania analogowo - cyfrowego można wyodrębnić trzy główne
+ etapy: próbkowanie, kwantowanie i kodowanie.
 \end_layout
 
 \begin_layout Subsubsection
 Próbkowanie
+\end_layout
+
+\begin_layout Standard
+Próbkowaniem sygnału nazywa się operację pobierania chwilowych wartości
+ tego sygnału w określonych, najczęściej równomiernych, momentach czasu.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "metro"
+
+\end_inset
+
+ Polega ono na zatrzaskiwaniu wartości chwilowych w tzw.
+ układzie próbkująco - pamiętającym (Sample and Hold) z częstotliwością
+ nazywaną częstotliwością próbkowania.
+ Wielkość ta determinuje szerokość pasma sygnału który może zostać prawidłowo
+ spróbkowany (patrz punkt 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Twierdzenie-o-próbkowaniu"
+
+\end_inset
+
+).
+ Elementem pamiętającym jest najczęściej kondensator oddzielony od reszty
+ układu z jednej strony kluczem, a z drugiej wtórnikiem napięciowym (rys.
+ XXX).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Obrazki/Schematy/cropped_Sample and Hold.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Układ Sample and Hold
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
@@ -1212,6 +1284,13 @@ Filtr antyaliasingowy
 
 \begin_layout Subsection
 Twierdzenie o próbkowaniu i definicja aliasingu 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Twierdzenie-o-próbkowaniu"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2013,20 +2092,442 @@ key "piknik"
 Analiza normy IEC 6100-4-30
 \end_layout
 
+\begin_layout Standard
+Norma IEC 6100-4-30 opisuje metody pomiarów oraz sposoby implementacji przyrządó
+w do pomiaru parametrów jakości energii elektrycznej w sieciach 50/60 Hz.
+ Podane w niej są standardy pomiarów takich wielkości jak:
+\end_layout
+
+\begin_layout Itemize
+częstotliwość,
+\end_layout
+
+\begin_layout Itemize
+wartość skuteczna,
+\end_layout
+
+\begin_layout Itemize
+współczynnik migotania światła,
+\end_layout
+
+\begin_layout Itemize
+zapady i zaniki napięcia,
+\end_layout
+
+\begin_layout Itemize
+asymetria napięcia,
+\end_layout
+
+\begin_layout Itemize
+zawartość wyższych harmonicznych.
+\end_layout
+
+\begin_layout Standard
+W niniejszej pracy omówione zostaną rozdziały dotyczące pomiaru zawartości
+ wyższych harmonicznych oraz częstotliwości.
+\end_layout
+
 \begin_layout Section
 Klasy przyrządów
 \end_layout
 
 \begin_layout Section
-Struktura przyrządu
+Wymagania dotyczące pomiaru częstotliwości 
+\end_layout
+
+\begin_layout Subsection
+Metoda pomiaru
+\end_layout
+
+\begin_layout Subsubsection
+Klasa A
+\end_layout
+
+\begin_layout Standard
+Odczyt częstotliwości powinien być dokonywany co 10 sekund.
+ Metoda pomiaru polega na zliczaniu pełnych okresów w 10-sekundowym oknie,
+ a następnie przedzieleniu ich liczby przez dokładny czas ich trwania.
+ W metodzie zliczania przejść przez zero sygnał powinien być przefiltrowany
+ w celu uniknięcia fałszywych zliczeń.
+ Okna pomiarowe nie powinny na siebie w żaden sposób zachodzić.
+\end_layout
+
+\begin_layout Subsubsection
+Klasa S
+\end_layout
+
+\begin_layout Standard
+Dla klasy S wymagania są takie same jak dla klasy A.
+\end_layout
+
+\begin_layout Subsection
+Niepewność i zakres pomiaru
+\end_layout
+
+\begin_layout Subsubsection
+Klasa A
+\end_layout
+
+\begin_layout Standard
+Niepewność pomiaru częstotliwości nie powinna przekraczać 
+\begin_inset Formula $\pm$
+\end_inset
+
+10 mHz w zakresie od 42,5 do 57,5 Hz dla częstotliwości oczekiwanej 50 Hz
+ oraz w zakresie od 51 do 69 Hz dla częstotliwości oczekiwanej 60 Hz.
+\end_layout
+
+\begin_layout Subsubsection
+Klasa S
+\end_layout
+
+\begin_layout Standard
+Niepewność pomiaru częstotliwości nie powinna przekraczać 
+\begin_inset Formula $\pm$
+\end_inset
+
+50 mHz w zakresie od 42,5 do 57,5 Hz dla częstotliwości oczekiwanej 50 Hz
+ oraz w zakresie od 51 do 69 Hz dla częstotliwości oczekiwanej 60 Hz.
+\end_layout
+
+\begin_layout Subsection
+Ewaluacja pomiaru
+\end_layout
+
+\begin_layout Subsubsection
+Klasa A
+\end_layout
+
+\begin_layout Standard
+Pomiar porównawczy powinien być wykonany na kanale referencyjnym.
+ Producent przyrządu musi określić sposób postępowania w razie utraty sygnału
+ na kanale referencyjnym.
+\end_layout
+
+\begin_layout Subsubsection
+Klasa S
+\end_layout
+
+\begin_layout Standard
+Dla klasy S wymagania są takie same jak dla klasy A.
 \end_layout
 
 \begin_layout Section
-Wymagania dotyczące pomiaru częstotliwości
+Definicje dotyczące harmonicznych i współczynników odkształcenia
+\end_layout
+
+\begin_layout Standard
+Poniższe definicje pochodzą bezpośrednio z normy PN-EN 6100-4-7.
+\end_layout
+
+\begin_layout Subsubsection*
+Częstotliwość harmonicznej 
+\begin_inset Formula $f_{n}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Częstotliwość będąca całkowitą krotnością częstotliwości sieci zasilającej.
+\end_layout
+
+\begin_layout Subsubsection*
+Rząd harmonicznej 
+\begin_inset Formula $n$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Całkowity stosunek częstotliwości harmonicznej do częstotliwości sieci zasilając
+ej.
+\end_layout
+
+\begin_layout Subsubsection*
+Wartość skuteczna składowej harmonicznej 
+\begin_inset Formula $G_{n}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Wartość skuteczna jednej ze składowych o częstotliwości harmonicznej w analizie
+ przebiegu niesinusoidalnego.
+ Dla uproszczenia, taką składową można skrótowo nazwać 
+\begin_inset Quotes pld
+\end_inset
+
+harmoniczną
+\begin_inset Quotes prd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Wartość skuteczna grupy harmonicznej 
+\begin_inset Formula $G_{g,n}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pierwiastek kwadratowy z sumy kwadratów wartości skutecznej harmonicznej
+ i sąsiadujących z nią składowych widmowych wyznaczonym w oknie czasowym.
+ Jest to suma energii harmonicznej oraz energii sąsiednich linii.
+ Rząd harmoniczny jest określany przez rozważaną harmoniczną.
+\end_layout
+
+\begin_layout Subsubsection*
+Wartość skuteczna podgrupy harmonicznej 
+\begin_inset Formula $G_{sg,n}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pierwiastek kwadratowy z sumy kwadratów skutecznych wartości harmonicznej
+ i dwóch bezpośrednio z nią sąsiadujących składowych widmowych.
+ W celu uwzględnienia wahań napięcia występujących podczas pomiaru podgrupa
+ składowych wyjściowych DFT jest otrzymywana w efekcie sumowania energii
+ składowych o częstotliwościach bezpośrednio sąsiadujących z daną harmoniczną
+ i energii tej harmonicznej.
+ rząd harmoniczny jest określany za pomocą rozważanej harmonicznej.
+\end_layout
+
+\begin_layout Subsubsection*
+Całkowity współczynnik odkształcenia 
+\begin_inset Formula $THD$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Stosunek skutecznej wartości sumy wszystkich składowych harmonicznych (
+\begin_inset Formula $G_{n}$
+\end_inset
+
+), sumowanych do określonego rzędu (
+\begin_inset Formula $H$
+\end_inset
+
+), do skutecznej wartości składowej podstawowej (
+\begin_inset Formula $G_{1}$
+\end_inset
+
+) 
+\begin_inset Formula 
+\begin{equation}
+THD=\sqrt{\stackrel[n=2]{H}{\sum}(\frac{G_{n}}{G_{1}})^{2}}\label{eq:THD-PN-EN}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Całkowity współczynnik odkształcenia podgrup harmonicznych 
+\begin_inset Formula $THDS$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Stosunek skutecznej wartości podgrup harmonicznych (
+\begin_inset Formula $G_{sgn}$
+\end_inset
+
+) do skutecznej wartości podgrupy związanej ze składową podstawową (
+\begin_inset Formula $G_{sg1}$
+\end_inset
+
+) 
+\begin_inset Formula 
+\begin{equation}
+THDS=\sqrt{\stackrel[n=2]{H}{\sum}(\frac{G_{sgn}}{G_{sg1}})^{2}}\label{eq:THDS}
+\end{equation}
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
 Wymagania dotyczące pomiaru harmonicznych
+\end_layout
+
+\begin_layout Subsection
+Metoda pomiaru
+\end_layout
+
+\begin_layout Subsubsection
+Klasa A
+\end_layout
+
+\begin_layout Standard
+Główny przyrząd powinien zawierać:
+\end_layout
+
+\begin_layout Itemize
+obwody wejściowe z filtrem antyaliasingowym,
+\end_layout
+
+\begin_layout Itemize
+przetwornik analogowo-cyfrowy,
+\end_layout
+
+\begin_layout Itemize
+jednostkę synchronizującą (jeśli jest wymagana),
+\end_layout
+
+\begin_layout Itemize
+procesor DFT
+\end_layout
+
+\begin_layout Standard
+Szerokość okna pomiarowego powinna wynosić 10 (dla systemów 50 Hz) lub 12
+ (dla systemów 60 Hz) pełnych okresów sygnału.
+\end_layout
+
+\begin_layout Standard
+Próbki powinny być ważone oknem prostokątnym.
+ W przypadku utraty synchronizacji możliwe jest użycie okna Hanninga, musi
+ to jednak zostać zasygnalizowane.
+\end_layout
+
+\begin_layout Standard
+Okno czasowe powinno być zsynchronizowane z każdą grupą 10 lub 12 okresów.
+ Czas pomiędzy pierwszą a N+1.
+ próbką powinien być równy czasowi trwania określonej liczby okresów napięcia
+ w badanym systemie z maksymalnym błędem 
+\begin_inset Formula $\pm$
+\end_inset
+
+0,03%.
+\end_layout
+
+\begin_layout Standard
+Obwód wejściowy przyrządu powinien być przystosowany do zachowania charakterysty
+ki przy napięciach wynoszących 1,2 napięcia maksymalnego sieci zasilającej.
+\end_layout
+
+\begin_layout Standard
+Filtr antyaliasingowy powinien mieć tłumienie co najmniej 50 dB w paśmie
+ zaporowym.
+\end_layout
+
+\begin_layout Standard
+Współczynnik odkształcenia powinien być wyznaczony jako całkowity współczynnik
+ odkształcenia podgrup harmonicznych dla H
+\begin_inset Formula $\geq$
+\end_inset
+
+50.
+\end_layout
+
+\begin_layout Standard
+Dla celów pomiarów jakości energii elektrycznej pomiar THD powinien trwać
+ ciągle przez 150/180 okresów lub przez 10 minut.
+ Przerwy w akwizycji nie są dozwolone.
+\end_layout
+
+\begin_layout Subsubsection
+Klasa S
+\end_layout
+
+\begin_layout Standard
+Współczynnik odkształcenia może być wyznaczony jako całkowity współczynnik
+ odkształcenia podgrup harmonicznych lub jako całkowity współczynnik odkształcen
+ia grup harmonicznych dla H
+\begin_inset Formula $\geq$
+\end_inset
+
+40.
+\end_layout
+
+\begin_layout Standard
+Pozostałe wymagania są takie same jak dla klasy A.
+\end_layout
+
+\begin_layout Subsection
+Niepewność i zakres pomiaru
+\end_layout
+
+\begin_layout Subsubsection
+Klasa A
+\end_layout
+
+\begin_layout Standard
+Dokładność pomiaru każdej z harmonicznych powinna wynosić 
+\begin_inset Formula $\pm5\%\:U_{m}$
+\end_inset
+
+ dla 
+\begin_inset Formula $U_{m}\geq1\%\:U_{nom}$
+\end_inset
+
+ lub 
+\begin_inset Formula $\pm0,05\%\:U_{nom}$
+\end_inset
+
+ dla 
+\begin_inset Formula $U_{m}<1\%\:U_{nom}$
+\end_inset
+
+, gdzie 
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $U_{m}$
+\end_inset
+
+ - wartość mierzona,
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $U_{nom}$
+\end_inset
+
+ - wartość znamionowa napięcia badanej sieci
+\end_layout
+
+\begin_layout Standard
+Dokładność pomiaru THD nie jest sprecyzowana w normie.
+\end_layout
+
+\begin_layout Subsubsection
+Klasa S
+\end_layout
+
+\begin_layout Standard
+Dokładność pomiaru każdej z harmonicznych powinna wynosić 
+\begin_inset Formula $\pm10\%\:U_{m}$
+\end_inset
+
+ dla 
+\begin_inset Formula $U_{m}\geq3\%\:U_{nom}$
+\end_inset
+
+ lub 
+\begin_inset Formula $\pm0,3\%\:U_{nom}$
+\end_inset
+
+ dla 
+\begin_inset Formula $U_{m}<3\%\:U_{nom}$
+\end_inset
+
+.
+ 
 \end_layout
 
 \begin_layout Chapter
