@@ -287,12 +287,11 @@ Definicja sygnału okresowego
 \begin_layout Standard
 Sygnałem nazywa się zmienność danej wielkości fizycznej w funkcji jednej
  lub wielu zmiennych.
- W pomiarach elektrycznych najczęściej obserwujemy zmienność napięcia, natężenia
-, bądź częstotliwości w funkcji czasu.
+ W pomiarach elektrycznych najczęściej obserwujemy zmiany napięcia, natężenia,
+ bądź częstotliwości w funkcji czasu.
  Każdy sygnał posiada nośnik oraz niesie jakąś informację.
  Przykładem nośnika może być przemienne napięcie elektryczne, zaś informacją
- przez niego niesioną może być zmiana amplitudy lub częstotliwości tego
- napięcia.
+ przez niego niesioną - zmiana amplitudy lub częstotliwości tego napięcia.
 \end_layout
 
 \begin_layout Standard
@@ -321,7 +320,7 @@ key "metro"
 \end_inset
 
  Najprostszym przykładem sygnału okresowego jest sygnał sinusoidalny 
-\begin_inset Formula $f(t)=sin(2\pi f\cdot t)$
+\begin_inset Formula $f(t)=sin(2\pi ft)$
 \end_inset
 
 .
@@ -422,8 +421,8 @@ gdzie:
 \begin_layout Standard
 Wartość amplitud harmonicznych w funkcji częstotliwości nazywamy widmem
  sygnału.
- Prezentacja sygnału w funkcji częstotliwości jest równoważna z prezentacją
- jej w funkcji czasu.
+ Prezentacja sygnału w funkcji częstotliwości jest równoważna z jej prezentacją
+ w funkcji czasu.
 \end_layout
 
 \begin_layout Subsection
@@ -439,6 +438,7 @@ name "subsec:Parametry-sygnałów"
 
 \begin_layout Standard
 W opisie sygnałów okresowych można wyróżnić kilka ich podstawowych wartości
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "ŁšczaTelekomunikacyjne"
@@ -485,11 +485,7 @@ F_{śr}=A_{0}=\frac{1}{T}\stackrel[t_{0}]{t_{0}+T}{\int}f(t)dt
 
 \end_inset
 
-Jeśli 
-\begin_inset Formula $A_{0}=0$
-\end_inset
 
-, to sygnał nazywamy przemiennym;
 \end_layout
 
 \begin_layout Itemize
@@ -548,9 +544,8 @@ k_{w}=\frac{F_{śr}}{F_{m}}
 
 \begin_layout Standard
 Współczynniki najważniejszych sygnałów są stabelaryzowane, można więc na
- ich podstawie np.
- wyznaczyć wartość skuteczną i maksymalną danego sygnału znając jego kształt
- i wartość średnią.
+ ich podstawie wyznaczyć wartość skuteczną i maksymalną danego sygnału znając
+ jego kształt i wartość średnią.
 \end_layout
 
 \begin_layout Section
@@ -558,7 +553,7 @@ Transformata Fouriera
 \end_layout
 
 \begin_layout Subsection
-Dyskretna transformata Fouriera
+Dyskretna transformata Fouriera 
 \end_layout
 
 \begin_layout Standard
@@ -579,16 +574,31 @@ X(f)=\stackrel[-\infty]{\infty}{\int}x(t)e^{-j2\pi ft}dt
 \end_layout
 
 \begin_layout Standard
-gdzie x(t) jest sygnałem ciągłym w dziedzinie czasu.
+gdzie 
+\begin_inset Formula $x(t)$
+\end_inset
+
+ jest sygnałem ciągłym w dziedzinie czasu.
  Przekształcenie to umożliwia przejście ciągłej w dziedzinie czasu funkcji
- x(t) w ciągłą w dziedzinie częstotliwości funkcję X(t), przy czym obie
- z nich są równoważnym opisem tego samego sygnału.
+ 
+\begin_inset Formula $x(t)$
+\end_inset
+
+ w ciągłą w dziedzinie częstotliwości funkcję 
+\begin_inset Formula $X(t)$
+\end_inset
+
+, przy czym obie z nich są równoważnym opisem tego samego sygnału.
  
 \end_layout
 
 \begin_layout Standard
-Jeśli sygnał x(t) zostanie spróbkowany równomiernie w dziedzinie czasu,
- można go poddać dyskretnemu przekształceniu Fouriera: 
+Jeśli sygnał 
+\begin_inset Formula $x(t)$
+\end_inset
+
+ zostanie spróbkowany równomiernie w dziedzinie czasu, można go poddać dyskretne
+mu przekształceniu Fouriera (DFT - Discrete Fourier Transform): 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Lyons"
@@ -606,7 +616,15 @@ X(m)=\stackrel[n=0]{N-1}{\sum}x(n)e^{-j2\pi\frac{nm}{N}}\label{eq:DFT}
 
 \end_inset
 
-gdzie x(n) jest ciągiem próbek sygnału x(t).
+gdzie 
+\begin_inset Formula $x(n)$
+\end_inset
+
+ jest ciągiem próbek sygnału 
+\begin_inset Formula $x(t)$
+\end_inset
+
+.
  Równanie (
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -678,9 +696,8 @@ Własności DFT
 \end_layout
 
 \begin_layout Standard
-Dyskretna transformata Fouriera posiada kilka istotnych własności i zagadnień,
- o których należy tutaj wspomnieć.
- Są to:
+Dyskretna transformata Fouriera posiada kilka istotnych własności, o których
+ należy wspomnieć:
 \end_layout
 
 \begin_layout Itemize
@@ -705,8 +722,11 @@ Symetria
 
 \begin_layout Standard
 Jeśli x(n) jest ciągiem rzeczywistym (jego części urojone są równe zeru)
- o liczbie elementów równej N to dla wartości wyjściowej jego DFT zachodzi
- zależność:
+ o liczbie elementów równej 
+\begin_inset Formula $N$
+\end_inset
+
+, to dla wartości wyjściowej jego DFT zachodzi zależność:
 \end_layout
 
 \begin_layout Standard
@@ -717,8 +737,8 @@ Jeśli x(n) jest ciągiem rzeczywistym (jego części urojone są równe zeru)
 
 \end_inset
 
-Oznacza to, że widmo częstotliwościowe jest symetryczne względem jego środka,
- czyli względem połowy częstotliwości próbkowania sygnału (patrz: 
+Oznacza to, że widmo częstotliwościowe jest symetryczne względem środka,
+ czyli połowy częstotliwości próbkowania sygnału (patrz: 
 \begin_inset CommandInset ref
 LatexCommand nameref
 reference "subsec:Rozdzielczość-DFT"
@@ -745,7 +765,7 @@ key "Lyons"
 
 \end_inset
 
- i nie wnoszą żadnych dodatkowych informacji.
+ i nie wnoszą dodatkowych informacji.
  Na rys.
  
 \begin_inset CommandInset ref
@@ -839,7 +859,7 @@ key "Lyons"
 \end_layout
 
 \begin_layout Subsubsection
-Rozdzielczość DFT
+Rozdzielczość
 \begin_inset CommandInset label
 LatexCommand label
 name "subsec:Rozdzielczość-DFT"
@@ -888,7 +908,7 @@ zością a możliwościami sprzętu.
 \end_layout
 
 \begin_layout Subsubsection
-Przeciek DFT
+Przeciek
 \end_layout
 
 \begin_layout Standard
@@ -900,8 +920,12 @@ Dyskretna transformata Fouriera operuje na skończonych zbiorach
 \begin_inset Formula $f_{s}$
 \end_inset
 
-, dając w wyniku N-punktową transformatę, której dyskretne wartości wyjściowe
- są związane z całkowitymi wielokrotnościami częstotliwości 
+, dając w wyniku 
+\begin_inset Formula $N$
+\end_inset
+
+-punktową transformatę, której dyskretne wartości wyjściowe są związane
+ z całkowitymi wielokrotnościami częstotliwości 
 \begin_inset Formula $\frac{f_{s}}{N}$
 \end_inset
 
@@ -989,9 +1013,9 @@ Najbardziej czasochłonnym dla procesora etapem wyznaczania DFT jest wykonywanie
 
 , co przy wzrastającej liczbie próbek prowadzi do bardzo znacznego wydłużenia
  czasu obliczeń.
- Aby choć trochę zniwelować ten przyrost opracowane zostały algorytmy szybkiej
- transformaty Fouriera (FFT - Fast Fourier Transformation), z których najpopular
-niejszym jest Radix-2.
+ Aby zniwelować ten przyrost opracowane zostały algorytmy szybkiej transformaty
+ Fouriera (FFT - Fast Fourier Transform), z których najpopularniejszym jest
+ Radix-2.
  Wykorzystuje on własności DFT, takie jak symetria i liniowość, do podzielenia
  N-punktowego DFT na szereg 2-punktowych DFT, co znacząco zmniejsza liczbę
  wymaganych mnożeń do 
@@ -1064,11 +1088,11 @@ Jak widać, różnica znacząco się powiększa ze wzrostem liczby próbek i dla
 \begin_layout Standard
 Istotną cechą algorytmu Radix-2 jest fakt, że liczba próbek wejściowych
  musi być równa 
-\begin_inset Formula $2^{k}$
+\begin_inset Formula $2^{n}$
 \end_inset
 
 , gdzie 
-\begin_inset Formula $k$
+\begin_inset Formula $n$
 \end_inset
 
  jest liczbą naturalną.
@@ -1116,21 +1140,13 @@ gdzie
 \begin_inset Formula $A_{n}$
 \end_inset
 
-jest amplitudą n-tej harmonicznej sygnału.
- Współczynnik ten określa odkształcenie sygnału względem 
-\begin_inset Quotes pld
-\end_inset
-
-czystej
-\begin_inset Quotes prd
-\end_inset
-
- sinusoidy.
+ jest amplitudą n-tej harmonicznej sygnału.
+ Współczynnik ten określa odkształcenie sygnału względem idealnej sinusoidy.
  Jest on szczególnie istotny w telekomunikacji i przetwarzaniu audio.
 \end_layout
 
 \begin_layout Standard
-W elektroenergetyce chętniej używa się jednak podobnego współczynnika nazywanego
+W elektroenergetyce używa się jednak podobnego współczynnika nazywanego
  całkowitym współczynnikiem odkształceń harmonicznych (ang.
  THD - total harmonic distortion) wyrażanego wzorem:
 \end_layout
@@ -1183,7 +1199,7 @@ Przetwornik analogowo - cyfrowy
 \end_layout
 
 \begin_layout Standard
-Przetwornik analogowo-cyfrowy jest urządzeniem umożliwiającym konwersję
+Przetwornik analogowo - cyfrowy jest urządzeniem umożliwiającym konwersję
  sygnałów analogowych do postaci cyfrowej.
  Pozwala to na o wiele szybszą ich analizę i przetwarzanie przy użyciu wyspecjal
 izowanych procesorów, a także na wygodne przechowywanie danych pomiarowych.
@@ -1204,7 +1220,8 @@ Próbkowanie
 
 \begin_layout Standard
 Próbkowaniem sygnału nazywa się operację pobierania chwilowych wartości
- tego sygnału w określonych, najczęściej równomiernych, momentach czasu.
+ tego sygnału w określonych, najczęściej rozłożonych równomiernie, momentach
+ czasu.
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1215,7 +1232,7 @@ key "metro"
  Polega ono na zatrzaskiwaniu wartości chwilowych w tzw.
  układzie próbkująco - pamiętającym (Sample and Hold) z częstotliwością
  nazywaną częstotliwością próbkowania.
- Wielkość ta determinuje szerokość pasma sygnału który może zostać prawidłowo
+ Wielkość ta determinuje szerokość pasma sygnału, który może zostać prawidłowo
  spróbkowany (patrz punkt 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1226,7 +1243,14 @@ reference "subsec:Twierdzenie-o-próbkowaniu"
 ).
  Elementem pamiętającym jest najczęściej kondensator oddzielony od reszty
  układu z jednej strony kluczem, a z drugiej wtórnikiem napięciowym (rys.
- XXX).
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Układ-Sample-and"
+
+\end_inset
+
+).
 \end_layout
 
 \begin_layout Standard
@@ -1250,14 +1274,17 @@ status open
 
 \begin_layout Plain Layout
 Układ Sample and Hold
-\end_layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Układ-Sample-and"
 
 \end_inset
 
 
 \end_layout
 
-\begin_layout Plain Layout
+\end_inset
+
 
 \end_layout
 
@@ -1270,12 +1297,43 @@ Układ Sample and Hold
 Kwantowanie 
 \end_layout
 
+\begin_layout Standard
+Kwantowanie polega na przekształceniu ciągłego zbioru wartości sygnału na
+ skończoną liczbę przedziałów wynikających z kroku kwantowania 
+\begin_inset Formula $q$
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "metroChwaleba"
+
+\end_inset
+
+.
+ Podział opiera się na porównywaniu spróbkowanej wartości ze wzorcami napięciowy
+mi za pomocą szeregu komparatorów.
+ Liczba przedziałów nazywana jest rozdzielczością przetwornika, zaś różnica
+ napięć między pierwszym a ostatnim z nich to zakres przetwornika.
+\end_layout
+
+\begin_layout Standard
+Z procesem kwantowania powiązany jest tzw.
+ błąd kwantowania, polegający na braku możliwości zmierzenia zmian sygnału
+ wejściowego, które są mniejsze niż różnica napięć pomiędzy dwoma sąsiednimi
+ poziomami kwantowania.
+ Błąd ten można zredukować poprzez zwiększenie rozdzielczości przetwornika.
+\end_layout
+
 \begin_layout Subsubsection
 Kodowanie
 \end_layout
 
-\begin_layout Subsection
-Błędy przetwarzania
+\begin_layout Standard
+Ostatnim etapem przetwarzania A/C jest kodowanie, czyli zapis spróbkowanej
+ i skwantowanej wartości do postaci słowa w kodzie dwójkowym.
+ Dane w takiej formie można przechowywać i przetwarzać cyfrowo.
+ 
 \end_layout
 
 \begin_layout Section
@@ -1341,13 +1399,13 @@ Częstotliwość
 \begin_inset Formula $2f_{g}$
 \end_inset
 
-jest nazywana częstotliwością Nyquista.
+ jest nazywana częstotliwością Nyquista.
  Jest to minimalna częstotliwość z jaką należy próbkować sygnał, jednak
  w praktyce używa się częstotliwości w granicach 
 \begin_inset Formula $5-10f_{g}$
 \end_inset
 
-w celu poprawnego odwzorowania kształtu sygnału.
+ w celu poprawnego odwzorowania kształtu sygnału.
 \end_layout
 
 \begin_layout Standard
@@ -1373,7 +1431,7 @@ reference "eq:SymetriaDFT"
 \begin_inset Formula $f(N-m)$
 \end_inset
 
-, co doprowadzi do niejednoznaczności w odtworzeniu sygnału.
+, co prowadzi do niejednoznaczności w odtworzeniu sygnału.
  
 \end_layout
 
@@ -1381,7 +1439,7 @@ reference "eq:SymetriaDFT"
 W celu zapobiegnięcia efektowi aliasingu na wejściu przetwornika A/C należy
  zastosować tzw.
  filtr antyaliasingowy, który zapewni, że próbkowany sygnał będzie ściśle
- dolnopasmowy, oraz pozwoli prawidłowo dobrać częstotliwość próbkowania.
+ dolnopasmowy oraz pozwoli prawidłowo dobrać częstotliwość próbkowania.
 \end_layout
 
 \begin_layout Subsection
@@ -1411,7 +1469,7 @@ key "FiltryAktywnePL"
 Jedną z popularnych topologii budowy filtrów aktywnych jest tak zwana topologia
  wielokrotnych sprzężeń zwrotnych (Multiple Feedback).Zapewnia ona bardzo
  dobre tłumienie w paśmie zaporowym dla szerokiego zakresu częstotliwości
- oraz bardzo niskie szumy i wysokie tłumienie składowej stałej (CMRR) 
+ oraz niskie szumy i wysokie tłumienie składowej stałej (CMRR) 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "TI_MFBFilter"
@@ -1572,8 +1630,8 @@ Wadą analogowych filtrów aktywnych jest duża liczba niezbędnych komponentów
  Filtr 8.
  rzędu w konfiguracji MFB wymaga użycia 4 wzmacniaczy, 12 rezystorów i 8
  kondensatorów.
- Układ taki złożony z elementów dyskretnych zajmowałby bardzo dużą powierzchnię
- i byłby silnie narażony na tolerancję elementów.
+ Taki układ złożony z elementów dyskretnych zajmowałby bardzo dużą powierzchnię
+ i byłby silnie narażony na niedokładność elementów.
  Rozwiązaniem w takich przypadkach może być zastosowanie techniki Switched
  Capacitor.
 \end_layout
@@ -1690,7 +1748,7 @@ name "fig:Układ-przełączanego-kondensatora"
 Wykorzystując powyższą zależność można łatwo projektować filtry wysokich
  rzędów w technologii CMOS.
  Dodatkową zaletą takich układów scalonych jest możliwość regulacji częstotliwoś
-ci granicznej filtra przez prostą zmianę częstotliwości sygnału zegarowego.
+ci granicznej filtra przez zmianę częstotliwości sygnału zegarowego.
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1702,8 +1760,8 @@ key "wartoSpróbkować5"
 \end_layout
 
 \begin_layout Standard
-Pewną wadą filtrów SC jest fakt, że sygnał zegarowy sterujący kluczami przechodz
-i do sygnału wyjściowego filtra jako zakłócenie.
+Wadą filtrów SC jest fakt, że sygnał zegarowy sterujący kluczami przechodzi
+ do sygnału wyjściowego filtra jako zakłócenie.
  Jeśli częstotliwość zegara będzie odpowiednio większa od częstotliwości
  granicznej (w praktyce najczęściej stosuje się proporcję 100:1), to można
  sobie z tym faktem poradzić umieszczając na wyjściu filtra SC dodatkowy
@@ -1711,7 +1769,7 @@ i do sygnału wyjściowego filtra jako zakłócenie.
  lub 2.
  rzędu.
  Konieczność podawania tak szybkiego zegara ogranicza jednak użyteczne pasmo
- takich filtrów do kilkudziesięciu kHz.
+ filtrów SC do kilkudziesięciu kHz.
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1746,7 +1804,7 @@ Pierwszym z nich jest ustalenie częstotliwości granicznej
 , która powinna być maksymalną oczekiwaną częstotliwością użyteczną występującą
  w próbkowanym sygnale.
  W praktyce jednak dla częstotliwości granicznej tłumienie filtra wynosi
- już 3 dB, zatem powinna ona być ustalona nieco dalej.
+ już 3 dB, zatem powinna ona być ustalona nieco wyżej.
 \end_layout
 
 \begin_layout Standard
@@ -1754,7 +1812,7 @@ Następnie należy ustalić częstotliwość próbkowania przetwornika
 \begin_inset Formula $f_{s}$
 \end_inset
 
-, oraz powiązaną z nią częstotliwość końcową filtra 
+ oraz powiązaną z nią częstotliwość końcową filtra 
 \begin_inset Formula $f_{stop}$
 \end_inset
 
@@ -1767,7 +1825,7 @@ Następnie należy ustalić częstotliwość próbkowania przetwornika
 :
 \begin_inset Formula 
 \begin{equation}
-Z_{D}=6,02n\;[dB],
+Z_{D}=6,02n\;[dB]
 \end{equation}
 
 \end_inset
@@ -1849,7 +1907,7 @@ reference "fig:Analogowy-miernik-współczynnika"
 
 , składał się z tłumika oraz wzmacniacza kondycjonujących wstępnie sygnał,
  za którymi znajdował się pierwszy woltomierz wartości skutecznej.
- Drugim ogniwem układu był filtr selektywny u bardzo wysokiej dobroci, za
+ Drugim ogniwem układu był filtr selektywny o bardzo wysokiej dobroci, za
  którym umieszczony był drugi woltomierz.
  Filtr dostrajano tak, aby wskazanie woltomierza 
 \begin_inset Formula $V_{2}$
@@ -1999,7 +2057,7 @@ Rozwój mikroprocesorów i technik cyfrowego przetwarzania sygnałów doprowadzi
  praktycznie do wyparcia analizatorów analogowych.
  Obecnie stosowane są o wiele tańsze i niejednokrotnie dokładniejsze analizatory
  cyfrowe, których działanie jest oparte o dyskretną transformatę Fouriera.
- Opierają się one na użyciu precyzyjnych przetworników analogowo-cyfrowych
+ Główną ideę stanowi użycie precyzyjnych przetworników analogowo-cyfrowych
  oraz procesorów sygnałowych, które pozwalają na błyskawiczne wyznaczenie
  praktycznie wszystkich parametrów sygnału.
 \end_layout
@@ -2013,10 +2071,10 @@ reference "fig:Cyfrowy-analizator-widma"
 \end_inset
 
  przedstawiono schemat ideowy cyfrowego analizatora widma.
- Sygnał jest próbkowany przez odpowiedni czas i z odpowiednią prędkością,
+ Sygnał jest próbkowany przez określony czas i z odpowiednią prędkością,
  za co odpowiedzialny jest przetwornik A/C i sterujący nim procesor.
- Następnie próbki są przesyłane do procesora sygnałowego, gdzie wyznaczane
- jest jego widmo przy użyciu algorytmów FFT.
+ Następnie próbki są przesyłane do procesora sygnałowego, gdzie przy użyciu
+ algorytmów FFT wyznaczane jest jego widmo.
  Wykorzystując obliczone widmo można w prosty sposób obliczyć wartość współczynn
 ika THD na podstawie definicji (
 \begin_inset CommandInset ref
@@ -2076,7 +2134,7 @@ Ogromną zaletą rozwiązań cyfrowych jest fakt, że spróbkowany sygnał możn
  Producenci przyrządów pomiarowych, tacy jak Sonel, Fluke czy Shneider-Electric
  produkują cyfrowe analizatory pozwalające na wyznaczenie wszystkich wskaźników
  jakości energii elektrycznej, takich jak zawartość harmonicznych, napięcie
- skuteczne, częstotliwość, czy współczynnik migotania światła, oraz rejestrację
+ skuteczne, częstotliwość, czy współczynnik migotania światła oraz rejestrację
  zdarzeń takich jak zapady czy zaniki napięcia w sieci elektroenergetycznej.
  
 \begin_inset CommandInset citation
@@ -2095,7 +2153,7 @@ Analiza normy IEC 6100-4-30
 \begin_layout Standard
 Norma IEC 6100-4-30 opisuje metody pomiarów oraz sposoby implementacji przyrządó
 w do pomiaru parametrów jakości energii elektrycznej w sieciach 50/60 Hz.
- Podane w niej są standardy pomiarów takich wielkości jak:
+ Podane w niej są standardy pomiarów wielkości takich jak:
 \end_layout
 
 \begin_layout Itemize
@@ -2256,7 +2314,7 @@ Wartość skuteczna składowej harmonicznej
 \begin_layout Standard
 Wartość skuteczna jednej ze składowych o częstotliwości harmonicznej w analizie
  przebiegu niesinusoidalnego.
- Dla uproszczenia, taką składową można skrótowo nazwać 
+ Dla uproszczenia taką składową można skrótowo nazwać 
 \begin_inset Quotes pld
 \end_inset
 
@@ -2297,7 +2355,7 @@ Pierwiastek kwadratowy z sumy kwadratów skutecznych wartości harmonicznej
  składowych wyjściowych DFT jest otrzymywana w efekcie sumowania energii
  składowych o częstotliwościach bezpośrednio sąsiadujących z daną harmoniczną
  i energii tej harmonicznej.
- rząd harmoniczny jest określany za pomocą rozważanej harmonicznej.
+ Rząd harmoniczny jest określany za pomocą rozważanej harmonicznej.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -2389,7 +2447,7 @@ jednostkę synchronizującą (jeśli jest wymagana),
 \end_layout
 
 \begin_layout Itemize
-procesor DFT
+procesor DFT.
 \end_layout
 
 \begin_layout Standard
@@ -2405,7 +2463,10 @@ Próbki powinny być ważone oknem prostokątnym.
 
 \begin_layout Standard
 Okno czasowe powinno być zsynchronizowane z każdą grupą 10 lub 12 okresów.
- Czas pomiędzy pierwszą a N+1.
+ Czas pomiędzy pierwszą a 
+\begin_inset Formula $N+1.$
+\end_inset
+
  próbką powinien być równy czasowi trwania określonej liczby okresów napięcia
  w badanym systemie z maksymalnym błędem 
 \begin_inset Formula $\pm$
@@ -2426,7 +2487,11 @@ Filtr antyaliasingowy powinien mieć tłumienie co najmniej 50 dB w paśmie
 
 \begin_layout Standard
 Współczynnik odkształcenia powinien być wyznaczony jako całkowity współczynnik
- odkształcenia podgrup harmonicznych dla H
+ odkształcenia podgrup harmonicznych dla 
+\begin_inset Formula $H$
+\end_inset
+
+
 \begin_inset Formula $\geq$
 \end_inset
 
@@ -2446,7 +2511,11 @@ Klasa S
 \begin_layout Standard
 Współczynnik odkształcenia może być wyznaczony jako całkowity współczynnik
  odkształcenia podgrup harmonicznych lub jako całkowity współczynnik odkształcen
-ia grup harmonicznych dla H
+ia grup harmonicznych dla
+\begin_inset Formula $H$
+\end_inset
+
+
 \begin_inset Formula $\geq$
 \end_inset
 
