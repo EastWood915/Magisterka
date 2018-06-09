@@ -1,7 +1,0 @@
-clear all
-close all
-clc
-
-load 'BadanieFiltra.mat';
-
-loglo

@@ -77,12 +77,12 @@
   date         = {2018-05-09},
 }
 
-@Article{wartoSpróbkowaæ2,
+@Article{wartoSpróbkowaæ5,
   author       = {Doliñski},
-  title        = {Warto spróbkowaæ, czê¶æ 2},
+  title        = {Warto spróbkowaæ, czê¶æ 5},
   journal      = {Elektronika Praktyczna},
-  journaltitle = {Elektronika Praktyczna 10/2006},
-  year         = {10/2006},
+  journaltitle = {Elektronika Praktyczna 1/2007},
+  year         = {1/2007},
   date         = {2018-05-09},
 }
 
@@ -110,6 +110,15 @@
 
 @WWW{FiltryAktywneWFiIS,
   url = {http://www.fis.agh.edu.pl/koidc/materials/laboratoria/podstawy/A4-FiltryAktywne_PW.pdf},
+}
+
+@Article{wartoSpróbkowaæ2,
+  author       = {Doliñski},
+  title        = {Warto spróbkowaæ, czê¶æ 2},
+  journal      = {Elektronika Praktyczna},
+  journaltitle = {Elektronika Praktyczna 10/2006},
+  year         = {10/2006},
+  date         = {2018-05-09},
 }
 
 @Comment{jabref-meta: databaseType:biblatex;}

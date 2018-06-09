@@ -320,7 +320,7 @@ key "metro"
 \end_inset
 
  Najprostszym przykładem sygnału okresowego jest sygnał sinusoidalny 
-\begin_inset Formula $f(t)=sin(2\pi ft)$
+\begin_inset Formula $f(t)=Asin(2\pi ft+\varphi)$
 \end_inset
 
 .
@@ -420,7 +420,7 @@ gdzie:
 
 \begin_layout Standard
 Wartość amplitud harmonicznych w funkcji częstotliwości nazywamy widmem
- sygnału.
+ amplitudowym sygnału.
  Prezentacja sygnału w funkcji częstotliwości jest równoważna z jej prezentacją
  w funkcji czasu.
 \end_layout
@@ -489,6 +489,18 @@ F_{śr}=A_{0}=\frac{1}{T}\stackrel[t_{0}]{t_{0}+T}{\int}f(t)dt
 \end_layout
 
 \begin_layout Itemize
+wartość średnią wyprostowaną 
+\begin_inset Formula 
+\begin{equation}
+F_{śrp}=\frac{1}{T}\stackrel[t_{0}]{t_{0}+T}{\int}|f(t)|dt\label{eq:Fsrp}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
 wartość skuteczną (RMS) 
 \begin_inset Formula 
 \begin{equation}
@@ -543,6 +555,27 @@ k_{w}=\frac{F_{śr}}{F_{m}}
 \end_layout
 
 \begin_layout Standard
+Dla 
+\begin_inset Formula $F_{śr}=0$
+\end_inset
+
+ wartość średnią zastępujemy w powyższych równaniach wartością średnią wyprostow
+aną 
+\begin_inset Formula $F_{śrp}$
+\end_inset
+
+ (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Fsrp"
+
+\end_inset
+
+).
+ 
+\end_layout
+
+\begin_layout Standard
 Współczynniki najważniejszych sygnałów są stabelaryzowane, można więc na
  ich podstawie wyznaczyć wartość skuteczną i maksymalną danego sygnału znając
  jego kształt i wartość średnią.
@@ -570,10 +603,6 @@ X(f)=\stackrel[-\infty]{\infty}{\int}x(t)e^{-j2\pi ft}dt
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 gdzie 
 \begin_inset Formula $x(t)$
 \end_inset
@@ -585,7 +614,7 @@ gdzie
 \end_inset
 
  w ciągłą w dziedzinie częstotliwości funkcję 
-\begin_inset Formula $X(t)$
+\begin_inset Formula $X(f)$
 \end_inset
 
 , przy czym obie z nich są równoważnym opisem tego samego sygnału.
@@ -616,16 +645,40 @@ X(m)=\stackrel[n=0]{N-1}{\sum}x(n)e^{-j2\pi\frac{nm}{N}}\label{eq:DFT}
 
 \end_inset
 
-gdzie 
+gdzie:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
 \begin_inset Formula $x(n)$
 \end_inset
 
- jest ciągiem próbek sygnału 
+ — ciąg próbek sygnału 
 \begin_inset Formula $x(t)$
 \end_inset
 
-.
- Równanie (
+,
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $N$
+\end_inset
+
+ — liczba pobranych próbek,
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $m$
+\end_inset
+
+ — numer prążka w widmie amplitudowym.
+ 
+\end_layout
+
+\begin_layout Standard
+Równanie (
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "eq:DFT"
@@ -692,11 +745,11 @@ name "fig:pokazDFT"
 \end_layout
 
 \begin_layout Subsection
-Własności DFT
+Właściwości DFT
 \end_layout
 
 \begin_layout Standard
-Dyskretna transformata Fouriera posiada kilka istotnych własności, o których
+Dyskretna transformata Fouriera posiada kilka istotnych właściwości, o których
  należy wspomnieć:
 \end_layout
 
@@ -837,8 +890,8 @@ Liniowość
 \end_layout
 
 \begin_layout Standard
-Liniowość jest własnością DFT, która mówi, że DFT sumy dwóch sygnałów jest
- równa sumie transformat każdego z nich 
+Liniowość jest właściwością DFT, która mówi, że DFT sumy dwóch sygnałów
+ jest równa sumie transformat każdego z nich 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Lyons"
@@ -854,7 +907,7 @@ key "Lyons"
 \end_inset
 
 .
- Dzięki tej własności możliwe jest wyznaczanie DFT sygnału składającego
+ Dzięki tej właściwości możliwe jest wyznaczanie DFT sygnału składającego
  się z sumy dowolnej liczby sinusoid.
 \end_layout
 
@@ -945,6 +998,27 @@ key "Lyons"
 .
  To niekorzystne zjawisko nazywane jest przeciekiem DFT i prowadzi do przekłaman
 ia wyników analizy częstotliwościowej.
+ Przykład przecieku przedstawiono na rys.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Przeciek"
+
+\end_inset
+
+: wykresy przedstawiają kolejno sygnał o częstotliwości 8,75Hz próbkowany
+ przez 1 sekundę, oraz jego obliczone widmo amplitudowe.
+ DFT obliczono z 256 próbek pobieranych z częstotliwością 
+\begin_inset Formula $\frac{8,75}{256}$
+\end_inset
+
+Hz.
+ Stosunek 
+\begin_inset Formula $\frac{f_{s}}{N}$
+\end_inset
+
+ wynosi zatem 8,75, nie jest więc wartością całkowitą, co doprowadziło do
+ powstania wyraźnego przecieku.
 \end_layout
 
 \begin_layout Standard
@@ -996,7 +1070,8 @@ Ponieważ w przyrodzie nie istnieją sygnały czysto poliharmoniczne, zjawisko
  przecieku jest nieuniknione.
  Można je jednak minimalizować poprzez dostosowywanie częstotliwości próbkowania
  do podstawowej składowej sygnału oraz wykorzystywanie funkcji okien, które
- niwelują przeciek przez zmniejszanie amplitudy sygnału przy jego brzegach.
+ niwelują przeciek przez zmniejszanie amplitudy sygnału przy granicach okna
+ obserwacji sygnału.
  
 \end_layout
 
@@ -1007,7 +1082,7 @@ Szybka transformata Fouriera
 \begin_layout Standard
 Najbardziej czasochłonnym dla procesora etapem wyznaczania DFT jest wykonywanie
  licznych mnożeń na liczbach zespolonych.
- Ilość tych operacji wynosi 
+ Liczba tych operacji wynosi 
 \begin_inset Formula $N^{2}$
 \end_inset
 
@@ -1016,7 +1091,7 @@ Najbardziej czasochłonnym dla procesora etapem wyznaczania DFT jest wykonywanie
  Aby zniwelować ten przyrost opracowane zostały algorytmy szybkiej transformaty
  Fouriera (FFT - Fast Fourier Transform), z których najpopularniejszym jest
  Radix-2.
- Wykorzystuje on własności DFT, takie jak symetria i liniowość, do podzielenia
+ Wykorzystuje on właściwości DFT, takie jak symetria i liniowość, do podzielenia
  N-punktowego DFT na szereg 2-punktowych DFT, co znacząco zmniejsza liczbę
  wymaganych mnożeń do 
 \begin_inset Formula $\frac{N}{2}log_{2}N$
@@ -1241,8 +1316,20 @@ reference "subsec:Twierdzenie-o-próbkowaniu"
 \end_inset
 
 ).
- Elementem pamiętającym jest najczęściej kondensator oddzielony od reszty
- układu z jednej strony kluczem, a z drugiej wtórnikiem napięciowym (rys.
+ W najprostszej implementacji układu Sample and Hold elementem pamiętającym
+ jest kondensator 
+\begin_inset Formula $C$
+\end_inset
+
+, zaś moment pobrania próbki jest determinowany przez zamknięcie klucza
+ tranzystorowego 
+\begin_inset Formula $K$
+\end_inset
+
+.
+ W celu uniknięcia wpływu obciążenia na źródło sygnału i napięcie na kondensator
+ze układ jest z obu stron separowany wtórnikami napięciowymi.
+ (rys.
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1313,8 +1400,9 @@ key "metroChwaleba"
 .
  Podział opiera się na porównywaniu spróbkowanej wartości ze wzorcami napięciowy
 mi za pomocą szeregu komparatorów.
- Liczba przedziałów nazywana jest rozdzielczością przetwornika, zaś różnica
- napięć między pierwszym a ostatnim z nich to zakres przetwornika.
+ Liczba bitów potrzebnych do zapisania w kodzie binarnym ilości przedziałów
+ nazywana jest rozdzielczością przetwornika, zaś różnica napięć między pierwszym
+ a ostatnim z nich to zakres przetwornika.
 \end_layout
 
 \begin_layout Standard
@@ -1353,7 +1441,7 @@ name "subsec:Twierdzenie-o-próbkowaniu"
 
 \begin_layout Standard
 W celu poprawnego odtworzenia spróbkowanego sygnału niezbędne jest pobranie
- odpowiedniej liczby próbek w jednostce czasu.
+ odpowiedniej liczby próbek na okres badanego sygnału.
  Jest ona definiowana przez twierdzenie Kotielnikowa-Shannona (inaczej twierdzen
 ie o próbkowaniu), które mówi, że odtworzenie sygnału z ciągu próbek bez
  utraty informacji jest możliwe, jeśli: 
@@ -1449,10 +1537,10 @@ Filtry aktywne
 \begin_layout Standard
 W roli filtrów antyaliasingowych szczególnie chętnie wykorzystywane są filtry
  aktywne RC.
- Są to układy oparte na wzmacniaczach operacyjnych, które w porównaniu do
- filtrów pasywnych RLC zapewniają większą stabilność, dokładność, umożliwiają
- wzmocnienie sygnału wejściowego w paśmie przenoszenia oraz mają lepsze
- tłumienie w paśmie zaporowym.
+ Są to układy budowane z wykorzystaniem wzmacniaczy operacyjnych, które
+ w porównaniu do filtrów pasywnych RLC zapewniają większą stabilność, dokładność
+, umożliwiają wzmocnienie sygnału wejściowego w paśmie przenoszenia oraz
+ mają lepsze tłumienie w paśmie zaporowym.
  Dodatkowo pozwalają one na budowę filtrów wysokich rzędów bez użycia dużych
  elementów indukcyjnych.
  
@@ -1469,7 +1557,7 @@ key "FiltryAktywnePL"
 Jedną z popularnych topologii budowy filtrów aktywnych jest tak zwana topologia
  wielokrotnych sprzężeń zwrotnych (Multiple Feedback).Zapewnia ona bardzo
  dobre tłumienie w paśmie zaporowym dla szerokiego zakresu częstotliwości
- oraz niskie szumy i wysokie tłumienie składowej stałej (CMRR) 
+ oraz niskie szumy i wysokie tłumienie składowej wspólnej (CMRR) 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "TI_MFBFilter"
@@ -1666,7 +1754,7 @@ reference "fig:Układ-przełączanego-kondensatora"
 
 \end_inset
 
-Zakładając, że klucz będą załączany 2-fazowo z częstotliwością 
+Zakładając, że klucz będzie załączany 2-fazowo z częstotliwością 
 \begin_inset Formula $f_{p}$
 \end_inset
 
@@ -1685,13 +1773,20 @@ i=\Delta Qf_{p}=C(V_{1}-V_{2})f_{p}=C\Delta Vf_{p}
 
 \end_inset
 
-co możemy przełożyć na ekwiwalentną rezystancję:
+co możemy przełożyć na ekwiwalentną rezystancję 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "wartoSpróbkować5"
+
+\end_inset
+
+:
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-R=\frac{\Delta V}{i}=\frac{1}{Cf_{p}}
+R=\frac{\Delta V}{i}=\frac{1}{Cf_{p}}\label{eq:RezystancjaSC}
 \end{equation}
 
 \end_inset
@@ -1745,18 +1840,31 @@ name "fig:Układ-przełączanego-kondensatora"
 \end_layout
 
 \begin_layout Standard
-Wykorzystując powyższą zależność można łatwo projektować filtry wysokich
- rzędów w technologii CMOS.
- Dodatkową zaletą takich układów scalonych jest możliwość regulacji częstotliwoś
-ci granicznej filtra przez zmianę częstotliwości sygnału zegarowego.
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "wartoSpróbkować5"
+Wykorzystując zależność (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:RezystancjaSC"
 
 \end_inset
 
+) można łatwo projektować filtry wysokich rzędów w technologii CMOS, co
+ wynika z dwóch faktów:
+\end_layout
 
+\begin_layout Itemize
+kondensatory MOS o małych pojemnościach zajmują znacznie mniej miejsca na
+ krzemie niż rezystory o dużych wartościach wykonanych w tej technologii,
+\end_layout
+
+\begin_layout Itemize
+rozrzuty względne są dużo mniejsze dla samych kondensatorów niż dla połączenia
+ kondensatorów i rezystorów, co zapewnia większą precyzję wykonania filtra.
+\end_layout
+
+\begin_layout Standard
+Dodatkową zaletą takich układów jest możliwość regulacji częstotliwości
+ granicznej filtra przez zmianę częstotliwości sygnału zegarowego.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -1825,7 +1933,7 @@ Następnie należy ustalić częstotliwość próbkowania przetwornika
 :
 \begin_inset Formula 
 \begin{equation}
-Z_{D}=6,02n\;[dB]
+Z_{D}=6,02n\;[dB]\label{eq:zakres-dynamiczny}
 \end{equation}
 
 \end_inset
@@ -1847,7 +1955,7 @@ Kolejnym krokiem jest ustalenie wymaganego rzędu filtra
  Oblicza się go korzystając z wzoru: 
 \begin_inset Formula 
 \begin{equation}
-M=\frac{Z_{D}}{6log_{2}(\frac{f_{p}}{2f_{gr}})}
+M=\frac{Z_{D}}{6log_{2}(\frac{f_{p}}{2f_{gr}})}\label{eq:rzad-filtra}
 \end{equation}
 
 \end_inset
@@ -1864,11 +1972,19 @@ Filtry do 4.
 \begin_layout Standard
 Ostatnim etapem jest wybranie konkretnej topologii filtra oraz policzenie
  wartości jego elementów, w czym niezwykle pomocne są dedykowane programy
- komputerowe.
+ komputerowe, takie jak 
+\shape italic
+Filter Wizard
+\shape default
+ firmy Analog Devices czy 
+\shape italic
+WEBENCH Tools
+\shape default
+ firmy Texas Instruments.
 \end_layout
 
 \begin_layout Chapter
-Przegląd istniejących rozwiązań
+Przegląd istniejących rozwiązań mierników zawartości harmonicznych
 \end_layout
 
 \begin_layout Section
@@ -1876,7 +1992,7 @@ Analogowe mierniki współczynnika zawartości harmonicznych
 \end_layout
 
 \begin_layout Standard
-Analogowe mierniki współczynnika zawartości harmonicznych działały bezpośrednio
+Analogowe mierniki współczynnika zawartości harmonicznych działają bezpośrednio
  na podstawie wzoru (
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1885,11 +2001,10 @@ reference "eq:h"
 \end_inset
 
 ).
- Ich zasada działania polegała na pomiarze wartości skutecznej sygnału,
- następnie odfiltrowaniu podstawowej harmonicznej i ponownym pomiarze wartości
- skutecznej.
- Bezpośrednie porównanie tych dwóch wartości dawało wartość współczynnika
- 
+ Ich zasada działania polega na pomiarze wartości skutecznej sygnału, następnie
+ odfiltrowaniu podstawowej harmonicznej i ponownym pomiarze wartości skutecznej.
+ Bezpośrednie porównanie tych dwóch wartości pozwala wyznaczyć wartość współczyn
+nika 
 \begin_inset Formula $h$
 \end_inset
 
@@ -1905,20 +2020,20 @@ reference "fig:Analogowy-miernik-współczynnika"
 
 \end_inset
 
-, składał się z tłumika oraz wzmacniacza kondycjonujących wstępnie sygnał,
- za którymi znajdował się pierwszy woltomierz wartości skutecznej.
- Drugim ogniwem układu był filtr selektywny o bardzo wysokiej dobroci, za
- którym umieszczony był drugi woltomierz.
- Filtr dostrajano tak, aby wskazanie woltomierza 
+, składa się z tłumika oraz wzmacniacza kondycjonujących wstępnie sygnał,
+ za którymi znajduje się pierwszy woltomierz wartości skutecznej.
+ Drugim ogniwem układu jest filtr selektywny o bardzo wysokiej dobroci,
+ za którym umieszczony jest drugi woltomierz.
+ Filtr dostraja się tak, aby wskazanie woltomierza 
 \begin_inset Formula $V_{2}$
 \end_inset
 
- osiągnęło minimum, co świadczyło o odfiltrowaniu składowej podstawowej.
+ osiągnęło minimum, co świadczy o odfiltrowaniu składowej podstawowej.
  Wartość współczynnika 
 \begin_inset Formula $h$
 \end_inset
 
- wyznaczano następnie korzystając z zależności:
+ wyznacza się następnie korzystając z zależności:
 \begin_inset Formula 
 \begin{equation}
 h=k\frac{U_{V2}}{U_{V1}}
@@ -1930,7 +2045,7 @@ gdzie
 \begin_inset Formula $k$
 \end_inset
 
- jest współczynnikiem wynikającym z charakterystyki filtra.
+ jest współczynnikiem wynikającym z konstrukcji filtra.
 \end_layout
 
 \begin_layout Standard
@@ -1996,18 +2111,19 @@ Analogowe analizatory widma
 
 \begin_layout Standard
 Kolejną generacją mierników pozwalających na analizę zawartości wyższych
- harmonicznych w sygnale były analogowe analizatrory widma.
- Umożliwiały one graficzną prezentację poszczególnych prążków widma częstotliwoś
+ harmonicznych w sygnale są analogowe analizatrory widma.
+ Umożliwiają one graficzną prezentację poszczególnych prążków widma częstotliwoś
 ciowego sygnału na ekranie oscyloskopu analogowego.
 \end_layout
 
 \begin_layout Standard
-Na wejściu układu znajdował się mieszacz o częstotliwości różnicowej, do
- którego doprowadzano odpowiednio skondycjonowany sygnał badany oraz sygnał
- z przestrajanego generatora.
- Sygnał następnie był wzmacniany i filtrowany selektywnie, dzięki czemu
- otrzymywano informację o poszczególnych składowych sygnału.
- Na końcu sygnał był wzmacniany logarytmicznie w celu lepszego ukazania
+Na wejściu układu znajduje się mieszacz, do którego doprowadza się odpowiednio
+ skondycjonowany sygnał badany oraz sygnał z przestrajanego generatora.
+ Częstotliwość generatora jest dobierana tak, aby na wyjściu różnicowym
+ mieszacza częstotliwość odpowiadająca badanej harmonicznej była zawsze
+ stała.Sygnał następnie jest wzmacniany i filtrowany selektywnie, dzięki
+ czemu otrzymuje się informację o poszczególnych składowych sygnału.
+ Na końcu sygnał jest wzmacniany logarytmicznie w celu lepszego ukazania
  składowych o małych amplitudach i podawany na wejście oscyloskopu analogowego.
 \end_layout
 
@@ -2071,7 +2187,7 @@ reference "fig:Cyfrowy-analizator-widma"
 \end_inset
 
  przedstawiono schemat ideowy cyfrowego analizatora widma.
- Sygnał jest próbkowany przez określony czas i z odpowiednią prędkością,
+ Sygnał jest próbkowany przez określony czas i z odpowiednią częstotliwością,
  za co odpowiedzialny jest przetwornik A/C i sterujący nim procesor.
  Następnie próbki są przesyłane do procesora sygnałowego, gdzie przy użyciu
  algorytmów FFT wyznaczane jest jego widmo.
@@ -2151,8 +2267,15 @@ Analiza normy IEC 6100-4-30
 \end_layout
 
 \begin_layout Standard
-Norma IEC 6100-4-30 opisuje metody pomiarów oraz sposoby implementacji przyrządó
-w do pomiaru parametrów jakości energii elektrycznej w sieciach 50/60 Hz.
+Norma IEC 6100-4-30 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "normaJakosc"
+
+\end_inset
+
+ opisuje metody pomiarów oraz sposoby implementacji przyrządów do pomiaru
+ parametrów jakości energii elektrycznej w sieciach 50/60 Hz.
  Podane w niej są standardy pomiarów wielkości takich jak:
 \end_layout
 
@@ -2181,12 +2304,38 @@ zawartość wyższych harmonicznych.
 \end_layout
 
 \begin_layout Standard
-W niniejszej pracy omówione zostaną rozdziały dotyczące pomiaru zawartości
- wyższych harmonicznych oraz częstotliwości.
+Niniejszy rozdział zawiera fragmenty powyższej normy dotyczące pomiaru zawartośc
+i wyższych harmonicznych oraz częstotliwości.
 \end_layout
 
 \begin_layout Section
 Klasy przyrządów
+\end_layout
+
+\begin_layout Subsubsection*
+Klasa A
+\end_layout
+
+\begin_layout Standard
+Przyrządy klasy A są stosowane w przypadkach, gdy niezbędne jest wykonanie
+ precyzyjnych pomiarów, na przykład przy rozstrzyganiu spraw sądowych czy
+ weryfikacji norm.
+ Dwa niezależne pomiary wykonane dwoma różnymi miernikami klasy A muszą
+ podać ten sam wynik w granicach ich tolerancji.
+\end_layout
+
+\begin_layout Subsubsection*
+Klasa S
+\end_layout
+
+\begin_layout Standard
+Klasa S jest używana w zastosowaniach statystycznych takich jak analiza
+ jakości energii elektrycznej.
+ Możliwy jest niepełny pomiar parametrów.
+ Pomimo wykorzystywania podobnych metod pomiaru co w klasie A wymagania
+ są mniejsze.
+ Stosowanie w pomiarach na pojedynczych obiektach przez długi okres czasu
+ lub w dużym fragmencie sieci.
 \end_layout
 
 \begin_layout Section
@@ -2197,20 +2346,20 @@ Wymagania dotyczące pomiaru częstotliwości
 Metoda pomiaru
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsubsection*
 Klasa A
 \end_layout
 
 \begin_layout Standard
 Odczyt częstotliwości powinien być dokonywany co 10 sekund.
  Metoda pomiaru polega na zliczaniu pełnych okresów w 10-sekundowym oknie,
- a następnie przedzieleniu ich liczby przez dokładny czas ich trwania.
+ a następnie podzieleniu ich liczby przez dokładny czas ich trwania.
  W metodzie zliczania przejść przez zero sygnał powinien być przefiltrowany
  w celu uniknięcia fałszywych zliczeń.
- Okna pomiarowe nie powinny na siebie w żaden sposób zachodzić.
+ 10-sekundowe okna pomiarowe nie mogą na siebie nachodzić.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsubsection*
 Klasa S
 \end_layout
 
@@ -2222,7 +2371,7 @@ Dla klasy S wymagania są takie same jak dla klasy A.
 Niepewność i zakres pomiaru
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsubsection*
 Klasa A
 \end_layout
 
@@ -2235,7 +2384,7 @@ Niepewność pomiaru częstotliwości nie powinna przekraczać
  oraz w zakresie od 51 do 69 Hz dla częstotliwości oczekiwanej 60 Hz.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsubsection*
 Klasa S
 \end_layout
 
@@ -2252,17 +2401,18 @@ Niepewność pomiaru częstotliwości nie powinna przekraczać
 Ewaluacja pomiaru
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsubsection*
 Klasa A
 \end_layout
 
 \begin_layout Standard
-Pomiar porównawczy powinien być wykonany na kanale referencyjnym.
+Podczas pomiaru powinien być wykonywany równoległy pomiar porównawczy na
+ kanale referencyjnym.
  Producent przyrządu musi określić sposób postępowania w razie utraty sygnału
- na kanale referencyjnym.
+ referencyjnego.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsubsection*
 Klasa S
 \end_layout
 
@@ -2275,7 +2425,14 @@ Definicje dotyczące harmonicznych i współczynników odkształcenia
 \end_layout
 
 \begin_layout Standard
-Poniższe definicje pochodzą bezpośrednio z normy PN-EN 6100-4-7.
+Poniższe definicje pochodzą bezpośrednio z normy PN-EN 6100-4-7 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "normaFft"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -2426,7 +2583,7 @@ Wymagania dotyczące pomiaru harmonicznych
 Metoda pomiaru
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsubsection*
 Klasa A
 \end_layout
 
@@ -2504,7 +2661,7 @@ Dla celów pomiarów jakości energii elektrycznej pomiar THD powinien trwać
  Przerwy w akwizycji nie są dozwolone.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsubsection*
 Klasa S
 \end_layout
 
@@ -2530,12 +2687,13 @@ Pozostałe wymagania są takie same jak dla klasy A.
 Niepewność i zakres pomiaru
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsubsection*
 Klasa A
 \end_layout
 
 \begin_layout Standard
-Dokładność pomiaru każdej z harmonicznych powinna wynosić 
+Dokładność pomiaru wartości skutecznej każdej z harmonicznych powinna wynosić
+ 
 \begin_inset Formula $\pm5\%\:U_{m}$
 \end_inset
 
@@ -2574,12 +2732,13 @@ Dokładność pomiaru każdej z harmonicznych powinna wynosić
 Dokładność pomiaru THD nie jest sprecyzowana w normie.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsubsection*
 Klasa S
 \end_layout
 
 \begin_layout Standard
-Dokładność pomiaru każdej z harmonicznych powinna wynosić 
+Dokładność pomiaru wartości skutecznej każdej z harmonicznych powinna wynosić
+ 
 \begin_inset Formula $\pm10\%\:U_{m}$
 \end_inset
 
@@ -2607,6 +2766,154 @@ Implementacja przyrządu
 Założenia projektowe
 \end_layout
 
+\begin_layout Standard
+Zadaniem budowanego przyrządu jest pomiar całkowitego współczynnika odkształceni
+a podgrup harmonicznych THDS (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:THDS"
+
+\end_inset
+
+) do 40.
+ rzędu harmonicznego dla sygnałów okresowych o częstotliwości 50 Hz.
+ Miernik ma spełniać główne założenia normy IEC 61000-4-30 dla takiego urządzeni
+a.
+ 
+\end_layout
+
+\begin_layout Subsection
+Zakres napięć wejściowych
+\end_layout
+
+\begin_layout Standard
+Na potrzeby niniejszej pracy zdecydowano się przygotować układ współpracujący
+ z sygnałami mieszczącymi się w zakresie 1-3V.
+ Umożliwia to zbadanie wszystkich parametrów urządzenia przy pomocy sygnałów
+ arbitralnych z generatora funkcyjnego.
+ Przyłączenie do sieci nn jest możliwe, ale wymaga dodatkowej przystawki
+ kondycjonującej sygnał i zabezpieczającej przed przepięciami, której projekt
+ nie zawiera się w temacie pracy.
+\end_layout
+
+\begin_layout Subsection
+Zasada działania
+\end_layout
+
+\begin_layout Standard
+Urządzenie rozpoczyna pracę od pomiaru częstotliwości sygnału poprzez zliczanie
+ okresów w 10-sekundowym oknie.
+ Zliczanie odbywa się przy użyciu komparatora wbudowanego w mikrokontroler.
+\end_layout
+
+\begin_layout Standard
+Kolejnym krokiem jest próbkowanie sygnału przez 10 okresów z częstotliwością
+ próbkowania wyznaczoną na podstawie częstotliwości badanego sygnału.
+ Bardzo istotna jest tu dokładność synchronizacji w celu minimalizacji przecieku
+ DFT.
+\end_layout
+
+\begin_layout Standard
+Po spróbkowaniu wyznaczana jest dyskretna transformata Fouriera przy użyciu
+ algorytmu FFT Radix-2.
+ Pomiar jest powtarzany dla 15 okien czasowych i uśredniany.
+ Na podstawie widma sygnału wyznaczana jest wartość THD sygnału zgodnie
+ z normą IEC 61000-4-30.
+\end_layout
+
+\begin_layout Standard
+Ostatnim etapem działania jest prezentacja wyniku pomiaru na wyświetlaczu.
+\end_layout
+
+\begin_layout Subsection
+Dobór filtra antyaliasingowego i parametrów DFT
+\end_layout
+
+\begin_layout Standard
+Wybrany mikrokontroler posiada 16-bitowy przetwornik analogowo-cyfrowy,
+ zdecydowano się jednak zmniejszyć rozdzielczość do 12 bitów jako wartości
+ dającej wystarczająco wysoką dokładność pomiaru (rozdział 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Wpływ-rozdzielczości-przetwornik"
+
+\end_inset
+
+).
+ Jako filtra antyaliasingowego użyto filtra Butterwortha 8.
+ rzędu wykonanego w technologii SC.
+ Częstotliwość graniczną filtra ustalono na 2500 Hz aby zapewnić płaską
+ charakterystykę amplitudową w całym zakresie mierzonych częstotliwości.
+\end_layout
+
+\begin_layout Standard
+Korzystając z równania (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:zakres-dynamiczny"
+
+\end_inset
+
+) wyznaczono zakres dynamiczny przetwornika: 
+\begin_inset Formula 
+\begin{equation}
+Z_{D}=6,02n=6,02\cdot12=72,24\:dB
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Następnie przekształcając równanie (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:rzad-filtra"
+
+\end_inset
+
+) obliczono minimalną częstotliwość próbkowania:
+\begin_inset Formula 
+\begin{equation}
+f_{s\:min}=2f_{gr}\cdot2^{\frac{Z_{D}}{6M}}=2\cdot2500\cdot2^{\frac{72,24}{6\cdot8}}=14191,23\:Hz
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Na tej podstawie wyznaczono minimalną liczbę próbek: 
+\begin_inset Formula 
+\begin{equation}
+N_{min}=\lceil f_{s\,min}t_{s}\rceil=\lceil14191,23Hz\cdot0,2s\rceil=2839
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ponieważ algorytm Radix-2 wymaga, aby liczba próbek była potęgą dwójki,
+ należałoby pobrać 4096 próbek sygnału.
+ Ponieważ jednak część pasma od 2,5 kHz do 
+\begin_inset Formula $\frac{f_{s}}{2}$
+\end_inset
+
+ jest nieistotna w obliczeniach THD, zdecydowano się pozwolić na lekki aliasing
+ w tych częstotliwościach przez pobieranie 2048 próbek na okno czasowe,
+ co odpowiada 
+\begin_inset Formula $f_{s}$
+\end_inset
+
+ = 10240 Hz dla sygnału o częstotliwości 50 Hz.
+ Zabieg ten pozwala na znaczną redukcję wymaganej pamięci i czasu obliczeń.
+ 
+\end_layout
+
 \begin_layout Section
 Użyte podzespoły
 \end_layout
@@ -2615,47 +2922,169 @@ Użyte podzespoły
 Płytka rozwojowa FRDM-KL25Z
 \end_layout
 
+\begin_layout Standard
+Opisywany przyrząd został zbudowany przy użyciu płytki rozwojowej FRDM-KL25Z
+ firmy NXP.
+ Zawiera ona mikrokontroler MKL25Z128VLK4, którego główne cechy to:
+\end_layout
+
+\begin_layout Itemize
+rdzeń ARM Cortex-M0+,
+\end_layout
+
+\begin_layout Itemize
+częstotliwość pracy 48 MHz,
+\end_layout
+
+\begin_layout Itemize
+16 kB pamięci RAM,
+\end_layout
+
+\begin_layout Itemize
+128 kB pamięci Flash,
+\end_layout
+
+\begin_layout Itemize
+16-bitowy przetwornik A/C,
+\end_layout
+
+\begin_layout Itemize
+wbudowane interfejsy: SPI, I2C, UART, USB
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Obrazki/FRDM-KL25Z_BD.jpg
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Płytka rozwojowa FRDM-KL25Z
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+Płytka może być zasilana zewnętrznie napięciem z zakresu 4.5 - 9V lub przez
+ port USB.
+ Posiada także wbudowany programator i debugger OpenSDA.
+ Wyprowadzone złącza typu goldpin pozwalają na łatwe przyłączanie urządzeń
+ i sygnałów zewnętrznych.
+\end_layout
+
 \begin_layout Subsection
 Filtr antyaliasingowy - układ MAX295
+\end_layout
+
+\begin_layout Standard
+W zaprojektowanym urządzeniu jako filtr antyaliasingowy wykorzystany został
+ układ MAX295 firmy Maxim Integrated.
+ Układ ten jest scalonym filtrem Butterwortha 8.
+ rzędu wykonanym w technologii SC.
+ Jego częstotliwość graniczna może się znajdować w przedziale od 0.1Hz do
+ 25kHz i jest regulowana sygnałem zegarowym w proporcji 50:1.
+\end_layout
+
+\begin_layout Standard
+Układ znajduje się w obudowie DIP-8 i może być zasilany symetrycznie napięciem
+ 
+\begin_inset Formula $\pm$
+\end_inset
+
+5V lub asymetrycznie napięciem +5V, w tym drugim przypadku wymaga jednak
+ sztucznej masy w połowie napięcia zasilania tworzonej przy pomocy dzielnika
+ rezystorowego i dodatkowych kondensatorów odsprzęgających.
+\end_layout
+
+\begin_layout Standard
+Filtr ten posiada niskie szumy pochodzące od przełączania pojemności, wynoszące
+ poniżej -70dB, jednak producent zaleca stosowanie na wyjściu układu dodatkowego
+ filtra Butterwortha 2.
+ rzędu.
+ W tym celu MAX295 posiada wbudowany wzmacniacz operacyjny, nie jest więc
+ wymagany dodatkowy układ scalony.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "MAX295"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
 Pamięć zewnętrzna - układ 23LCV1024
 \end_layout
 
+\begin_layout Standard
+Z powodu ograniczonej pojemności pamięci RAM mikrokontrolera zdecydowano
+ się użyć układu 23LCV1024 firmy Microchip.
+ Jest to pamięć SRAM o pojemności 128kB komunikująca się z mikrokontrolerem
+ przez magistralę SPI z maksymalną częstotliwością 20MHz.
+ Układ znajduje się w obudowie DIP-8 i może być zasilany napięciem z zakresu
+ 2,5 - 5,5V.
+\end_layout
+
 \begin_layout Subsection
 Wyświetlacz OLED SSD1306
 \end_layout
 
-\begin_layout Section
-Projekt PCB
+\begin_layout Standard
+Do prezentacji wyniku pomiaru wykorzystano wyświetlacz OLED z kontrolerem
+ SSD1306.
+ Jest to wyświetlacz monochromatyczny o rozdzielczości 128x64 piksele i
+ przekątnej 0,96''.
+ Do komunikacji z mikrokontrolerem wykorzystuje interfejs I2C.
 \end_layout
 
 \begin_layout Standard
-Pamięć RAM oraz obwody filtra antyaliasingowego zostały umieszczone na specjalni
-e zaprojektowanej płytce PCB.
- Do przygotowania projektu wykorzystano program Altium Designer, zaś samą
- płytkę wykonano metodą termotransferu i wytrawiono w nadsiarczanie miedzi.
+Wyświetlacz pomimo małych rozmiarów umożliwia czytelną prezentację bardzo
+ dużej ilości informacji.
+ Szeroki dostęp do otwartych bibliotek dla tego wyświetlacza pozwala na
+ jego szybką i łatwą implementację w systemie pomiarowym.
 \end_layout
 
 \begin_layout Subsection
-Schemat 
+Płytka drukowana
 \end_layout
 
-\begin_layout Subsection
-Layout
+\begin_layout Standard
+Filtr antyaliasingowy wraz z towarzyszącymi elementami biernymi, pamięć
+ RAM oraz wyświetlacz zostały umieszczone na specjalnie przygotowanej płytce
+ drukowanej.
+ Rozwiązanie to zapewnia redukcję szumów oraz pozwala na wygodne podłączanie
+ badanego sygnału.
+ Płytka została wykonana jako tzw.
+ header na FRDM-KL25Z dzięki czemu uniknięto konieczności stosowania dodatkowych
+ przewodów połączeniowych.
 \end_layout
 
-\begin_layout Section
-Środowisko pracy
-\end_layout
-
-\begin_layout Subsection
-Środowisko mbed
-\end_layout
-
-\begin_layout Subsection
-Skrypty testowe
+\begin_layout Standard
+Projekt płytki został przygotowany w programie Altium Designer, zaś sama
+ płytka została samodzielnie wytrawiona w nadsiarczanie miedzi.
 \end_layout
 
 \begin_layout Section
@@ -2666,20 +3095,196 @@ Działanie przyrządu
 Algorytm ogólny
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Obrazki/Algorytmy/cropped_Algorytm ogólny.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Algorytm działania przyrządu
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Algorytm-działania-przyrządu"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Inicjalizacja
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Obrazki/Algorytmy/cropped_Inicjalizacja.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Inicjalizacja przyrządu
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Inicjalizacja-przyrządu"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
 Pomiar częstotliwości
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Obrazki/Algorytmy/cropped_Pomiar częstotliwości.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Algorytm pomiaru częstotliwości
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Algorytm-pomiaru-częstotliwości"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Próbkowanie
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Obrazki/Algorytmy/cropped_Próbkowanie.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Algorytm procesu próbkowania
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Algorytm-procesu-próbkowania"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
-DFT i wyznaczenie THD
+DFT i wyznaczenie THD 
 \end_layout
 
 \begin_layout Subsection
@@ -2696,6 +3301,13 @@ Symulacje
 
 \begin_layout Subsection
 Wpływ rozdzielczości przetwornika A/C na wynik pomiaru
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Wpływ-rozdzielczości-przetwornik"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
