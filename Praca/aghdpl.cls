@@ -58,7 +58,7 @@
 
 %------------------------------------------------------------------------------
 
-\newcommand{\titlepages}{%
+\newcommand{\titlepages}{
 
 \newpage \titlepage 
 
@@ -156,7 +156,7 @@ korzysta\l{}em(-am) ze \'{z}r\'{o}de\l{} innych ni\.{z} wymienione w pracy.}}
 
 \clearpage
 
-\setcounter{page}{1}
+\setcounter{page}{3}
 
 } %%1
 
@@ -213,6 +213,7 @@ korzysta\l{}em(-am) ze \'{z}r\'{o}de\l{} innych ni\.{z} wymienione w pracy.}}
 % Ustawienia parametrow generowania spisu tresci i spisu rysunkow
 %---------------------------------------------------------------------------
 
+\setcounter{tocdepth}{1}
 \renewcommand{\cfttoctitlefont}{\bfseries\Large}
 \renewcommand{\cftbeforetoctitleskip}{20mm}
 \renewcommand{\cftaftertoctitleskip}{19mm}

@@ -78,7 +78,7 @@
 \pdf_bookmarksopenlevel 2
 \pdf_breaklinks true
 \pdf_pdfborder true
-\pdf_colorlinks true
+\pdf_colorlinks false
 \pdf_backref false
 \pdf_pdfusetitle true
 \papersize default
@@ -107,7 +107,7 @@
 \color #008000
 \end_index
 \secnumdepth 3
-\tocdepth 3
+\tocdepth 2
 \paragraph_separation indent
 \paragraph_indentation default
 \quotes_language polish
@@ -441,7 +441,7 @@ W opisie sygnałów okresowych można wyróżnić kilka ich podstawowych wartoś
  
 \begin_inset CommandInset citation
 LatexCommand cite
-key "ŁšczaTelekomunikacyjne"
+key "LaczaTelekomunikacyjne"
 
 \end_inset
 
@@ -468,7 +468,7 @@ F_{\tau}=f(\tau)
 wartość szczytową 
 \begin_inset Formula 
 \begin{equation}
-F_{m}=\underset{t\in[t_{0},\:t_{0}+T]}{\sup}f(t)
+F_{m}=\stackrel[t\in[t_{0,}t_{0}+T]{]}{\,}{sup}f(t)
 \end{equation}
 
 \end_inset
@@ -962,6 +962,13 @@ zością a możliwościami sprzętu.
 
 \begin_layout Subsubsection
 Przeciek
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Przeciek"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1125,6 +1132,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Obrazki/Wykresy/DFTaFFT.eps
+	scale 80
 
 \end_inset
 
@@ -1955,7 +1963,7 @@ Kolejnym krokiem jest ustalenie wymaganego rzędu filtra
  Oblicza się go korzystając z wzoru: 
 \begin_inset Formula 
 \begin{equation}
-M=\frac{Z_{D}}{6log_{2}(\frac{f_{p}}{2f_{gr}})}\label{eq:rzad-filtra}
+M=\frac{Z_{D}}{6log_{2}(\frac{f_{s}}{2f_{gr}})}\label{eq:rzad-filtra}
 \end{equation}
 
 \end_inset
@@ -3139,6 +3147,36 @@ name "fig:Algorytm-działania-przyrządu"
 
 \end_layout
 
+\begin_layout Standard
+Praca urządzenia rozpoczyna się od inicjalizacji sprzętu oraz obliczenia
+ wartości funkcji okna.
+ Następnie program czeka na zgodę użytkownika na wykonanie pomiaru.
+ 
+\end_layout
+
+\begin_layout Standard
+Pomiar THD rozpoczyna się od pomiaru częstotliwości badanego sygnału.
+ W tym celu przez 10 sekund zliczana jest liczba przejść przez zero przy
+ pomocy komparatora wbudowanego w mikrokontroler.
+ Znając częstotliwość sygnału program oblicza wymaganą częstotliwość próbkowania.
+ Następnie pobierane jest 2048 próbek 10 okresów badanego sygnału.
+ Spróbkowany sygnał jest okienkowany w celu redukcji przecieku, a następnie
+ wyznacza się jego DFT.
+ 
+\end_layout
+
+\begin_layout Standard
+Proces próbkowania i obliczania DFT powtarzany jest 15 razy, a wynik transformat
+y jest uśredniany po każdej iteracji.
+ Ostatnim etapem jest obliczenie THD na podstawie widma amplitudowego sygnału
+ oraz prezentacja wyniku na wyświetlaczu.
+\end_layout
+
+\begin_layout Standard
+Po zaprezentowaniu wyniku urządzenie wraca do oczekiwania na żądanie wykonania
+ kolejnego pomiaru.
+\end_layout
+
 \begin_layout Subsection
 Inicjalizacja
 \end_layout
@@ -3185,6 +3223,46 @@ name "fig:Inicjalizacja-przyrządu"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Po uruchomieniu urządzenia pierwszym krokiem jest włączenie zegara filtra
+ antyaliasingowego.
+ Wykorzystywane jest do tego wyjście PWM mikrokontrolera ustawiane na częstotliw
+ość 125kHz i wypełnienie 50%.
+\end_layout
+
+\begin_layout Standard
+Następnym etapem jest programowe zwarcie wszystkich nieużywanych pinów ADC
+ do masy w celu redukcji zakłóceń.
+ Piny I/O są domyślnie ustawione jako wejścia cyfrowe, przez co mogą zadziałać
+ jak antena i zebrać zakłócenia z otoczenia, które następnie mogą zostać
+ przeniesione na przetwornik analogowo - cyfrowy.
+ Aby tego uniknąć wszystkie piny podłączone do ADC ustawia się jako wyjścia
+ cyfrowe w stanie logicznego zera, co powoduje fizyczne zwarcie ich do masy
+ układu.
+\end_layout
+
+\begin_layout Standard
+Ostatnią czynnością jest obliczenie wartości funkcji okna Blackmana (patrz
+ rozdział 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Wpływ-funkcji-okna"
+
+\end_inset
+
+) dla 2048-elementowego ciągu danych.
+ Ze względu na znaczący rozmiar (8kB) wartości te są przechowywane w zewnętrznej
+ pamięci RAM.
+\end_layout
+
+\begin_layout Standard
+Po zakończeniu inicjalizacji urządzenie oczekuje na decyzję użytkownika
+ o rozpoczęciu pomiaru.
+ Interfejsem umożliwiającym komunikację z urządzeniem jest tutaj pasek dotykowy
+ umieszczony na płytce KL25Z.
+ Dotknięcie go powoduje rozpoczęcie procedury pomiarowej.
 \end_layout
 
 \begin_layout Subsection
@@ -3235,6 +3313,48 @@ name "fig:Algorytm-pomiaru-częstotliwości"
 
 \end_layout
 
+\begin_layout Standard
+Procedura pomiarowa rozpoczyna się od pomiaru częstotliwości badanego sygnału.
+ Metoda pomiaru jest zgodna z normą IEC6100-4-30 i polega na zliczaniu liczby
+ okresów sygnału w 10-sekundowym oknie.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "normaJakosc"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Program inicjalizuje zmienne przechowujące licznik okresów (CompCounter)
+ oraz czas pomiaru (CompTime), a następnie uruchamia timer oraz komparator.
+ Wejście odwracające komparatora zostaje podłączone do wbudowanego 6-bitowego
+ przetwornika cyfrowo - analogowego ustawionego na wartość 2V (połowa dozwoloneg
+o zakresu sygnału).
+ W celu uniknięcia fałszywych zliczeń przy silnie odkształconych sygnałach
+ włączany jest programowy filtr udostępniany w bibliotece komparatora.
+ 
+\end_layout
+
+\begin_layout Standard
+Następnie program czeka, aż wartość timera wyniesie 10 sekund.
+ W tym czasie w momencie wykrycia zbocza narastającego na wyjściu komparatora
+ mikrokontroler uruchamia procedurę przerwania ISR_Comp.
+ Przy pierwszym zboczu jej zadaniem jest zresetowanie timera, a przy każdym
+ kolejnym zapis aktualnej wartości timera do zmiennej CompTime oraz inkrementowa
+nie zmiennej CompCounter.
+ Celem resetu oraz zapisywania wartości timera przy każdym zboczu jest jak
+ najbardziej precyzyjny pomiar czasu trwania zliczanej liczby okresów sygnału.
+\end_layout
+
+\begin_layout Standard
+Po upłynięciu 10 sekund program zatrzymuje działanie timera i komparatora,
+ a następnie bazując na wartościach CompCounter i CompTime wyznacza częstotliwoś
+ć sygnału.
+\end_layout
+
 \begin_layout Subsection
 Próbkowanie
 \end_layout
@@ -3283,12 +3403,212 @@ name "fig:Algorytm-procesu-próbkowania"
 
 \end_layout
 
+\begin_layout Standard
+Znając częstotliwość sygnału program wyznacza odpowiednią częstotliwość
+ próbkowania.
+ Konieczne jest zebranie 2048 próbek w trakcie 10 okresów sygnału, zatem
+ okres próbkowania jest równy okresowi sygnału podzielonemu przez 204,8.
+\end_layout
+
+\begin_layout Standard
+Do pobierania próbek z zadaną częstotliwością wykorzystywany jest ticker
+ bazujący na układzie PIT (Periodic Interval Timer) mikrokontrolera.
+ Po każdorazowym zliczeniu impulsów zegara do wartości odpowiadającej okresowi
+ próbkowania uruchamiana jest procedura przerwania ISR_ticker, podczas której
+ program pobiera próbkę z przetwornika cyfrowo - analogowego, zapisuje jej
+ wartość w zewnętrznej pamięci RAM oraz inkrementuje licznik próbek.
+\end_layout
+
+\begin_layout Standard
+Po zebraniu odpowiedniej liczby próbek ticker jest wyłączany a program przechodz
+i do kolejnego etapu.
+\end_layout
+
 \begin_layout Subsection
 DFT i wyznaczenie THD 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Obrazki/Algorytmy/cropped_FFT.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Algorytm wyznaczania wartości THD
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Algorytm-wyznaczania-wartości"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Mając spróbkowany sygnał program przechodzi do wykonywania właściwych obliczeń.
+ Na początku próbki są mnożone przez wyznaczoną wcześniej funkcję okna Blackmana
+, co pozwala na redukcję przecieku DFT.
+ Częstotliwość próbkowania jest dość wysoka - próbka jest pobierana co ok.
+ 2000 impulsów zegara, a każda najmniejsza odchyłka od idealnej częstotliwości
+ próbkowania przemnożona przez 2048 próbek prowadzi do znacznego odchylenia
+ wartości 
+\begin_inset Formula $\frac{f_{s}}{N}$
+\end_inset
+
+ od wartości całkowitej, co skutkuje powstaniem przecieku (patrz rozdział
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Przeciek"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+Algorytm Radix-2 wykorzystany w tym urządzeniu wymaga podania na wejściu
+ próbek w odpowiedniej kolejności 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Lyons"
+
+\end_inset
+
+.
+ Kolejnym etapem jest zatem przemieszanie próbek znajdujących się w pamięci
+ w celu ułatwienia implementacji algorytmu.
+\end_layout
+
+\begin_layout Standard
+Po przemieszaniu próbek wyznaczana jest dyskretna transformata Fouriera.
+ Do jej implementacji wykorzystano algorytm Radix-2, wzorowano się zaś na
+ kodzie w języku MATLAB umieszczonym w pozycji 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Zielinski"
+
+\end_inset
+
+.
+ Wynikiem obliczeń jest moduł widma amplitudowego badanego sygnału o rozdzielczo
+ści 5Hz.
+\end_layout
+
+\begin_layout Standard
+Proces pobierania próbek i wyznaczania DFT jest powtarzany 15 razy, a wyniki
+ obliczeń zostają uśrednione.
+ Ma to na celu poprawę dokładności wyniku przez redukcję szumów (patrz rozdział
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Wpływ-uśredniania-na"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+Na podstawie otrzymanego widma wyznaczana jest ostatecznie jego wartość
+ THDS zgodnie z definicją (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:THDS"
+
+\end_inset
+
+) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "normaFft"
+
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Subsection
 Prezentacja wyników
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Obrazki/Algorytmy/cropped_Wynik.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Zakończenie pomiaru
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Zakończenie-pomiaru"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Po zakończeniu obliczeń wartość THD oraz częstotliwość sygnału są prezentowane
+ na wyświetlaczu.
+ Urządzenie następnie rozpoczyna oczekiwanie na żądanie rozpoczęcia kolejnego
+ pomiaru.
 \end_layout
 
 \begin_layout Chapter
@@ -3324,10 +3644,363 @@ Badanie filtra antyaliasingowego
 
 \begin_layout Subsection
 Wpływ funkcji okna na wynik pomiaru
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Wpływ-funkcji-okna"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sinusoida 
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Prostokąt 
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mu$
+\end_inset
+
+[%]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\sigma$
+\end_inset
+
+[%]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mu$
+\end_inset
+
+[%]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\sigma$
+\end_inset
+
+[%]
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Prostokątne
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0,5059
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0,1226
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+46,7890
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0,0278
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Hamminga
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0,1570
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0,0380
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+47,3098
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0,0108
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Hanninga
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0,1387
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0,0588
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+47,2760
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0,0109
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Blackmana
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0,1373
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0,0167
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+47,2182
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0,0145
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Wpływ funkcji okna na wynik pomiaru dla sygnału sinusoidalnego (THD = 0,00%)
+ i prostokątnego (THD = 47,03%)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
 Wpływ uśredniania na wynik pomiaru
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Wpływ-uśredniania-na"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
