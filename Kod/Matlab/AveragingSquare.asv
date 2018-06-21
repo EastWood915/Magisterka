@@ -2,7 +2,7 @@ clear all
 close all
 clc
 
-load AveragingSine.mat;
+load AveragingSquare.mat;
 
 N1Std = std(N1);
 N1Mean = mean(N1);
@@ -20,16 +20,17 @@ N64Std = std(N64);
 N64Mean = mean(N64);
 
 N = [1 2 4 8 16 32 64];
-Z = zeros(1, 7);
+Z = 47.03*ones(1,7);
+Z1 = zeros(1,7);
 mean = [N1Mean N2Mean N4Mean N8Mean N16Mean N32Mean N64Mean];
 std = [N1Std N2Std N4Std N8Std N16Std N32Std N64Std];
 
-subplot(1,2,1)
 %figure()
+subplot(1,2,1)
 plot(N, mean)
-title('Wartoœæ œrednia')
 hold on
-plot(N, Z, '--r');
+plot (N, Z, '--r')
+title('Wartoœæ œrednia')
 grid on
 xlabel('Liczba pomiarów');
 ylabel('THD [%]');
@@ -38,7 +39,4 @@ ylabel('THD [%]');
 subplot(1,2,2)
 plot(N, std)
 title('Odchylenie standardowe')
-hold on
-plot(N, Z, '--r');
 grid on
-xlabel('Liczba pomiarów');

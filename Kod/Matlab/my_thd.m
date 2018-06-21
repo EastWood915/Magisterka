@@ -12,6 +12,6 @@ for n = 2:40
 end
 
 THD = sqrt(THD);
-wynik = THD;
+wynik = 100*THD;
 
 end

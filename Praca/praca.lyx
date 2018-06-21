@@ -2865,7 +2865,7 @@ reference "eq:zakres-dynamiczny"
 ) wyznaczono zakres dynamiczny przetwornika: 
 \begin_inset Formula 
 \begin{equation}
-Z_{D}=6,02n=6,02\cdot12=72,24\:dB
+Z_{D}=6,02n=6,02\cdot12=72,24\:dB\label{eq:ZakresDynamiczny}
 \end{equation}
 
 \end_inset
@@ -3630,8 +3630,541 @@ name "subsec:Wpływ-rozdzielczości-przetwornik"
 
 \end_layout
 
+\begin_layout Standard
+Mikrokontroler wbudowany w płytkę KL25Z posiada 16-bitowy przetwornik analogowo-
+cyfrowy.
+ Rozdzielczość przetwornika można jednak ustawić na jedną z wartości: 8,
+ 10, 12 lub 16 bitów.
+ Zwiększenie rozdzielczości powoduje wzrost dokładności pomiaru, jednak
+ znacząco zwiększa czas konwersji.
+ Czasy konwersji dla poszczególnych wariantów rozdzielczości przedstawiono
+ w tabeli 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Czasy-konwersji-dla"
+
+\end_inset
+
+.
+ [wstaw przypis!]
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Rozdzielczość
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Czas konwersji
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8 bitów
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+13μs
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10 bitów
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+15,3μs
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12 bitów
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+17,3μs
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+16 bitów
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+21,7μs
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Czasy konwersji dla różnych wartości rozdzielczości przetwornika A/C 
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Czasy-konwersji-dla"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dla sygnału o częstotliwości 57,5Hz próbki muszą być pobierane co ok.
+ 85μs.
+ Biorąc pod uwagę, że na cykl pobrania próbki składa się konwersja A/C oraz
+ zapis do zewnętrznego układu pamięci, a także fakt, że wykorzystana biblioteka
+ mbed posiada duży narzut kodu, różnice w czasach dla poszczególnych rozdzielczo
+ści stają się znaczące.
+ 
+\end_layout
+
+\begin_layout Standard
+W celu zbadania wpływu rozdzielczości przetwornika A/C na końcowy wynik
+ pomiaru przeprowadzono symulację w środowisku MATLAB.
+ Program rozpoczynał się od wygenerowania 100 przebiegów sinusoidalnych
+ z losową wartością przesunięcia fazowego.
+ Następnie każdy z przebiegów był kwantowany w dziedzinie wartości z zadaną
+ rozdzielczością.
+ Dla tak przygotowanych sygnałów wyznaczano ich FFT, a na tej podstawie
+ wartość THD zgodnie z równaniem (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:THDS"
+
+\end_inset
+
+).
+ Dla każdej rozdzielczości otrzymano zatem 100 wartości THD, które zostały
+ uśrednione.
+ Końcowy wynik przedstawiono na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Wpływ-rozdzielczości-przetwornik"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Obrazki/Wykresy/Sim_Kwantyzacja.eps
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Wpływ rozdzielczości przetwornika A/C na wynik pomiaru THD
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Wpływ-rozdzielczości-przetwornik"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Jak widać, dla przetwornika 8-bitowego średni błąd pomiaru wynosi 0.1%, zaś
+ dla wyższych rozdzielczości błąd maleje wykładniczo.
+ Dla przetwornika 12-bitowego średni błąd wynosi już poniżej 0.01%, zatem
+ właśnie tę rozdzielczość zdecydowano się wykorzystać w projekcie.
+ Pozwoliło to na znaczną redukcję czasu konwersji kosztem wprowadzenia znikomego
+ błędu kwantyzacji.
+\end_layout
+
 \begin_layout Subsection
 Wpływ precyzji częstotliwości próbkowania na wynik pomiaru
+\end_layout
+
+\begin_layout Standard
+Jak zostało wspomniane w rozdziale 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Przeciek"
+
+\end_inset
+
+ każde odchylenie wartości 
+\begin_inset Formula $\frac{f_{s}}{N}$
+\end_inset
+
+ od wartości całkowitej skutkuje powstaniem szkodliwego przecieku DFT.
+ Ponieważ czas mierzony przez mikrokontroler jest wyrażany w taktach zegara,
+ a zatem jest skwantowany z mniejszą lub większą dokładnością, nie ma możliwości
+ idealnego dopasowania częstotliwości próbkowania do częstotliwości przebiegu.
+ Zatem zawsze należy się liczyć z obecnością przecieku i dążyć do jego zniwelowa
+nia już na etapie projektowania systemu pomiarowego.
+\end_layout
+
+\begin_layout Standard
+Przykładowo, dla zegara 24MHz, czyli maksymalnego dostępnego dla KL25Z,
+ niepewność pomiaru czasu pobrania pojedynczej próbki wynosi:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\Delta T_{s}=\frac{1}{f_{clk}}=\frac{1}{24MHz}=41,7ns
+\end{equation}
+
+\end_inset
+
+Przekładając to na całość 2048-punktowego ciągu otrzymujemy odchyłkę od
+ pożądanego czasu próbkowania wynoszącą:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\Delta t_{s}=N\Delta T_{s}=85,3\mu s\label{eq:Delta-ts}
+\end{equation}
+
+\end_inset
+
+co dla częstotliwości badanego sygnału równej 57,5Hz odpowiada jednemu okresowi
+ próbkowania.
+ Dla porównania, dla zegara 1MHz, który jest standardowy w bibliotece mbed,
+ wartości te wynoszą:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\Delta T_{s}=\frac{1}{f_{clk}}=\frac{1}{1MHz}=1\mu s
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\Delta t_{s}=N\Delta T_{s}=2,05ms
+\end{equation}
+
+\end_inset
+
+czyli równowartość aż 24 okresów próbkowania.
+\end_layout
+
+\begin_layout Standard
+W celu zbadania wpływu tego zjawiska na wynik pomiaru przygotowano symulację
+ w środowisku MATLAB.
+ Badania przeprowadzano na sygnale wygenerowanym na podstawie rozwinięcia
+ szeregu Fouriera dla sygnału prostokątnego: 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FourierProstokat"
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+f(x)=\frac{4}{\pi}\stackrel[n=1,3,5...]{\infty}{\sum}\frac{1}{n}sin\left(\frac{n\pi x}{L}\right)
+\end{equation}
+
+\end_inset
+
+gdzie:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+n - rząd harmonicznej,
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+L - połowa okresu sygnału.
+\end_layout
+
+\begin_layout Standard
+Sygnał został wygenerowany do 40.
+ harmonicznej.
+ Jego przebieg przedstawia rysunek 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Przebieg-prostokątny-wygenerowan"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Obrazki/Wykresy/Sim_DokładnośćPróbkowania_sygnał.eps
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Przebieg prostokątny wygenerowany z rozwinięcia szeregu Fouriera
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Przebieg-prostokątny-wygenerowan"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+Następnie sygnał ten był generowany ponownie z wektorami czasu skracanymi
+ o wielokrotności pojedynczego okresu próbkowania, co miało na celu zasymulowani
+e różnych wartości odchyłki zegara.
+ Na koniec dla każdego z sygnałów obliczono jego THD zgodnie z definicją
+ (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:THDS"
+
+\end_inset
+
+).
+ Wyniki symulacji przedstawiono na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Zmiana-THD-w"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Obrazki/Wykresy/Sim_DokładnośćPróbkowania_10.eps
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Zmiana THD w funkcji odchyłki czasu próbkowania.
+ Czerwoną linią oznaczono wartość oczekiwaną
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Zmiana-THD-w"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Jak widać, już dla odchyłki wynoszącej jeden okres próbkowania, czyli występując
+ej przy zegarze 24MHz, pojawia się odchyłka wynosząca 0,29% wartości oczekiwanej.
+ Powtarzając symulację dla szerszego zakresu odchyłek widać jak gwałtownie
+ spada dokładność pomiaru THD wraz ze wzrostem niepewności pomiaru czasu:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Obrazki/Wykresy/Sim_DokładnośćPróbkowania_100.eps
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Zmiana THD w funkcji odchyłki czasu próbkowania - szerszy zakres
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dla odchyłki wynoszącej 24 okresy próbkowania (odpowiednik zegara 1MHz)
+ błąd wynosi już 9,2%, zaś dla 100 okresów próbkowania aż 26,6%.
+ Wyniki te pokazują jak bardzo istotna jest precyzja zegara przy cyfrowych
+ pomiarach widma sygnałów.
 \end_layout
 
 \begin_layout Section
@@ -3640,6 +4173,174 @@ Pomiary
 
 \begin_layout Subsection
 Badanie filtra antyaliasingowego
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Badanie-filtra-antyaliasingowego"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Do zbadania charakterystyki amplitudowej filtra antyaliasingowego w zbudowanym
+ urządzeniu wykorzystano generator arbitralny Rigol DG1022 oraz multimetr
+ TrueRMS UT61E.
+ Pomiar polegał na zmianie częstotliwości w zakresie 10Hz - 10kHz oraz pomiarze
+ napięcia na wejściu i wyjściu filtra dla każdej z nich.
+\end_layout
+
+\begin_layout Standard
+Wynik pomiaru jest widoczny na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Charakterystyka-amplitudowa-filt"
+
+\end_inset
+
+.
+ Niestety, dla częstotliwości powyżej 6,5kHz napięcie na wyjściu było już
+ tak małe, że dalszy pomiar był bezsensowny.
+ Zastosowano zatem funkcję Curve Fitting środowiska MATLAB do aproksymowania
+ charakterystyki w zakresie 3-10kHz.
+ Otrzymano równanie aproksymujące w postaci: 
+\begin_inset Formula 
+\begin{equation}
+H(f)=16870f^{-0,6082}-140,4\label{eq:Aproksymacja}
+\end{equation}
+
+\end_inset
+
+Charakterystyka aproksymowana została naniesiona na zmierzoną jako czerwona
+ przerywana linia na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Charakterystyka-amplitudowa-filt"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Obrazki/Wykresy/charakterystyka filtra.eps
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Charakterystyka amplitudowa filtra antyaliasingowego
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Charakterystyka-amplitudowa-filt"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Wymagane tłumienie 72,24dB (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ZakresDynamiczny"
+
+\end_inset
+
+) otrzymano dla częstotliwości 8620Hz.
+ Dla sygnału o częstotliwości 42,5Hz częstotliwość próbkowania wynosi 
+\begin_inset Formula 
+\begin{equation}
+f_{s}=\frac{42,5\cdot2048}{10}=8704kHz
+\end{equation}
+
+\end_inset
+
+co przekłada się na częstotliwość Nyquista równą 
+\begin_inset Formula 
+\begin{equation}
+f_{N}=\frac{f_{s}}{2}=4325Hz.
+\end{equation}
+
+\end_inset
+
+Częstotliwość próbkowania jest znacznie wyższa od częstotliwości Nyquista,
+ dojdzie więc do zjawiska aliasingu.
+\end_layout
+
+\begin_layout Standard
+Rozpatrzmy skrajną część pasma przenoszenia.
+ Na prążek odpowiadający częstotliwości 2kHz nałoży się prążek odpowiadający
+ częstotliwości 
+\begin_inset Formula 
+\begin{equation}
+f_{a}=f_{N}+(f_{N}-2000Hz)=6704Hz
+\end{equation}
+
+\end_inset
+
+Wyznaczmy następnie tłumienie dla tej częstotliwości korzystając z wzoru
+ (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Aproksymacja"
+
+\end_inset
+
+):
+\begin_inset Formula 
+\begin{equation}
+H(f_{a})=-60,98dB
+\end{equation}
+
+\end_inset
+
+co odpowiada tłumieniu ok.
+ 1000 razy.
+ Minimalna wartość rejestrowana przez przetwornik wynosi 
+\begin_inset Formula 
+\begin{equation}
+\frac{3,3V}{2^{12}}=805,7\mu V
+\end{equation}
+
+\end_inset
+
+Zatem wszystkie zakłócenia o amplitudzie poniżej 806mV nie powinny mieć
+ wpływu na wynik pomiaru.
+\end_layout
+
+\begin_layout Standard
+Niepokojącą kwestią było tłumienie sygnału o ok.
+ 2% w niskich częstotliwościach i wzmacnianie o ok.
+ 1% w wysokich częstotliwościach pasma przenoszenia.
+ Przyczyną tego są prawdopodobnie odchyłki w wartościach elementów dyskretnych
+ użytych do budowy drugiego stopnia filtra.
+ Zjawisko to może doprowadzić do przekłamania wyników dla sygnałów o dużej
+ zawartości harmonicznych wysokich rzędów.
 \end_layout
 
 \begin_layout Subsection
@@ -3651,6 +4352,45 @@ name "subsec:Wpływ-funkcji-okna"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Norma PN-EN 6100-4-7 nakazuje, aby czas od pobrania pierwszej do pobrania
+ ostatniej próbki w pojedynczym oknie pomiarowym różniła się maksymalnie
+ o 0,03% od czasu trwania 10 pełnych okresów sygnału.
+ Zgodnie z równaniem (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Delta-ts"
+
+\end_inset
+
+) w zbudowanym urządzeniu dla częstotliwości 57,5Hz różnica ta wyniesie:
+ 
+\begin_inset Formula 
+\begin{equation}
+\frac{\Delta t_{s}}{t_{sampling}}=\frac{85,3\mu s}{\frac{1}{57,5Hz}\cdot10}\cdot100\%=0,05\%
+\end{equation}
+
+\end_inset
+
+W tym przypadku uzasadnione jest wykorzystanie funkcji okna do zredukowania
+ przecieku DFT.
+\end_layout
+
+\begin_layout Standard
+W celu określenia wpływu różnych funkcji okien na wynik pomiaru przeprowadzono
+ po 100 pomiarów dla pojedynczych 10-okresowych okien pomiarowych (bez uśrednian
+ia) dla sygnału sinusoidalnego i prostokątnego.
+ Dla tak otrzymanych serii obliczono wartości średnie i odchylenia standardowe.
+ Wynik badania przedstawiono w tabeli 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Wpływ-funkcji-okna"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -3976,6 +4716,13 @@ Blackmana
 \begin_layout Plain Layout
 Wpływ funkcji okna na wynik pomiaru dla sygnału sinusoidalnego (THD = 0,00%)
  i prostokątnego (THD = 47,03%)
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Wpływ-funkcji-okna"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -3992,6 +4739,22 @@ Wpływ funkcji okna na wynik pomiaru dla sygnału sinusoidalnego (THD = 0,00%)
 
 \end_layout
 
+\begin_layout Standard
+Jak widać, wprowadzenie do pomiaru funkcji okna znacznie poprawiło jego
+ dokładność.
+ Najlepszy wynik osiągnęło jednak nie sugerowane przez normę okno Hanninga,
+ a okno Blackmana.
+ Dla sygnału sinusoidalnego cechowało się ono najlepszą powtarzalnością
+ i wartością średnią najbardziej zbliżoną do oczekiwanej.
+ W przypadku sygnału prostokątnego okna Hamminga i Hanninga osiągnęły nieznaczni
+e lepszą powtarzalność, jednak kosztem większej odchyłki od wartości oczekiwanej.
+\end_layout
+
+\begin_layout Standard
+Biorąc pod uwagę powyższe rezultaty zdecydowano się na implementację w przyrządz
+ie okienkowania przy pomocy funkcji okna Blackmana.
+\end_layout
+
 \begin_layout Subsection
 Wpływ uśredniania na wynik pomiaru
 \begin_inset CommandInset label
@@ -4001,6 +4764,158 @@ name "subsec:Wpływ-uśredniania-na"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Według normy IEC 6100-4-30 pomiar powinien powstać z uśrednienia 15 lub
+ 3000 10-okresowych okien pomiarowych.
+ Ponieważ ze względu na bardzo długi czas wykonywania obliczeń przez zbudowany
+ przyrząd ta druga wartość jest praktycznie nieosiągalna zdecydowano się
+ zastosować uśrednianie 15 pojedynczych pomiarów.
+\end_layout
+
+\begin_layout Standard
+W celu zbadania wpływu uśredniania na wynik pomiaru przeprowadzono test
+ polegający na wykonaniu serii 100 pomiarów dla kilku wartości uśredniania.
+ Badanie przeprowadzono dla sygnału sinusoidalnego i prostokątnego.
+ Dla każdej z serii wyznaczono jej odchylenie standardowe i wartość średnią.
+ Wyniki przedstawiono na rysunkach 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Wpływ-uśredniania-sin"
+
+\end_inset
+
+ i 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Wpływ-uśredniania-sqr"
+
+\end_inset
+
+.
+ Czerwoną przerywaną linią zaznaczono wartości oczekiwane.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Obrazki/Wykresy/AveragingSine.eps
+	scale 65
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Wpływ uśredniania dla sygnału sinusoidalnego
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Wpływ-uśredniania-sin"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dla sygnału sinusoidalnego widać asymptotyczny spadek błędu wraz ze wzrostem
+ liczby uśrednień, przy czym dla wartości powyżej 15 różnice są już znikome.
+ Uśrednianie ma również bardzo dobry wpływ na powtarzalność pomiaru - pozwala
+ zredukować rozrzut ponad czterokrotnie.
+\end_layout
+
+\begin_layout Standard
+Wartość średnia dąży do wartości 0.04% zamiast do zera.
+ Może być to spowodowane występowaniem błędu kwantyzacji oraz małą precyzją
+ wygenerowanego sygnału sinusoidalnego.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Obrazki/Wykresy/AveragingSquare.eps
+	scale 65
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Wpływ uśredniania dla sygnału prostokątnego
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Wpływ-uśredniania-sqr"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dla sygnału prostokątnego wpływ uśredniania na wartość średnią jest już
+ znikomy, natomiast wciąż widoczna jest ponad czterokrotna redukcja rozrzutu.
+\end_layout
+
+\begin_layout Standard
+W przypadku sygnału silnie odkształconego jakim jest sygnał prostokątny
+ widoczna jest już dość duża odchyłka od wartości oczekiwanej.
+ Jest to wywołane wadliwym działaniem filtra antyaliasingowego, który w
+ paśmie przenoszenia lekko podbija wyższe częstotliwości względem niskich
+ (patrz rozdział 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Badanie-filtra-antyaliasingowego"
+
+\end_inset
+
+).
 \end_layout
 
 \begin_layout Subsection

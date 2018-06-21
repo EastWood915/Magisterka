@@ -4054,7 +4054,7 @@ name "fig:Przebieg-prostokątny-wygenerowan"
 
 Następnie sygnał ten był generowany ponownie z wektorami czasu skracanymi
  o wielokrotności pojedynczego okresu próbkowania, co miało na celu zasymulowani
-e różnych wartości odchyłki zegara..
+e różnych wartości odchyłki zegara.
  Na koniec dla każdego z sygnałów obliczono jego THD zgodnie z definicją
  (
 \begin_inset CommandInset ref
@@ -4772,7 +4772,21 @@ W celu zbadania wpływu uśredniania na wynik pomiaru przeprowadzono test
  polegający na wykonaniu serii 100 pomiarów dla kilku wartości uśredniania.
  Badanie przeprowadzono dla sygnału sinusoidalnego i prostokątnego.
  Dla każdej z serii wyznaczono jej odchylenie standardowe i wartość średnią.
- Wyniki przedstawiono na rysunkach XXX - YYY.
+ Wyniki przedstawiono na rysunkach 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Wpływ-uśredniania-sin"
+
+\end_inset
+
+ i 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Wpływ-uśredniania-sqr"
+
+\end_inset
+
+.
  Czerwoną przerywaną linią zaznaczono wartości oczekiwane.
  
 \end_layout
@@ -4787,7 +4801,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Obrazki/Wykresy/AveragingSine.eps
-	scale 50
+	scale 65
 
 \end_inset
 
@@ -4796,6 +4810,13 @@ status open
 
 \begin_layout Plain Layout
 Wpływ uśredniania dla sygnału sinusoidalnego
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Wpływ-uśredniania-sin"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4813,7 +4834,16 @@ Wpływ uśredniania dla sygnału sinusoidalnego
 \end_layout
 
 \begin_layout Standard
-blablabla
+Dla sygnału sinusoidalnego widać asymptotyczny spadek błędu wraz ze wzrostem
+ liczby uśrednień, przy czym dla wartości powyżej 15 różnice są już znikome.
+ Uśrednianie ma również bardzo dobry wpływ na powtarzalność pomiaru - pozwala
+ zredukować rozrzut ponad czterokrotnie.
+\end_layout
+
+\begin_layout Standard
+Wartość średnia dąży do wartości 0.04% zamiast do zera.
+ Może być to spowodowane występowaniem błędu kwantyzacji oraz małą precyzją
+ wygenerowanego sygnału sinusoidalnego.
 \end_layout
 
 \begin_layout Standard
@@ -4826,7 +4856,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Obrazki/Wykresy/AveragingSquare.eps
-	scale 50
+	scale 65
 
 \end_inset
 
@@ -4838,6 +4868,13 @@ status open
 
 \begin_layout Plain Layout
 Wpływ uśredniania dla sygnału prostokątnego
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Wpływ-uśredniania-sqr"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4852,6 +4889,17 @@ Wpływ uśredniania dla sygnału prostokątnego
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Dla sygnału prostokątnego wpływ uśredniania na wartość średnią jest już
+ znikomy, natomiast wciąż widoczna jest ponad czterokrotna redukcja rozrzutu.
+\end_layout
+
+\begin_layout Standard
+W przypadku sygnału silnie odkształconego jakim jest sygnał prostokątny
+ widoczna jest już dość duża odchyłka od wartości oczekiwanej.
+ Jest to wywołane wadliwym działaniem filtra antyaliasingowego, 
 \end_layout
 
 \begin_layout Subsection
