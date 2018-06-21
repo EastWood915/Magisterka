@@ -272,6 +272,20 @@ LatexCommand tableofcontents
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
 \begin_layout Chapter
 Podstawowe definicje
 \end_layout
@@ -2270,6 +2284,13 @@ key "piknik"
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
 \begin_layout Chapter
 Analiza normy IEC 6100-4-30
 \end_layout
@@ -2433,7 +2454,7 @@ Definicje dotyczące harmonicznych i współczynników odkształcenia
 \end_layout
 
 \begin_layout Standard
-Poniższe definicje pochodzą bezpośrednio z normy PN-EN 6100-4-7 
+Poniższe definicje pochodzą bezpośrednio z normy PN-EN 61000-4-7 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "normaFft"
@@ -2764,6 +2785,13 @@ Dokładność pomiaru wartości skutecznej każdej z harmonicznych powinna wynos
 
 .
  
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
 \end_layout
 
 \begin_layout Chapter
@@ -3331,8 +3359,8 @@ key "normaJakosc"
 Program inicjalizuje zmienne przechowujące licznik okresów (CompCounter)
  oraz czas pomiaru (CompTime), a następnie uruchamia timer oraz komparator.
  Wejście odwracające komparatora zostaje podłączone do wbudowanego 6-bitowego
- przetwornika cyfrowo - analogowego ustawionego na wartość 2V (połowa dozwoloneg
-o zakresu sygnału).
+ przetwornika cyfrowo-analogowego ustawionego na wartość 2V (połowa dozwolonego
+ zakresu sygnału).
  W celu uniknięcia fałszywych zliczeń przy silnie odkształconych sygnałach
  włączany jest programowy filtr udostępniany w bibliotece komparatora.
  
@@ -3415,7 +3443,7 @@ Do pobierania próbek z zadaną częstotliwością wykorzystywany jest ticker
  bazujący na układzie PIT (Periodic Interval Timer) mikrokontrolera.
  Po każdorazowym zliczeniu impulsów zegara do wartości odpowiadającej okresowi
  próbkowania uruchamiana jest procedura przerwania ISR_ticker, podczas której
- program pobiera próbkę z przetwornika cyfrowo - analogowego, zapisuje jej
+ program pobiera próbkę z przetwornika analogowo-cyfrowego, zapisuje jej
  wartość w zewnętrznej pamięci RAM oraz inkrementuje licznik próbek.
 \end_layout
 
@@ -3483,11 +3511,18 @@ Mając spróbkowany sygnał program przechodzi do wykonywania właściwych oblic
 \begin_inset Formula $\frac{f_{s}}{N}$
 \end_inset
 
- od wartości całkowitej, co skutkuje powstaniem przecieku (patrz rozdział
+ od wartości całkowitej, co skutkuje powstaniem przecieku (patrz rozdziały
  
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "subsec:Przeciek"
+
+\end_inset
+
+ oraz 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Wpływ-precyzji-częstotliwości"
 
 \end_inset
 
@@ -3526,7 +3561,7 @@ key "Zielinski"
 \begin_layout Standard
 Proces pobierania próbek i wyznaczania DFT jest powtarzany 15 razy, a wyniki
  obliczeń zostają uśrednione.
- Ma to na celu poprawę dokładności wyniku przez redukcję szumów (patrz rozdział
+ Ma to na celu poprawę dokładności i powtarzalności wyniku (patrz rozdział
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -3646,7 +3681,14 @@ reference "tab:Czasy-konwersji-dla"
 \end_inset
 
 .
- [wstaw przypis!]
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "KL25Manual"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -3884,12 +3926,19 @@ Jak widać, dla przetwornika 8-bitowego średni błąd pomiaru wynosi 0.1%, zaś
  dla wyższych rozdzielczości błąd maleje wykładniczo.
  Dla przetwornika 12-bitowego średni błąd wynosi już poniżej 0.01%, zatem
  właśnie tę rozdzielczość zdecydowano się wykorzystać w projekcie.
- Pozwoliło to na znaczną redukcję czasu konwersji kosztem wprowadzenia znikomego
- błędu kwantyzacji.
+ Pozwoliło to na znaczną redukcję czasu konwersji względem przetwornika
+ 16-bitowego kosztem wprowadzenia znikomego błędu kwantyzacji.
 \end_layout
 
 \begin_layout Subsection
 Wpływ precyzji częstotliwości próbkowania na wynik pomiaru
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Wpływ-precyzji-częstotliwości"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -3926,13 +3975,13 @@ Przykładowo, dla zegara 24MHz, czyli maksymalnego dostępnego dla KL25Z,
 \end_inset
 
 Przekładając to na całość 2048-punktowego ciągu otrzymujemy odchyłkę od
- pożądanego czasu próbkowania wynoszącą:
+ pożądanego czasu próbkowania wynoszącą
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-\Delta t_{s}=N\Delta T_{s}=85,3\mu s\label{eq:Delta-ts}
+\Delta t_{s}=N\Delta T_{s}=85,3\mu s,\label{eq:Delta-ts}
 \end{equation}
 
 \end_inset
@@ -3940,7 +3989,7 @@ Przekładając to na całość 2048-punktowego ciągu otrzymujemy odchyłkę od
 co dla częstotliwości badanego sygnału równej 57,5Hz odpowiada jednemu okresowi
  próbkowania.
  Dla porównania, dla zegara 1MHz, który jest standardowy w bibliotece mbed,
- wartości te wynoszą:
+ wartości te wynoszą
 \end_layout
 
 \begin_layout Standard
@@ -4054,7 +4103,7 @@ name "fig:Przebieg-prostokątny-wygenerowan"
 
 Następnie sygnał ten był generowany ponownie z wektorami czasu skracanymi
  o wielokrotności pojedynczego okresu próbkowania, co miało na celu zasymulowani
-e różnych wartości odchyłki zegara..
+e różnych wartości odchyłki zegara.
  Na koniec dla każdego z sygnałów obliczono jego THD zgodnie z definicją
  (
 \begin_inset CommandInset ref
@@ -4173,12 +4222,19 @@ Pomiary
 
 \begin_layout Subsection
 Badanie filtra antyaliasingowego
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Badanie-filtra-antyaliasingowego"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
 Do zbadania charakterystyki amplitudowej filtra antyaliasingowego w zbudowanym
  urządzeniu wykorzystano generator arbitralny Rigol DG1022 oraz multimetr
- TrueRMS UT61E.
+ TrueRMS UNI-T UT61E.
  Pomiar polegał na zmianie częstotliwości w zakresie 10Hz - 10kHz oraz pomiarze
  napięcia na wejściu i wyjściu filtra dla każdej z nich.
 \end_layout
@@ -4312,17 +4368,17 @@ H(f_{a})=-60,98dB
 
 \end_inset
 
-co odpowiada tłumieniu ok.
- 1000 razy.
+Wartość ta odpowiada ok.
+ 1000-krotnemu tłumieniu.
  Minimalna wartość rejestrowana przez przetwornik wynosi 
 \begin_inset Formula 
 \begin{equation}
-\frac{3,3V}{2^{12}}=805,7\mu V
+\frac{3,3V}{2^{12}}=805,7\mu V,
 \end{equation}
 
 \end_inset
 
-Zatem wszystkie zakłócenia o amplitudzie poniżej 806mV nie powinny mieć
+zatem wszystkie zakłócenia o amplitudzie poniżej 806mV nie powinny mieć
  wpływu na wynik pomiaru.
 \end_layout
 
@@ -4762,8 +4818,14 @@ name "subsec:Wpływ-uśredniania-na"
 \begin_layout Standard
 Według normy IEC 6100-4-30 pomiar powinien powstać z uśrednienia 15 lub
  3000 10-okresowych okien pomiarowych.
+\begin_inset CommandInset citation
+LatexCommand cite
+key "normaFft"
+
+\end_inset
+
  Ponieważ ze względu na bardzo długi czas wykonywania obliczeń przez zbudowany
- przyrząd ta druga wartość jest praktycznie nieosiągalna zdecydowano się
+ przyrząd ta druga wartość jest praktycznie nieosiągalna, zdecydowano się
  zastosować uśrednianie 15 pojedynczych pomiarów.
 \end_layout
 
@@ -4772,7 +4834,21 @@ W celu zbadania wpływu uśredniania na wynik pomiaru przeprowadzono test
  polegający na wykonaniu serii 100 pomiarów dla kilku wartości uśredniania.
  Badanie przeprowadzono dla sygnału sinusoidalnego i prostokątnego.
  Dla każdej z serii wyznaczono jej odchylenie standardowe i wartość średnią.
- Wyniki przedstawiono na rysunkach XXX - YYY.
+ Wyniki przedstawiono na rysunkach 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Wpływ-uśredniania-sin"
+
+\end_inset
+
+ i 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Wpływ-uśredniania-sqr"
+
+\end_inset
+
+.
  Czerwoną przerywaną linią zaznaczono wartości oczekiwane.
  
 \end_layout
@@ -4787,7 +4863,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Obrazki/Wykresy/AveragingSine.eps
-	scale 50
+	scale 65
 
 \end_inset
 
@@ -4796,6 +4872,13 @@ status open
 
 \begin_layout Plain Layout
 Wpływ uśredniania dla sygnału sinusoidalnego
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Wpływ-uśredniania-sin"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4813,7 +4896,16 @@ Wpływ uśredniania dla sygnału sinusoidalnego
 \end_layout
 
 \begin_layout Standard
-blablabla
+Dla sygnału sinusoidalnego widać asymptotyczny spadek błędu wraz ze wzrostem
+ liczby uśrednień, przy czym dla wartości powyżej 15 różnice są już znikome.
+ Uśrednianie ma również bardzo dobry wpływ na powtarzalność pomiaru - pozwala
+ zredukować rozrzut ponad czterokrotnie.
+\end_layout
+
+\begin_layout Standard
+Wartość średnia dąży do wartości 0.04% zamiast do zera.
+ Może być to spowodowane występowaniem błędu kwantyzacji oraz małą precyzją
+ wygenerowanego sygnału sinusoidalnego.
 \end_layout
 
 \begin_layout Standard
@@ -4826,7 +4918,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Obrazki/Wykresy/AveragingSquare.eps
-	scale 50
+	scale 65
 
 \end_inset
 
@@ -4838,6 +4930,13 @@ status open
 
 \begin_layout Plain Layout
 Wpływ uśredniania dla sygnału prostokątnego
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Wpływ-uśredniania-sqr"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4854,20 +4953,1636 @@ Wpływ uśredniania dla sygnału prostokątnego
 
 \end_layout
 
+\begin_layout Standard
+Dla sygnału prostokątnego wpływ uśredniania na wartość średnią jest już
+ znikomy, natomiast wciąż widoczna jest ponad czterokrotna redukcja rozrzutu.
+\end_layout
+
+\begin_layout Standard
+W przypadku sygnału silnie odkształconego jakim jest sygnał prostokątny
+ widoczna jest już dość duża odchyłka od wartości oczekiwanej.
+ Jest to wywołane wadliwym działaniem filtra antyaliasingowego, który w
+ paśmie przenoszenia lekko podbija wyższe częstotliwości względem niskich
+ (patrz rozdział 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Badanie-filtra-antyaliasingowego"
+
+\end_inset
+
+).
+\end_layout
+
 \begin_layout Subsection
 Porównanie z rozwiązaniami komercyjnymi
+\end_layout
+
+\begin_layout Standard
+W celu przeprowadzenia testów porównawczych z przyrządami komercyjnymi wykorzyst
+ano dane z pozycji 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "piknik"
+
+\end_inset
+
+ z Testu 3 i Testu 4.
+ Badany przyrząd zestawiono z urządzeniami które miały możliwość pomiaru
+ THD do 40.
+ harmonicznej.
+\end_layout
+
+\begin_layout Subsubsection*
+Test pierwszy
+\end_layout
+
+\begin_layout Standard
+W pierwszym teście porównano wskazania mierników dla sygnału czysto sinusoidalne
+go.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Obrazki/Wykresy/Test3L3.eps
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Sygnał testowy - test pierwszy
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dokonano pojedynczego pomiaru z uśrednianiem DFT dla 15 10-okresowych okien.
+ Wynik przedstawiono w tabeli 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Wyniki-testu-pierwszego"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="11" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nazwa przyrządu
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+THD [%]
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Fluke 1760
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0,04
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+UP-2210
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0,30
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+iSTAT M355
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0,70
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SO-52v11-eME
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0,00
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SIMEAS Q80
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0,26
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PQ Box 200
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0,02
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PQM-703
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0,02
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PQube
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0,40
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MI 2892
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0,08
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Zbudowany miernik
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0,07
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Wyniki testu pierwszego
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Wyniki-testu-pierwszego"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+Jak widać, autorski miernik poradził sobie bardzo dobrze z sygnałem sinusoidalny
+m.
+ Osiągnięty wynik jest lepszy od ponad połowy badanych rozwiązań komercyjnych.
+\end_layout
+
+\begin_layout Subsubsection*
+Test drugi
+\end_layout
+
+\begin_layout Standard
+W drugim teście wykorzystano sygnał o parametrach przedstawionych w tabeli
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Parametry-sygnału-2"
+
+\end_inset
+
+.
+ Miał on na celu zbadanie reakcji miernika na pojawienie się interharmonicznej.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Parametr
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Wartość
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+U
+\series bold
+\size tiny
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+80%U
+\series bold
+\size tiny
+Z
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+U
+\series bold
+\size tiny
+1,5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11,5V
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+U
+\series bold
+\size tiny
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5%U
+\series bold
+\size tiny
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+f
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+42,5Hz
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+THD
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5%
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Parametry sygnału - test drugi
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Parametry-sygnału-2"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+gdzie:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+U
+\series bold
+\size tiny
+n
+\series default
+\size default
+ - wartość skuteczna n-tej harmonicznej,
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+U
+\series bold
+\size tiny
+Z
+\series default
+\size default
+ - wartość skuteczna napięcia znamionowego sieci,
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+f - częstotliwość sygnału,
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+THD - oczekiwana wartość THD.
+\end_layout
+
+\begin_layout Standard
+Przebieg został znormalizowany do wartości dozwolonych dla zaprojektowanego
+ przyrządu (rys.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Sygnał-testowy-2"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Obrazki/Wykresy/Test4L2.eps
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Sygnał testowy - test drugi
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Sygnał-testowy-2"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Po wykonaniu pomiaru tak jak w teście pierwszym otrzymano następujący rezultat:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="11" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nazwa przyrządu
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+THD [%]
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Fluke 1760
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5,03
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+UP-2210
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5,03
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+iSTAT M355
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4,99
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SO-52v11-eME
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5,00
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SIMEAS Q80
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5,01
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PQ Box 200
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5,00
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PQM-703
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5,00
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PQube
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6,30
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MI 2892
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5,00
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Zbudowany miernik
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+4,98
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Wyniki testu drugiego
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Wyniki-testu-2"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Ponownie, wynik jest bardzo zbliżony do oczekiwanego.
+ Otrzymany błąd był mniejszy niż w przypadku 3 z komercyjnych mierników
+ referencyjnych.
+\end_layout
+
+\begin_layout Subsubsection*
+Test trzeci
+\end_layout
+
+\begin_layout Standard
+W ostatnim teście sprawdzono reakcję miernika na silnie odkształcony sygnał
+ o parametrach:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="9" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Parametr
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Wartość
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+U
+\series bold
+\size tiny
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+U
+\series bold
+\size tiny
+Z
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+U
+\series bold
+\size tiny
+1,5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+20,7V
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+U
+\series bold
+\size tiny
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10%U
+\series bold
+\size tiny
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+U
+\series bold
+\size tiny
+11
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10%U
+\series bold
+\size tiny
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+U
+\series bold
+\size tiny
+29
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5%U
+\series bold
+\size tiny
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+U
+\series bold
+\size tiny
+50
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3%U
+\series bold
+\size tiny
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+f
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+57,5Hz
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+THD
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+15%
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Parametry sygnału - test trzeci
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Parametry-sygnału-3"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Obrazki/Wykresy/Test3L1.eps
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Sygnał testowy - test trzeci
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Sygnał-testowy-3"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Wyniki tego testu prezentują się następująco:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="11" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nazwa przyrządu
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+THD [%]
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Fluke 1760
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+14,97
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+UP-2210
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1,12
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+iSTAT M355
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+14,84
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SO-52v11-eME
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+15,00
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SIMEAS Q80
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+14,98
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PQ Box 200
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+14,98
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PQM-703
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+15,00
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PQube
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+17,60
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MI 2892
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+15,00
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Zbudowany miernik
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+15,08
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Wyniki testu trzeciego
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+W tym przypadku błąd pomiaru był już nieco większy, ale wciąż mniejszy niż
+ w przypadku trzech spośród przyrządów komercyjnych, zaś wynik jest bardzo
+ zbliżony do wyników pozostałych mierników.
+ Lekka odchyłka jest spowodowana prawdopodobnie wadliwym działaniem filtra
+ antyaliasingowego ujawniającym się przy obecności harmonicznych wyższych
+ rzędów (rozdział 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Badanie-filtra-antyaliasingowego"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
 \end_layout
 
 \begin_layout Chapter
 Podsumowanie i wnioski
 \end_layout
 
+\begin_layout Standard
+Celem niniejszej pracy była analiza metod pomiaru THD sygnałów o częstotliwości
+ 50Hz oraz analiza norm opisujących takie rozwiązania, a następnie, na tej
+ podstawie, konstrukcja działającego przyrządu pomiarowego i jego przetestowanie.
+\end_layout
+
+\begin_layout Standard
+Pomiar THD sygnału okresowego opiera się głównie na analizie jego widma
+ częstotliwościowego.
+ Dzięki algorytmom szybkiej transformaty Fouriera oraz powstaniu szybkich
+ procesorów możliwe jest wykonywanie bardzo dokładnych pomiarów cyfrowych
+ niemalże w czasie rzeczywistym.
+ Metody takich pomiarów dla zastosowań w sieciach elektroenergetycznych
+ definiuje norma IEC 61000-4-30 oraz podlegająca pod nią norma IEC 61000-4-7.
+ Opisują one szczegółowo jakie wymagania powinien spełnić miernik, by jego
+ pomiary mogły być stosowane oficjalnie, np.
+ w sprawach sądowych czy wnioskach o odszkodowanie.
+ 
+\end_layout
+
+\begin_layout Standard
+Podczas konstrukcji miernika nie udało się niestety spełnić wszystkich wymagań
+ powyższych norm.
+ Największy problem stanowiła ciągła agregacja sygnału przez 10 minut, a
+ nawet przez minimalne wg.
+ normy 3 sekundy.
+ W przypadku procesora jednowątkowego bez jednostki DSP niemożliwe jest
+ próbkowanie z tak dużą szybkością i równoległe wyznaczanie FFT z tak dużej
+ liczby próbek.
+ Żeby zrealizować to wymaganie niezbędny byłby koprocesor matematyczny,
+ najlepiej w postaci układu FPGA.
+ Zaletą tych układów jest możliwość wykonywania nawet tysięcy prostych operacji
+ równolegle, dzięki czemu idealnie nadają się one do błyskawicznego wyznaczania
+ FFT.
+ W takim duecie mikrokontroler po spróbkowaniu całego okna pomiarowego wysyłałby
+ próbki do FPGA i otrzymywał w odpowiedzi obliczone FFT już po kilkudziesięciu
+ taktach zegara.
+ W połączeniu z odpowiednią ilością pamięci RAM umożliwiałoby to zgodny
+ z normą pomiar w pełnym oknie 10-minutowym.
+\end_layout
+
+\begin_layout Standard
+Kolejnym aspektem była kwestia odpowiedniej synchronizacji układu próbkującego
+ z badanym sygnałem.
+ Z powodu zbyt małej częstotliwości zegara taktującego wybrany mikrokontroler
+ niezbędne było wykorzystanie funkcji okna Blackmana, co jest niezalecane
+ przez normę.
+\end_layout
+
+\begin_layout Standard
+W pewnym stopniu wadliwe okazały się także układy wejściowe toru analogowego.
+ Z nieznanych przyczyn charakterystyka amplitudowa filtra okazała się nie
+ być idealnie płaska w jego paśmie przenoszenia.
+ Głównym podejrzanym jest tu drugi stopień filtra mający na celu odfiltrowanie
+ zakłóceń pochodzących od przełączania kondensatorów w stopniu pierwszym.
+ Został on wykonany z elementów dyskretnych, których precyzja wykonania
+ wynosi 5-20%.
+ Błędne dopasowanie tych wartości mogło skutkować odkształceniem charakterystyki
+ amplitudowej.
+ Problem ten prawdopodobnie dałoby się rozwiązać przez zmianę filtra aktywnego
+ na pasywny RC w drugim stopniu.
+\end_layout
+
+\begin_layout Standard
+Pomimo powyższych problemów udało się jednak skonstruować przyrząd o wysokiej
+ dokładności pomiarowej, porównywalnej z rozwiązaniami komercyjnymi wartymi
+ nawet kilka tysięcy złotych.
+ Niestety, z powodu niepełnego spełnienia założeń normy IEC61000-4-30 wyniki
+ uzyskane przy jego pomocy nie mają żadnej mocy prawnej.
+ 
+\end_layout
+
+\begin_layout Standard
+Jednak ze względu na bardzo niski koszt (kilkadziesiąt złotych w seryjnej
+ produkcji) i prostotę obsługi takie urządzenie może służyć do ciągłego
+ monitorowania jakości energii elektrycznej w fabrykach czy innych miejscach,
+ gdzie niezbędne jest niskie THD napięcia zasilającego.
+ Ze względu na wysoką impedancję wejściową toru analogowego przyłączenie
+ do sieci można wykonać przy pomocy zwykłego dzielnika rezystancyjnego lub
+ pojemnościowego, co nie wymaga stosowania drogich transformatorów liniowych
+ czy przekładników LEM.
+ Przyrząd ten mógłby śmiało być pierwszą linią testów w przypadku podejrzenia
+ niskiej jakości dostarczanej energii elektrycznej.
+\end_layout
+
 \begin_layout Chapter*
-Załącznik A - Szczegółowe wyniki pomiarów
+Załącznik A - Schemat płytki PCB
 \end_layout
 
 \begin_layout Chapter*
 Załącznik B - Pliki nagłówkowe klas programu
+\end_layout
+
+\begin_layout Chapter*
+Załącznik C - Szczegółowe wyniki pomiarów
 \end_layout
 
 \begin_layout Standard
