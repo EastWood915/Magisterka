@@ -280,6 +280,11 @@ LatexCommand tableofcontents
 \end_layout
 
 \begin_layout Standard
+\SpecialChar ligaturebreak
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Newpage clearpage
 \end_inset
 
@@ -2285,6 +2290,18 @@ key "piknik"
 \end_layout
 
 \begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\SpecialChar ligaturebreak
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Newpage clearpage
 \end_inset
 
@@ -2785,6 +2802,18 @@ Dokładność pomiaru wartości skutecznej każdej z harmonicznych powinna wynos
 
 .
  
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\SpecialChar ligaturebreak
+
 \end_layout
 
 \begin_layout Standard
@@ -6478,6 +6507,18 @@ reference "subsec:Badanie-filtra-antyaliasingowego"
 \end_layout
 
 \begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\SpecialChar ligaturebreak
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Newpage clearpage
 \end_inset
 
@@ -6588,9 +6629,8 @@ Załącznik C - Szczegółowe wyniki pomiarów
 \begin_layout Standard
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
-btprint "btPrintAll"
 bibfiles "bibliografia"
-options "bibtotoc,IEEEtran"
+options "bibtotoc,bst/IEEEtran"
 
 \end_inset
 
