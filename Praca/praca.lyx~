@@ -152,7 +152,7 @@ titlePL{Analiza właściwości miernika do pomiaru THD sygnałów napięciowych}
 
 \begin_layout Plain Layout
 
-%
+
 \backslash
 titleEN{Analysis of the properties of a THD meter for voltage signals}
 \end_layout
@@ -292,25 +292,6 @@ restylefloat{table}
 \begin_inset CommandInset toc
 LatexCommand tableofcontents
 
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\SpecialChar ligaturebreak
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage clearpage
 \end_inset
 
 
@@ -1641,7 +1622,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Aktywny filtr dolnopasmowy w topologii MFB
+Aktywny filtr dolnopasmowy w topologii MFB (źródło: 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "TI_MFBFilter"
+
+\end_inset
+
+)
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Aktywny-filtr-dolnopasmowy"
@@ -1820,7 +1808,7 @@ i=\Delta Qf_{p}=C(V_{1}-V_{2})f_{p}=C\Delta Vf_{p}
 co możemy przełożyć na ekwiwalentną rezystancję 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "wartoSpróbkować5"
+key "wartoSprobkowac5"
 
 \end_inset
 
@@ -1859,7 +1847,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Układ przełączanego kondensatora 
+Układ przełączanego kondensatora (źródło: 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "wartoSprobkowac5"
+
+\end_inset
+
+) 
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Układ-przełączanego-kondensatora"
@@ -1924,7 +1919,7 @@ Wadą filtrów SC jest fakt, że sygnał zegarowy sterujący kluczami przechodzi
  filtrów SC do kilkudziesięciu kHz 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "wartoSpróbkować5"
+key "wartoSprobkowac5"
 
 \end_inset
 
@@ -1940,7 +1935,7 @@ Projektowanie filtra antyaliasingowego składa się zazwyczaj z kilku etapów
  
 \begin_inset CommandInset citation
 LatexCommand cite
-key "wartoSpróbkować2"
+key "wartoSprobkowac2"
 
 \end_inset
 
@@ -2024,6 +2019,25 @@ Filter Wizard
 WEBENCH Tools
 \shape default
  firmy Texas Instruments.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\SpecialChar ligaturebreak
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
 \end_layout
 
 \begin_layout Chapter
@@ -2828,25 +2842,6 @@ Dokładność pomiaru wartości skutecznej każdej z harmonicznych powinna wynos
  
 \end_layout
 
-\begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\SpecialChar ligaturebreak
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage clearpage
-\end_inset
-
-
-\end_layout
-
 \begin_layout Chapter
 Implementacja przyrządu
 \end_layout
@@ -3286,6 +3281,43 @@ reference "fig:Inicjalizacja-przyrządu"
 \end_inset
 
  przedstawiono algorytm inicjalizacji przyrządu.
+ Po uruchomieniu urządzenia pierwszym krokiem jest włączenie zegara filtra
+ antyaliasingowego.
+ Wykorzystywane jest do tego wyjście PWM mikrokontrolera ustawiane na częstotliw
+ość 125kHz i wypełnienie 50%.
+\end_layout
+
+\begin_layout Standard
+Następnym etapem jest programowe zwarcie wszystkich nieużywanych pinów ADC
+ do masy w celu redukcji zakłóceń.
+ Piny I/O są domyślnie ustawione jako wejścia cyfrowe, przez co mogą zadziałać
+ jak antena i zebrać zakłócenia z otoczenia, które następnie mogą zostać
+ przeniesione na przetwornik analogowo - cyfrowy.
+ Aby tego uniknąć wszystkie piny podłączone do ADC ustawia się jako wyjścia
+ cyfrowe w stanie logicznego zera, co powoduje fizyczne zwarcie ich do masy
+ układu.
+\end_layout
+
+\begin_layout Standard
+Ostatnią czynnością jest obliczenie wartości funkcji okna Blackmana (patrz
+ rozdział 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Wpływ-funkcji-okna"
+
+\end_inset
+
+) dla 2048-elementowego ciągu danych.
+ Ze względu na znaczący rozmiar (8kB) wartości te są przechowywane w zewnętrznej
+ pamięci RAM.
+\end_layout
+
+\begin_layout Standard
+Po zakończeniu inicjalizacji urządzenie oczekuje na decyzję użytkownika
+ o rozpoczęciu pomiaru.
+ Interfejsem umożliwiającym komunikację z urządzeniem jest tutaj pasek dotykowy
+ umieszczony na płytce KL25Z.
+ Dotknięcie go powoduje rozpoczęcie procedury pomiarowej.
 \end_layout
 
 \begin_layout Standard
@@ -3332,46 +3364,6 @@ name "fig:Inicjalizacja-przyrządu"
 
 \end_layout
 
-\begin_layout Standard
-Po uruchomieniu urządzenia pierwszym krokiem jest włączenie zegara filtra
- antyaliasingowego.
- Wykorzystywane jest do tego wyjście PWM mikrokontrolera ustawiane na częstotliw
-ość 125kHz i wypełnienie 50%.
-\end_layout
-
-\begin_layout Standard
-Następnym etapem jest programowe zwarcie wszystkich nieużywanych pinów ADC
- do masy w celu redukcji zakłóceń.
- Piny I/O są domyślnie ustawione jako wejścia cyfrowe, przez co mogą zadziałać
- jak antena i zebrać zakłócenia z otoczenia, które następnie mogą zostać
- przeniesione na przetwornik analogowo - cyfrowy.
- Aby tego uniknąć wszystkie piny podłączone do ADC ustawia się jako wyjścia
- cyfrowe w stanie logicznego zera, co powoduje fizyczne zwarcie ich do masy
- układu.
-\end_layout
-
-\begin_layout Standard
-Ostatnią czynnością jest obliczenie wartości funkcji okna Blackmana (patrz
- rozdział 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Wpływ-funkcji-okna"
-
-\end_inset
-
-) dla 2048-elementowego ciągu danych.
- Ze względu na znaczący rozmiar (8kB) wartości te są przechowywane w zewnętrznej
- pamięci RAM.
-\end_layout
-
-\begin_layout Standard
-Po zakończeniu inicjalizacji urządzenie oczekuje na decyzję użytkownika
- o rozpoczęciu pomiaru.
- Interfejsem umożliwiającym komunikację z urządzeniem jest tutaj pasek dotykowy
- umieszczony na płytce KL25Z.
- Dotknięcie go powoduje rozpoczęcie procedury pomiarowej.
-\end_layout
-
 \begin_layout Subsection
 Pomiar częstotliwości
 \end_layout
@@ -3395,6 +3387,17 @@ key "normaJakosc"
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Standard
+Program inicjalizuje zmienne przechowujące licznik okresów (CompCounter)
+ oraz czas pomiaru (CompTime), a następnie uruchamia timer oraz komparator.
+ Wejście odwracające komparatora zostaje podłączone do wbudowanego 6-bitowego
+ przetwornika cyfrowo-analogowego ustawionego na wartość 2V (połowa dozwolonego
+ zakresu sygnału).
+ W celu uniknięcia fałszywych zliczeń przy silnie odkształconych sygnałach
+ włączany jest programowy filtr udostępniany w bibliotece komparatora.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -3439,17 +3442,6 @@ name "fig:Algorytm-pomiaru-częstotliwości"
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-Program inicjalizuje zmienne przechowujące licznik okresów (CompCounter)
- oraz czas pomiaru (CompTime), a następnie uruchamia timer oraz komparator.
- Wejście odwracające komparatora zostaje podłączone do wbudowanego 6-bitowego
- przetwornika cyfrowo-analogowego ustawionego na wartość 2V (połowa dozwolonego
- zakresu sygnału).
- W celu uniknięcia fałszywych zliczeń przy silnie odkształconych sygnałach
- włączany jest programowy filtr udostępniany w bibliotece komparatora.
- 
 \end_layout
 
 \begin_layout Standard
@@ -3743,6 +3735,44 @@ name "fig:Zakończenie-pomiaru"
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Obrazki/miernik.JPG
+	height 12cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Prezentacja wyniku pomiaru
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Chapter
 Badanie parametrów przyrządu
 \end_layout
@@ -3983,6 +4013,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Obrazki/Wykresy/Sim_Kwantyzacja.eps
+	scale 90
 
 \end_inset
 
@@ -4229,6 +4260,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Obrazki/Wykresy/Sim_DokładnośćPróbkowania_10.eps
+	scale 90
 
 \end_inset
 
@@ -4281,6 +4313,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Obrazki/Wykresy/Sim_DokładnośćPróbkowania_100.eps
+	scale 90
 
 \end_inset
 
@@ -5109,6 +5142,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Obrazki/Wykresy/Test3L3.eps
+	scale 90
 
 \end_inset
 
@@ -5677,6 +5711,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Obrazki/Wykresy/Test4L2.eps
+	scale 90
 
 \end_inset
 
@@ -6258,6 +6293,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Obrazki/Wykresy/Test3L1.eps
+	scale 90
 
 \end_inset
 
@@ -6696,7 +6732,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Obrazki/Schematy/cropped_Schemat układu.pdf
-	height 20cm
+	height 24cm
 	rotateAngle 90
 
 \end_inset
@@ -6708,6 +6744,25 @@ status open
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\SpecialChar ligaturebreak
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
 \end_inset
 
 

@@ -147,16 +147,23 @@ korzysta\l{}em(-am) ze \'{z}r\'{o}de\l{} innych ni\.{z} wymienione w pracy.}}
 \clearpage \titlepage
 
 %Podziękowania
-%\vspace*{15cm} \vfill
-%\begin{flushright} 
-%\begin{minipage}[!h]{10cm}
+\vspace*{15cm} \vfill
+\begin{flushright} 
+\begin{minipage}[!h]{10cm}
 %{\large \textit{\@acknowledgements}}
-%\end{minipage}
-%\end{flushright}
+{\textit{Serdeczne podzi\k{e}kowania dla prof. Ryszarda Sroki za
+nieocenion\k{a} pomoc w przygotowaniu niniejszej pracy oraz za rozbudzenie
+we mnie mi\l{}o\'{s}ci do elektroniki.}}
+\end{minipage}
+\end{flushright}
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
 
 \clearpage
 
-\setcounter{page}{3}
+\setcounter{page}{5}
 
 } %%1
 
