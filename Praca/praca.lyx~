@@ -258,6 +258,31 @@ renewcommand*{
 figurename}{Rys.}
 \end_layout
 
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+usepackage{float} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+floatstyle{plaintop} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+restylefloat{table}
+\end_layout
+
 \end_inset
 
 
@@ -331,13 +356,14 @@ Jeśli dany sygnał można zamodelować funkcją
 \begin_inset Formula $f=\frac{1}{T}$
 \end_inset
 
-.
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "metro"
 
 \end_inset
 
+.
  Najprostszym przykładem sygnału okresowego jest sygnał sinusoidalny 
 \begin_inset Formula $f(t)=Asin(2\pi ft+\varphi)$
 \end_inset
@@ -384,14 +410,14 @@ reference "eq:1"
 
 \end_inset
 
-): 
+) 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "metro"
 
 \end_inset
 
-
+:
 \end_layout
 
 \begin_layout Standard
@@ -646,14 +672,14 @@ Jeśli sygnał
 \end_inset
 
  zostanie spróbkowany równomiernie w dziedzinie czasu, można go poddać dyskretne
-mu przekształceniu Fouriera (DFT - Discrete Fourier Transform): 
+mu przekształceniu Fouriera (DFT - Discrete Fourier Transform) 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Lyons"
 
 \end_inset
 
-
+:
 \end_layout
 
 \begin_layout Standard
@@ -1206,11 +1232,6 @@ Istotną cechą algorytmu Radix-2 jest fakt, że liczba próbek wejściowych
 Definicja THD
 \end_layout
 
-\begin_layout Subsection
-Współczynnik zawartości harmonicznych i całkowity współczynnik odkształceń
- harmonicznych
-\end_layout
-
 \begin_layout Standard
 Poza współczynnikami podanymi w rozdziale 
 \begin_inset CommandInset ref
@@ -1292,10 +1313,6 @@ ze czy sterowniki LED.
 nych, w szczególności dla silników indukcyjnych.
 \end_layout
 
-\begin_layout Subsection
-THD a jakość energii elektrycznej
-\end_layout
-
 \begin_layout Section
 Przetwornik analogowo - cyfrowy
 \end_layout
@@ -1323,14 +1340,14 @@ Próbkowanie
 \begin_layout Standard
 Próbkowaniem sygnału nazywa się operację pobierania chwilowych wartości
  tego sygnału w określonych, najczęściej rozłożonych równomiernie, momentach
- czasu.
- 
+ czasu 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "metro"
 
 \end_inset
 
+.
  Polega ono na zatrzaskiwaniu wartości chwilowych w tzw.
  układzie próbkująco - pamiętającym (Sample and Hold) z częstotliwością
  nazywaną częstotliwością próbkowania.
@@ -1471,14 +1488,14 @@ W celu poprawnego odtworzenia spróbkowanego sygnału niezbędne jest pobranie
  odpowiedniej liczby próbek na okres badanego sygnału.
  Jest ona definiowana przez twierdzenie Kotielnikowa-Shannona (inaczej twierdzen
 ie o próbkowaniu), które mówi, że odtworzenie sygnału z ciągu próbek bez
- utraty informacji jest możliwe, jeśli: 
+ utraty informacji jest możliwe, jeśli 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "metro"
 
 \end_inset
 
-
+:
 \end_layout
 
 \begin_layout Itemize
@@ -1569,22 +1586,22 @@ W roli filtrów antyaliasingowych szczególnie chętnie wykorzystywane są filtr
 , umożliwiają wzmocnienie sygnału wejściowego w paśmie przenoszenia oraz
  mają lepsze tłumienie w paśmie zaporowym.
  Dodatkowo pozwalają one na budowę filtrów wysokich rzędów bez użycia dużych
- elementów indukcyjnych.
- 
+ elementów indukcyjnych 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "FiltryAktywnePL"
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Standard
 Jedną z popularnych topologii budowy filtrów aktywnych jest tak zwana topologia
- wielokrotnych sprzężeń zwrotnych (Multiple Feedback).Zapewnia ona bardzo
- dobre tłumienie w paśmie zaporowym dla szerokiego zakresu częstotliwości
- oraz niskie szumy i wysokie tłumienie składowej wspólnej (CMRR) 
+ wielokrotnych sprzężeń zwrotnych (Multiple Feedback).
+ Zapewnia ona bardzo dobre tłumienie w paśmie zaporowym dla szerokiego zakresu
+ częstotliwości oraz niskie szumy i wysokie tłumienie składowej wspólnej
+ (CMRR) 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "TI_MFBFilter"
@@ -1652,14 +1669,14 @@ name "fig:Aktywny-filtr-dolnopasmowy"
 Poprzez odpowiedni dobór wartości komponentów pasywnych filtra można znacznie
  modyfikować jego parametry.
  Powstało wiele ustandaryzowanych typów filtrów aktywnych, z których najpopularn
-iejsze to: 
+iejsze to 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "FiltryAktywneWFiIS"
 
 \end_inset
 
-
+:
 \end_layout
 
 \begin_layout Itemize
@@ -1904,15 +1921,14 @@ Wadą filtrów SC jest fakt, że sygnał zegarowy sterujący kluczami przechodzi
  lub 2.
  rzędu.
  Konieczność podawania tak szybkiego zegara ogranicza jednak użyteczne pasmo
- filtrów SC do kilkudziesięciu kHz.
- 
+ filtrów SC do kilkudziesięciu kHz 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "wartoSpróbkować5"
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Subsection
@@ -1920,7 +1936,7 @@ Dobór parametrów filtra
 \end_layout
 
 \begin_layout Standard
-Projektowanie filtra antyaliasingowego składa się zazwyczaj z kilku etapów.
+Projektowanie filtra antyaliasingowego składa się zazwyczaj z kilku etapów
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1928,7 +1944,7 @@ key "wartoSpróbkować2"
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Standard
@@ -1953,7 +1969,7 @@ Następnie należy ustalić częstotliwość próbkowania przetwornika
 
 .
  Częstotliwość końcowa jest częstotliwością, dla której tłumienie filtra
- jest równe zakresowi dynamiki przetwornika 
+ jest równe zakresowi dynamiki przetwornika A/C oznaczanemu jako 
 \begin_inset Formula $Z_{D}$
 \end_inset
 
@@ -2121,15 +2137,14 @@ name "fig:Analogowy-miernik-współczynnika"
 
 \begin_layout Standard
 Jako filtrów selektywnych używano najczęściej układów mostkowych o regulowanej
- częstotliwości rezonansowej, takich jak mostek Robinsona-Wiena.
- 
+ częstotliwości rezonansowej, takich jak mostek Robinsona-Wiena 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "metro"
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Section
@@ -2148,10 +2163,19 @@ Na wejściu układu znajduje się mieszacz, do którego doprowadza się odpowied
  skondycjonowany sygnał badany oraz sygnał z przestrajanego generatora.
  Częstotliwość generatora jest dobierana tak, aby na wyjściu różnicowym
  mieszacza częstotliwość odpowiadająca badanej harmonicznej była zawsze
- stała.Sygnał następnie jest wzmacniany i filtrowany selektywnie, dzięki
- czemu otrzymuje się informację o poszczególnych składowych sygnału.
+ stała.
+ Sygnał następnie jest wzmacniany i filtrowany selektywnie, dzięki czemu
+ otrzymuje się informację o poszczególnych składowych sygnału.
  Na końcu sygnał jest wzmacniany logarytmicznie w celu lepszego ukazania
- składowych o małych amplitudach i podawany na wejście oscyloskopu analogowego.
+ składowych o małych amplitudach i podawany na wejście oscyloskopu analogowego
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "metro"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -2278,7 +2302,7 @@ Ogromną zaletą rozwiązań cyfrowych jest fakt, że spróbkowany sygnał możn
  produkują cyfrowe analizatory pozwalające na wyznaczenie wszystkich wskaźników
  jakości energii elektrycznej, takich jak zawartość harmonicznych, napięcie
  skuteczne, częstotliwość, czy współczynnik migotania światła oraz rejestrację
- zdarzeń takich jak zapady czy zaniki napięcia w sieci elektroenergetycznej.
+ zdarzeń takich jak zapady czy zaniki napięcia w sieci elektroenergetycznej
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -2286,7 +2310,7 @@ key "piknik"
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Standard
@@ -2538,8 +2562,8 @@ Wartość skuteczna grupy harmonicznej
 
 \begin_layout Standard
 Pierwiastek kwadratowy z sumy kwadratów wartości skutecznej harmonicznej
- i sąsiadujących z nią składowych widmowych wyznaczonym w oknie czasowym.
- Jest to suma energii harmonicznej oraz energii sąsiednich linii.
+ i sąsiadujących z nią składowych widmowych.
+ Jest to suma energii harmonicznej oraz energii sąsiednich linii widma.
  Rząd harmoniczny jest określany przez rozważaną harmoniczną.
 \end_layout
 
@@ -3089,15 +3113,14 @@ Filtr ten posiada niskie szumy pochodzące od przełączania pojemności, wynosz
  filtra Butterwortha 2.
  rzędu.
  W tym celu MAX295 posiada wbudowany wzmacniacz operacyjny, nie jest więc
- wymagany dodatkowy układ scalony.
- 
+ wymagany dodatkowy układ scalony 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "MAX295"
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Subsection
@@ -3156,8 +3179,24 @@ Projekt płytki został przygotowany w programie Altium Designer, zaś sama
 Działanie przyrządu
 \end_layout
 
+\begin_layout Standard
+W niniejszym punkcie zostanie przedstawiony algorytm działania miernika
+ THD który został zaimplementowany na płytce rozwojowej KL25Z.
+\end_layout
+
 \begin_layout Subsection
 Algorytm ogólny
+\end_layout
+
+\begin_layout Standard
+Rysunek 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Algorytm-działania-przyrządu"
+
+\end_inset
+
+ przedstawia ogólny algorytm działania całego przyrządu.
 \end_layout
 
 \begin_layout Standard
@@ -3236,6 +3275,17 @@ Po zaprezentowaniu wyniku urządzenie wraca do oczekiwania na żądanie wykonani
 
 \begin_layout Subsection
 Inicjalizacja
+\end_layout
+
+\begin_layout Standard
+Na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Inicjalizacja-przyrządu"
+
+\end_inset
+
+ przedstawiono algorytm inicjalizacji przyrządu.
 \end_layout
 
 \begin_layout Standard
@@ -3327,6 +3377,27 @@ Pomiar częstotliwości
 \end_layout
 
 \begin_layout Standard
+Procedura pomiarowa rozpoczyna się od pomiaru częstotliwości badanego sygnału
+ zgodnie z algorytmem z rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Algorytm-pomiaru-częstotliwości"
+
+\end_inset
+
+.
+ Metoda pomiaru jest zgodna z normą IEC6100-4-30 i polega na zliczaniu liczby
+ okresów sygnału w 10-sekundowym oknie 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "normaJakosc"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -3371,20 +3442,6 @@ name "fig:Algorytm-pomiaru-częstotliwości"
 \end_layout
 
 \begin_layout Standard
-Procedura pomiarowa rozpoczyna się od pomiaru częstotliwości badanego sygnału.
- Metoda pomiaru jest zgodna z normą IEC6100-4-30 i polega na zliczaniu liczby
- okresów sygnału w 10-sekundowym oknie.
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "normaJakosc"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 Program inicjalizuje zmienne przechowujące licznik okresów (CompCounter)
  oraz czas pomiaru (CompTime), a następnie uruchamia timer oraz komparator.
  Wejście odwracające komparatora zostaje podłączone do wbudowanego 6-bitowego
@@ -3414,6 +3471,13 @@ Po upłynięciu 10 sekund program zatrzymuje działanie timera i komparatora,
 
 \begin_layout Subsection
 Próbkowanie
+\end_layout
+
+\begin_layout Standard
+Znając częstotliwość sygnału program wyznacza odpowiednią częstotliwość
+ próbkowania.
+ Konieczne jest zebranie 2048 próbek w trakcie 10 okresów sygnału, zatem
+ okres próbkowania jest równy okresowi sygnału podzielonemu przez 204,8.
 \end_layout
 
 \begin_layout Standard
@@ -3461,13 +3525,6 @@ name "fig:Algorytm-procesu-próbkowania"
 \end_layout
 
 \begin_layout Standard
-Znając częstotliwość sygnału program wyznacza odpowiednią częstotliwość
- próbkowania.
- Konieczne jest zebranie 2048 próbek w trakcie 10 okresów sygnału, zatem
- okres próbkowania jest równy okresowi sygnału podzielonemu przez 204,8.
-\end_layout
-
-\begin_layout Standard
 Do pobierania próbek z zadaną częstotliwością wykorzystywany jest ticker
  bazujący na układzie PIT (Periodic Interval Timer) mikrokontrolera.
  Po każdorazowym zliczeniu impulsów zegara do wartości odpowiadającej okresowi
@@ -3483,6 +3540,18 @@ i do kolejnego etapu.
 
 \begin_layout Subsection
 DFT i wyznaczenie THD 
+\end_layout
+
+\begin_layout Standard
+Mając spróbkowany sygnał program przechodzi do wykonywania właściwych obliczeń,
+ co zostało przedstawione na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Algorytm-wyznaczania-wartości"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -3530,9 +3599,8 @@ name "fig:Algorytm-wyznaczania-wartości"
 \end_layout
 
 \begin_layout Standard
-Mając spróbkowany sygnał program przechodzi do wykonywania właściwych obliczeń.
- Na początku próbki są mnożone przez wyznaczoną wcześniej funkcję okna Blackmana
-, co pozwala na redukcję przecieku DFT.
+Na początku próbki są mnożone przez wyznaczoną wcześniej funkcję okna Blackmana,
+ co pozwala na redukcję przecieku DFT.
  Częstotliwość próbkowania jest dość wysoka - próbka jest pobierana co ok.
  2000 impulsów zegara, a każda najmniejsza odchyłka od idealnej częstotliwości
  próbkowania przemnożona przez 2048 próbek prowadzi do znacznego odchylenia
@@ -3625,6 +3693,13 @@ Prezentacja wyników
 \end_layout
 
 \begin_layout Standard
+Po zakończeniu obliczeń wartość THD oraz częstotliwość sygnału są prezentowane
+ na wyświetlaczu.
+ Urządzenie następnie rozpoczyna oczekiwanie na żądanie rozpoczęcia kolejnego
+ pomiaru.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -3668,13 +3743,6 @@ name "fig:Zakończenie-pomiaru"
 
 \end_layout
 
-\begin_layout Standard
-Po zakończeniu obliczeń wartość THD oraz częstotliwość sygnału są prezentowane
- na wyświetlaczu.
- Urządzenie następnie rozpoczyna oczekiwanie na żądanie rozpoczęcia kolejnego
- pomiaru.
-\end_layout
-
 \begin_layout Chapter
 Badanie parametrów przyrządu
 \end_layout
@@ -3709,7 +3777,6 @@ reference "tab:Czasy-konwersji-dla"
 
 \end_inset
 
-.
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -3717,7 +3784,7 @@ key "KL25Manual"
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Standard
@@ -4047,14 +4114,14 @@ czyli równowartość aż 24 okresów próbkowania.
 W celu zbadania wpływu tego zjawiska na wynik pomiaru przygotowano symulację
  w środowisku MATLAB.
  Badania przeprowadzano na sygnale wygenerowanym na podstawie rozwinięcia
- szeregu Fouriera dla sygnału prostokątnego: 
+ szeregu Fouriera dla sygnału prostokątnego 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "FourierProstokat"
 
 \end_inset
 
-
+:
 \begin_inset Formula 
 \begin{equation}
 f(x)=\frac{4}{\pi}\stackrel[n=1,3,5...]{\infty}{\sum}\frac{1}{n}sin\left(\frac{n\pi x}{L}\right)
@@ -4434,7 +4501,7 @@ name "subsec:Wpływ-funkcji-okna"
 
 \begin_layout Standard
 Norma PN-EN 6100-4-7 nakazuje, aby czas od pobrania pierwszej do pobrania
- ostatniej próbki w pojedynczym oknie pomiarowym różniła się maksymalnie
+ ostatniej próbki w pojedynczym oknie pomiarowym różnił się maksymalnie
  o 0,03% od czasu trwania 10 pełnych okresów sygnału.
  Zgodnie z równaniem (
 \begin_inset CommandInset ref
@@ -4458,8 +4525,8 @@ W tym przypadku uzasadnione jest wykorzystanie funkcji okna do zredukowania
 
 \begin_layout Standard
 W celu określenia wpływu różnych funkcji okien na wynik pomiaru przeprowadzono
- po 100 pomiarów dla pojedynczych 10-okresowych okien pomiarowych (bez uśrednian
-ia) dla sygnału sinusoidalnego i prostokątnego.
+ po 100 pomiarów wartości THD dla pojedynczych 10-okresowych okien pomiarowych
+ (bez uśredniania) dla sygnału sinusoidalnego i prostokątnego.
  Dla tak otrzymanych serii obliczono wartości średnie i odchylenia standardowe.
  Wynik badania przedstawiono w tabeli 
 \begin_inset CommandInset ref
@@ -4846,13 +4913,14 @@ name "subsec:Wpływ-uśredniania-na"
 
 \begin_layout Standard
 Według normy IEC 6100-4-30 pomiar powinien powstać z uśrednienia 15 lub
- 3000 10-okresowych okien pomiarowych.
+ 3000 10-okresowych okien pomiarowych 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "normaFft"
 
 \end_inset
 
+.
  Ponieważ ze względu na bardzo długi czas wykonywania obliczeń przez zbudowany
  przyrząd ta druga wartość jest praktycznie nieosiągalna, zdecydowano się
  zastosować uśrednianie 15 pojedynczych pomiarów.
@@ -6574,7 +6642,7 @@ Podczas konstrukcji miernika nie udało się niestety spełnić wszystkich wymag
 Kolejnym aspektem była kwestia odpowiedniej synchronizacji układu próbkującego
  z badanym sygnałem.
  Z powodu zbyt małej częstotliwości zegara taktującego wybrany mikrokontroler
- niezbędne było wykorzystanie funkcji okna Blackmana, co jest niezalecane
+ niezbędne było wykorzystanie funkcji okna Blackmana, co nie jest zalecane
  przez normę.
 \end_layout
 
@@ -6614,16 +6682,35 @@ Jednak ze względu na bardzo niski koszt (kilkadziesiąt złotych w seryjnej
  niskiej jakości dostarczanej energii elektrycznej.
 \end_layout
 
-\begin_layout Chapter*
+\begin_layout Section*
 Załącznik A - Schemat płytki PCB
 \end_layout
 
-\begin_layout Chapter*
-Załącznik B - Pliki nagłówkowe klas programu
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Obrazki/Schematy/cropped_Schemat układu.pdf
+	height 20cm
+	rotateAngle 90
+
+\end_inset
+
+
 \end_layout
 
-\begin_layout Chapter*
-Załącznik C - Szczegółowe wyniki pomiarów
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard

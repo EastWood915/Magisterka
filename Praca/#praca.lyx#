@@ -258,6 +258,31 @@ renewcommand*{
 figurename}{Rys.}
 \end_layout
 
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+usepackage{float} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+floatstyle{plaintop} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+restylefloat{table}
+\end_layout
+
 \end_inset
 
 
@@ -1207,11 +1232,6 @@ Istotną cechą algorytmu Radix-2 jest fakt, że liczba próbek wejściowych
 Definicja THD
 \end_layout
 
-\begin_layout Subsection
-Współczynnik zawartości harmonicznych i całkowity współczynnik odkształceń
- harmonicznych
-\end_layout
-
 \begin_layout Standard
 Poza współczynnikami podanymi w rozdziale 
 \begin_inset CommandInset ref
@@ -1291,10 +1311,6 @@ THD jest jednym z najistotniejszych parametrów określających jakość energii
 ze czy sterowniki LED.
  Wysoka zawartość harmonicznych może być bardzo szkodliwa dla urządzeń elektrycz
 nych, w szczególności dla silników indukcyjnych.
-\end_layout
-
-\begin_layout Subsection
-THD a jakość energii elektrycznej
 \end_layout
 
 \begin_layout Section
@@ -1582,9 +1598,10 @@ key "FiltryAktywnePL"
 
 \begin_layout Standard
 Jedną z popularnych topologii budowy filtrów aktywnych jest tak zwana topologia
- wielokrotnych sprzężeń zwrotnych (Multiple Feedback).Zapewnia ona bardzo
- dobre tłumienie w paśmie zaporowym dla szerokiego zakresu częstotliwości
- oraz niskie szumy i wysokie tłumienie składowej wspólnej (CMRR) 
+ wielokrotnych sprzężeń zwrotnych (Multiple Feedback).
+ Zapewnia ona bardzo dobre tłumienie w paśmie zaporowym dla szerokiego zakresu
+ częstotliwości oraz niskie szumy i wysokie tłumienie składowej wspólnej
+ (CMRR) 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "TI_MFBFilter"
@@ -1952,7 +1969,7 @@ Następnie należy ustalić częstotliwość próbkowania przetwornika
 
 .
  Częstotliwość końcowa jest częstotliwością, dla której tłumienie filtra
- jest równe zakresowi dynamiki przetwornika 
+ jest równe zakresowi dynamiki przetwornika A/C oznaczanemu jako 
 \begin_inset Formula $Z_{D}$
 \end_inset
 
@@ -2146,10 +2163,19 @@ Na wejściu układu znajduje się mieszacz, do którego doprowadza się odpowied
  skondycjonowany sygnał badany oraz sygnał z przestrajanego generatora.
  Częstotliwość generatora jest dobierana tak, aby na wyjściu różnicowym
  mieszacza częstotliwość odpowiadająca badanej harmonicznej była zawsze
- stała.Sygnał następnie jest wzmacniany i filtrowany selektywnie, dzięki
- czemu otrzymuje się informację o poszczególnych składowych sygnału.
+ stała.
+ Sygnał następnie jest wzmacniany i filtrowany selektywnie, dzięki czemu
+ otrzymuje się informację o poszczególnych składowych sygnału.
  Na końcu sygnał jest wzmacniany logarytmicznie w celu lepszego ukazania
- składowych o małych amplitudach i podawany na wejście oscyloskopu analogowego.
+ składowych o małych amplitudach i podawany na wejście oscyloskopu analogowego
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "metro"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -2536,8 +2562,8 @@ Wartość skuteczna grupy harmonicznej
 
 \begin_layout Standard
 Pierwiastek kwadratowy z sumy kwadratów wartości skutecznej harmonicznej
- i sąsiadujących z nią składowych widmowych wyznaczonym w oknie czasowym.
- Jest to suma energii harmonicznej oraz energii sąsiednich linii.
+ i sąsiadujących z nią składowych widmowych.
+ Jest to suma energii harmonicznej oraz energii sąsiednich linii widma.
  Rząd harmoniczny jest określany przez rozważaną harmoniczną.
 \end_layout
 
@@ -3153,8 +3179,24 @@ Projekt płytki został przygotowany w programie Altium Designer, zaś sama
 Działanie przyrządu
 \end_layout
 
+\begin_layout Standard
+W niniejszym punkcie zostanie przedstawiony algorytm działania miernika
+ THD który został zaimplementowany na płytce rozwojowej KL25Z.
+\end_layout
+
 \begin_layout Subsection
 Algorytm ogólny
+\end_layout
+
+\begin_layout Standard
+Rysunek 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Algorytm-działania-przyrządu"
+
+\end_inset
+
+ przedstawia ogólny algorytm działania całego przyrządu.
 \end_layout
 
 \begin_layout Standard
@@ -3233,6 +3275,17 @@ Po zaprezentowaniu wyniku urządzenie wraca do oczekiwania na żądanie wykonani
 
 \begin_layout Subsection
 Inicjalizacja
+\end_layout
+
+\begin_layout Standard
+Na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Inicjalizacja-przyrządu"
+
+\end_inset
+
+ przedstawiono algorytm inicjalizacji przyrządu.
 \end_layout
 
 \begin_layout Standard
@@ -3324,6 +3377,27 @@ Pomiar częstotliwości
 \end_layout
 
 \begin_layout Standard
+Procedura pomiarowa rozpoczyna się od pomiaru częstotliwości badanego sygnału
+ zgodnie z algorytmem z rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Algorytm-pomiaru-częstotliwości"
+
+\end_inset
+
+.
+ Metoda pomiaru jest zgodna z normą IEC6100-4-30 i polega na zliczaniu liczby
+ okresów sygnału w 10-sekundowym oknie 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "normaJakosc"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -3368,19 +3442,6 @@ name "fig:Algorytm-pomiaru-częstotliwości"
 \end_layout
 
 \begin_layout Standard
-Procedura pomiarowa rozpoczyna się od pomiaru częstotliwości badanego sygnału.
- Metoda pomiaru jest zgodna z normą IEC6100-4-30 i polega na zliczaniu liczby
- okresów sygnału w 10-sekundowym oknie 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "normaJakosc"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
 Program inicjalizuje zmienne przechowujące licznik okresów (CompCounter)
  oraz czas pomiaru (CompTime), a następnie uruchamia timer oraz komparator.
  Wejście odwracające komparatora zostaje podłączone do wbudowanego 6-bitowego
@@ -3410,6 +3471,13 @@ Po upłynięciu 10 sekund program zatrzymuje działanie timera i komparatora,
 
 \begin_layout Subsection
 Próbkowanie
+\end_layout
+
+\begin_layout Standard
+Znając częstotliwość sygnału program wyznacza odpowiednią częstotliwość
+ próbkowania.
+ Konieczne jest zebranie 2048 próbek w trakcie 10 okresów sygnału, zatem
+ okres próbkowania jest równy okresowi sygnału podzielonemu przez 204,8.
 \end_layout
 
 \begin_layout Standard
@@ -3457,13 +3525,6 @@ name "fig:Algorytm-procesu-próbkowania"
 \end_layout
 
 \begin_layout Standard
-Znając częstotliwość sygnału program wyznacza odpowiednią częstotliwość
- próbkowania.
- Konieczne jest zebranie 2048 próbek w trakcie 10 okresów sygnału, zatem
- okres próbkowania jest równy okresowi sygnału podzielonemu przez 204,8.
-\end_layout
-
-\begin_layout Standard
 Do pobierania próbek z zadaną częstotliwością wykorzystywany jest ticker
  bazujący na układzie PIT (Periodic Interval Timer) mikrokontrolera.
  Po każdorazowym zliczeniu impulsów zegara do wartości odpowiadającej okresowi
@@ -3479,6 +3540,11 @@ i do kolejnego etapu.
 
 \begin_layout Subsection
 DFT i wyznaczenie THD 
+\end_layout
+
+\begin_layout Standard
+Mając spróbkowany sygnał program przechodzi do wykonywania właściwych obliczeń,
+ co zostało przedstawione na rysunku 
 \end_layout
 
 \begin_layout Standard
@@ -3526,9 +3592,8 @@ name "fig:Algorytm-wyznaczania-wartości"
 \end_layout
 
 \begin_layout Standard
-Mając spróbkowany sygnał program przechodzi do wykonywania właściwych obliczeń.
- Na początku próbki są mnożone przez wyznaczoną wcześniej funkcję okna Blackmana
-, co pozwala na redukcję przecieku DFT.
+Na początku próbki są mnożone przez wyznaczoną wcześniej funkcję okna Blackmana,
+ co pozwala na redukcję przecieku DFT.
  Częstotliwość próbkowania jest dość wysoka - próbka jest pobierana co ok.
  2000 impulsów zegara, a każda najmniejsza odchyłka od idealnej częstotliwości
  próbkowania przemnożona przez 2048 próbek prowadzi do znacznego odchylenia
